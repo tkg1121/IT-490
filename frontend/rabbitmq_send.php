@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);  // Suppress deprecated warnings
 
 // Load the php-amqplib library (make sure it's correctly installed via Composer)
-require_once('/home/dev/php-amqplib/vendor/autoload.php');  // Update this path as needed
+require_once('/var/www/html/vendor/autoload.php');  // Update this path as needed
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
