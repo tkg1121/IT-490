@@ -1,0 +1,2 @@
+ALTER TABLE SC_Pokemon
+ADD COLUMN status VARCHAR(255) DEFAULT 'available' NOT NULL;
