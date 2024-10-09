@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'header.php';
 
 if (isset($_SESSION['username'])) {
     echo "<h1>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</h1>";

@@ -1,11 +1,5 @@
 <?php
-// Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);  // Suppress deprecated warnings
-
-// Load the php-amqplib library (make sure it's correctly installed via Composer)
-require_once('/var/www/html/vendor/autoload.php');  // Update this path as needed
+require_once('/home/dev/php-amqplib/vendor/autoload.php');  // Adjust the path as needed
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -14,7 +8,7 @@ function sendToRabbitMQ($queue, $message) {
     try {
         // Connect to RabbitMQ
         $connection = new AMQPStreamConnection(
-            '192.168.193.137',  // RabbitMQ server IP (VM3)
+            '192.168.193.137',  // RabbitMQ server IP
             5672,               // RabbitMQ port
             'guest',            // RabbitMQ username
             'guest',            // RabbitMQ password
@@ -49,27 +43,22 @@ function sendToRabbitMQ($queue, $message) {
         $channel->basic_consume($callback_queue, '', false, true, false, false, function ($msg) use ($correlation_id, &$response) {
             if ($msg->get('correlation_id') == $correlation_id) {
                 $response = $msg->body;  // Capture the response body
-                error_log("Received response: " . $response);  // Log the response for debugging
             }
         });
 
         // Wait for the response from RabbitMQ
         while (!$response) {
-            error_log("Waiting for RabbitMQ response...");  // Log waiting status
-            $channel->wait();
+            $channel->wait();  // Wait for the callback to trigger
         }
 
-        // Log success and close connections
-        error_log("Final response received: " . $response);  // Debugging log
+        // Close the channel and connection
         $channel->close();
         $connection->close();
 
+        // Return the response to the caller
         return $response;
 
     } catch (Exception $e) {
-        // Log the error for debugging purposes
-        error_log("RabbitMQ Error: " . $e->getMessage());
         return "Error: " . $e->getMessage();
     }
 }
-?>

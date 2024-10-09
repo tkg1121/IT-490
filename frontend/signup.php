@@ -1,33 +1,22 @@
 <?php
-require_once('rabbitmq_send.php');  // Make sure this path is correct
+require_once('rabbitmq_send.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
-    $password = $_POST['password'];
     $email = $_POST['email'];
+    $password = $_POST['password'];  // Send plain-text password to RabbitMQ
+    $session_token = bin2hex(random_bytes(32));
 
-    // Prepare the data to be sent to RabbitMQ
+    // Prepare the data for RabbitMQ (plain-text password)
     $data = [
         'username' => $username,
-        'password' => $password,
         'email' => $email,
+        'password' => $password,  // Plain-text password
+        'session_token' => $session_token
     ];
 
-    // Send signup data to RabbitMQ and get the response
+    // Send the data to RabbitMQ
     $response = sendToRabbitMQ('signup_queue', json_encode($data));
-
-    // Log the response for debugging
-    error_log("Signup Response: " . $response);
-
-    // If the backend confirms signup success, redirect to a welcome page
-    if (strpos($response, 'Signup successful') !== false) {
-        echo "Signup successful! You can now log in.";
-        // Optionally redirect to login or profile page
-        // header("Location: login.html");
-        exit();
-    } else {
-        // Show failure message
-        echo $response;
-    }
+    echo $response;
 }
 ?>

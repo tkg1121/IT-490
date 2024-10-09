@@ -1,10 +1,10 @@
 <?php
-require_once('rabbitmq_send.php');  // Make sure this path is correct
+require_once('rabbitmq_send.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
+    
     // Prepare the data to be sent to RabbitMQ
     $data = [
         'username' => $username,
@@ -13,18 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Send login data to RabbitMQ and get the response
     $response = sendToRabbitMQ('login_queue', json_encode($data));
+    $response_data = json_decode($response, true);
 
-    // Log the response for debugging
-    error_log("Login Response: " . $response);
+    if (isset($response_data['status']) && $response_data['status'] === 'success') {
+        // Set the session token cookie in the browser
+        setcookie('session_token', $response_data['session_token'], time() + (60 * 10), "/");  // 10-minute expiry
 
-    // If the backend confirms login success, redirect to the profile page
-    if (strpos($response, 'Login successful') !== false) {
         // Redirect to the profile page after successful login
         header("Location: profile.php?username=" . urlencode($username));
         exit();  // Ensure the script stops after redirection
     } else {
-        // Show failure message
-        echo "Login failed. Please try again.";
+        // Output the exact failure message from RabbitMQ
+        echo $response;
     }
 }
-?>
