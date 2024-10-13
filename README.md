@@ -13,4 +13,4 @@ Midterm deliverables:
 
 - [ ] Firewalls (with at least SOME reject rules)
 
-- [ ] Authentication
+- [ x ] Authentication
