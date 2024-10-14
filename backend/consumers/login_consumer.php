@@ -82,7 +82,9 @@ $callback = function ($msg) use ($channel) {
 
                             // Generate session token and update in the database
                             $session_token = bin2hex(random_bytes(32));
-                            $last_activity = date('Y-m-d H:i:s');
+                            $epoch = 14832228800;
+                            $last_activity = new DateTime("@$epoch");
+                            echo $last_activity -> format('Y-m-d H:i:s');
 
                             // Store the session token and last activity time
                             $stmt->close();
