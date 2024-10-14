@@ -22,3 +22,4 @@ Personal deliverables:
 - [ ] users get recommendation based on their watch history
 - [ ] users get to play a little trivia
 - [ ] users can see what websites/streaming services they can watch the movie on
+- [ ] users have a blog (social media aspect)
