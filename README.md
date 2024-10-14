@@ -11,6 +11,6 @@ Midterm deliverables:
 
 - [ ] Data Collection through Code (Cron / on demand)
 
-- [ ] Firewalls (with at least SOME reject rules)
+- [x] Firewalls (with at least SOME reject rules)
 
 - [x] Authentication
