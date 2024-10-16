@@ -1,5 +1,5 @@
 <?php
-require_once('/home/dev/php-amqplib/vendor/autoload.php');  // Path to php-amqplib autoload
+require_once('/home/stanley/consumers/vendor/autoload.php');  // Path to php-amqplib autoload
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -8,10 +8,10 @@ error_log("Profile Consumer: Starting profile_consumer.php");
 
 // Establish RabbitMQ connection
 $connection = new AMQPStreamConnection(
-    '192.168.193.137',  // RabbitMQ server IP (VM3)
+    '192.168.193.197',  // RabbitMQ server IP (VM3)
     5672,               // RabbitMQ port
-    'guest',            // RabbitMQ username
-    'guest',            // RabbitMQ password
+    'T',            // RabbitMQ username
+    'dev1121!!@@',            // RabbitMQ password
     '/',                // Virtual host
     false,              // Insist
     'AMQPLAIN',         // Login method
@@ -40,7 +40,7 @@ $callback = function ($msg) use ($channel) {
         error_log("Profile Consumer: Session token: " . $session_token);
 
         // Connect to the database
-        $mysqli = new mysqli("localhost", "dbadmin", "dbAdmin123!", "user_auth");
+        $mysqli = new mysqli("localhost", "dbadmin", "dbadmin", "user_auth");
 
         if ($mysqli->connect_error) {
             $response = json_encode(['status' => 'error', 'message' => 'Database connection failed']);

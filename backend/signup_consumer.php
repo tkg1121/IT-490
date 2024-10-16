@@ -1,5 +1,5 @@
 <?php
-require_once('/home/dev/php-amqplib/vendor/autoload.php');  // Path to php-amqplib autoload
+require_once('/home/stanley/consumers/vendor/autoload.php');  // Path to php-amqplib autoload
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -8,10 +8,10 @@ error_log("Signup Consumer: Starting signup_consumer.php");
 
 // Establish RabbitMQ connection
 $connection = new AMQPStreamConnection(
-    '192.168.193.137',  // RabbitMQ server IP (VM3)
+    '192.168.193.197',  // RabbitMQ server IP (VM3)
     5672,               // RabbitMQ port
-    'guest',            // RabbitMQ username
-    'guest',            // RabbitMQ password
+    'T',            // RabbitMQ username
+    'dev1121!!@@',            // RabbitMQ password
     '/',                // Virtual host
     false,              // Insist
     'AMQPLAIN',         // Login method
@@ -55,7 +55,7 @@ $callback = function ($msg) use ($channel) {
         error_log("Signup Consumer: Hashed password: '$hashed_password'");
 
         // Step 4: Connect to MySQL
-        $mysqli = new mysqli("localhost", "dbadmin", "dbAdmin123!", "user_auth");
+        $mysqli = new mysqli("localhost", "dbadmin", "dbadmin", "user_auth");
 
         if ($mysqli->connect_error) {
             $response = "Signup failed: Database connection error - " . $mysqli->connect_error;
