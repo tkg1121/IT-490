@@ -1,5 +1,5 @@
 <?php
-require_once('/var/www/html/vendor/autoload.php');  // Adjust the path as needed
+require_once('/var/www/html/vendor/autoload.php');  // Path to php-amqplib autoload
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -12,7 +12,7 @@ function sendToRabbitMQ($queue, $message) {
             5672,               // RabbitMQ port
             'T',            // RabbitMQ username
             'dev1121!!@@',            // RabbitMQ password
-            '/',                // Virtual host
+            '/'                 // Virtual host
         );
 
         // Create a channel
@@ -62,3 +62,11 @@ function sendToRabbitMQ($queue, $message) {
         return "Error: " . $e->getMessage();
     }
 }
+
+// Sending movie request to RabbitMQ
+$movie_name = 'Dragon Ball Super';  // Example movie request
+$request_data = json_encode(['name' => $movie_name]);
+
+$response = sendToRabbitMQ('omdb_request_queue', $request_data);
+echo "Received movie data: " . $response;
+?>
