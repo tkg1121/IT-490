@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once('/home/dev/vendor/autoload.php');  // Path to php-amqplib autoload
+require_once('/home/alisa-maloku/vendor/autoload.php');  // Path to php-amqplib autoload
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
