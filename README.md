@@ -9,7 +9,7 @@ Midterm deliverables:
 
 - [x] ISC through a message Queue
 
-- [ ] Data Collection through Code (Cron / on demand)
+- [x] Data Collection through Code (Cron / on demand)
 
 - [x] Firewalls (with at least SOME reject rules)
 
