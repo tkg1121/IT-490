@@ -4,16 +4,19 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once('/home/alisa-maloku/vendor/autoload.php');  // Path to php-amqplib autoload
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);  // Load .env from the same directory
+$dotenv->load();
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-$RABBITMQ_HOST = '192.168.193.197'; // RabbitMQ server IP
-$RABBITMQ_PORT = 5672;
-$RABBITMQ_USER = 'T';
-$RABBITMQ_PASS = 'dev1121!!@@';
-$OMDB_API_KEY = '44c5ac37';  // Your OMDb API key
-$OMDB_URL = 'http://www.omdbapi.com/';
+// Pull credentials from .env file
+$RABBITMQ_HOST = getenv('RABBITMQ_HOST');
+$RABBITMQ_PORT = getenv('RABBITMQ_PORT');
+$RABBITMQ_USER = getenv('RABBITMQ_USER');
+$RABBITMQ_PASS = getenv('RABBITMQ_PASS');
+$OMDB_API_KEY = getenv('OMDB_API_KEY');
+$OMDB_URL = getenv('OMDB_URL');
 
 try {
     // Connect to RabbitMQ
@@ -94,4 +97,3 @@ try {
 } catch (Exception $e) {
     echo "Error connecting to RabbitMQ: " . $e->getMessage() . "\n";
 }
-?>

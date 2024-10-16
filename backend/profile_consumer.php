@@ -1,27 +1,39 @@
 <?php
 require_once('/home/stanley/consumers/vendor/autoload.php');  // Path to php-amqplib autoload
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);  // Load .env from the same directory
+$dotenv->load();
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 error_log("Profile Consumer: Starting profile_consumer.php");
 
+// Pull credentials from .env file
+$RABBITMQ_HOST = getenv('RABBITMQ_HOST');
+$RABBITMQ_PORT = getenv('RABBITMQ_PORT');
+$RABBITMQ_USER = getenv('RABBITMQ_USER');
+$RABBITMQ_PASS = getenv('RABBITMQ_PASS');
+$DB_HOST = getenv('DB_HOST');
+$DB_USER = getenv('DB_USER');
+$DB_PASS = getenv('DB_PASS');
+$DB_NAME = getenv('DB_NAME');
+
 // Establish RabbitMQ connection
 $connection = new AMQPStreamConnection(
-    '192.168.193.197',  // RabbitMQ server IP (VM3)
-    5672,               // RabbitMQ port
-    'T',            // RabbitMQ username
-    'dev1121!!@@',            // RabbitMQ password
-    '/',                // Virtual host
-    false,              // Insist
-    'AMQPLAIN',         // Login method
-    null,               // Login response
-    'en_US',            // Locale
-    10.0,               // Connection timeout in seconds
-    10.0,               // Read/write timeout in seconds
-    null,               // Context (use null for default)
-    false,              // Keepalive (use true to keep the connection alive)
-    60                  // Heartbeat interval in seconds
+    $RABBITMQ_HOST,  // RabbitMQ server IP
+    $RABBITMQ_PORT,  // RabbitMQ port
+    $RABBITMQ_USER,  // RabbitMQ username
+    $RABBITMQ_PASS,  // RabbitMQ password
+    '/',             // Virtual host
+    false,           // Insist
+    'AMQPLAIN',      // Login method
+    null,            // Login response
+    'en_US',         // Locale
+    10.0,            // Connection timeout
+    10.0,            // Read/write timeout
+    null,            // Context (use null for default)
+    false,           // Keepalive
+    60               // Heartbeat interval
 );
 
 error_log("Profile Consumer: Connected to RabbitMQ");
@@ -29,7 +41,7 @@ error_log("Profile Consumer: Connected to RabbitMQ");
 $channel = $connection->channel();
 $channel->queue_declare('profile_queue', false, true, false, false);
 
-$callback = function ($msg) use ($channel) {
+$callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
     error_log("Profile Consumer: Received message: " . $msg->body);
     $data = json_decode($msg->body, true);
 
@@ -40,7 +52,7 @@ $callback = function ($msg) use ($channel) {
         error_log("Profile Consumer: Session token: " . $session_token);
 
         // Connect to the database
-        $mysqli = new mysqli("localhost", "dbadmin", "dbadmin", "user_auth");
+        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 
         if ($mysqli->connect_error) {
             $response = json_encode(['status' => 'error', 'message' => 'Database connection failed']);

@@ -1,18 +1,25 @@
 <?php
-require_once('/var/www/html/vendor/autoload.php');  // Adjust the path as needed
+require_once('/var/www/html/vendor/autoload.php');
+$dotenv = Dotenv\Dotenv::createImmutable('/home/ashleys');  // Load .env from /home/ashleys
+$dotenv->load();
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+
+$RABBITMQ_HOST = getenv('RABBITMQ_HOST');
+$RABBITMQ_PORT = getenv('RABBITMQ_PORT');
+$RABBITMQ_USER = getenv('RABBITMQ_USER');
+$RABBITMQ_PASS = getenv('RABBITMQ_PASS');
 
 function sendToRabbitMQ($queue, $message) {
     try {
         // Connect to RabbitMQ
         $connection = new AMQPStreamConnection(
-            '192.168.193.197',  // RabbitMQ server IP
-            5672,               // RabbitMQ port
-            'T',            // RabbitMQ username
-            'dev1121!!@@',            // RabbitMQ password
-            '/',                // Virtual host
+            $RABBITMQ_HOST,  // RabbitMQ server IP
+            $RABBITMQ_PORT,  // RabbitMQ port
+            $RABBITMQ_USER,  // RabbitMQ username
+            $RABBITMQ_PASS,  // RabbitMQ password
+            '/',             // Virtual host
         );
 
         // Create a channel
