@@ -1,5 +1,5 @@
 <?php 
-$env_keys = ["POKEMON_API"]; //change to pokemon
+$env_keys = ["OMDb_API"]; 
 
 $ini = @parse_ini_file(".env");
 

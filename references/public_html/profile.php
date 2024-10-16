@@ -1,172 +1,79 @@
 <?php
-require_once(__DIR__ . "/../../partials/nav.php");
-is_logged_in(true);
-?>
-<?php
-if (isset($_POST["save"])) {
-    $email = se($_POST, "email", null, false);
-    $username = se($_POST, "username", null, false);
+require_once(__DIR__ . "/../lib/functions.php");
+require_once('/home/dev/php-amqplib/vendor/autoload.php'); // Adjust the path as necessary
 
-    $params = [":email" => $email, ":username" => $username, ":id" => get_user_id()];
-    $db = getDB();
-    $stmt = $db->prepare("UPDATE Users set email = :email, username = :username where id = :id");
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
+
+// Function to send a message to RabbitMQ
+function sendToRabbitMQ($queue, $message) {
     try {
-        $stmt->execute($params);
-        flash("Profile saved", "success");
+        // Connect to RabbitMQ
+        $connection = new AMQPStreamConnection(
+            '192.168.193.137',  // RabbitMQ server IP
+            5672,               // RabbitMQ port
+            'guest',            // RabbitMQ username
+            'guest',            // RabbitMQ password
+            '/'                 // Virtual host
+        );
+
+        // Create a channel
+        $channel = $connection->channel();
+
+        // Declare the queue where the message will be sent
+        $channel->queue_declare($queue, false, true, false, false);
+
+        // Create the message
+        $msg = new AMQPMessage($message);
+
+        // Publish the message to the queue
+        $channel->basic_publish($msg, '', $queue);
+
+        // Close the channel and connection
+        $channel->close();
+        $connection->close();
+
     } catch (Exception $e) {
-        if ($e->errorInfo[1] === 1062) {
-            //https://www.php.net/manual/en/function.preg-match.php
-            preg_match("/Users.(\w+)/", $e->errorInfo[2], $matches);
-            if (isset($matches[1])) {
-                flash("The chosen " . $matches[1] . " is not available.", "warning");
-            } else {
-                //TODO come up with a nice error message
-                echo "<pre>" . var_export($e->errorInfo, true) . "</pre>";
-            }
-        } else {
-            //TODO come up with a nice error message
-            echo "<pre>" . var_export($e->errorInfo, true) . "</pre>";
-        }
-    }
-    //select fresh data from table
-    $stmt = $db->prepare("SELECT id, email, username from Users where id = :id LIMIT 1");
-    try {
-        $stmt->execute([":id" => get_user_id()]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user) {
-            //$_SESSION["user"] = $user;
-            $_SESSION["user"]["email"] = $user["email"];
-            $_SESSION["user"]["username"] = $user["username"];
-        } else {
-            flash("User doesn't exist", "danger");
-        }
-    } catch (Exception $e) {
-        flash("An unexpected error occurred, please try again", "danger");
-        //echo "<pre>" . var_export($e->errorInfo, true) . "</pre>";
-    }
-
-
-    //check/update password
-    $current_password = se($_POST, "currentPassword", null, false);
-    $new_password = se($_POST, "newPassword", null, false);
-    $confirm_password = se($_POST, "confirmPassword", null, false);
-    if (!empty($current_password) && !empty($new_password) && !empty($confirm_password)) {
-        if ($new_password === $confirm_password) {
-            //TODO validate current
-            $stmt = $db->prepare("SELECT password from Users where id = :id");
-            try {
-                $stmt->execute([":id" => get_user_id()]);
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                if (isset($result["password"])) {
-                    if (password_verify($current_password, $result["password"])) {
-                        $query = "UPDATE Users set password = :password where id = :id";
-                        $stmt = $db->prepare($query);
-                        $stmt->execute([
-                            ":id" => get_user_id(),
-                            ":password" => password_hash($new_password, PASSWORD_BCRYPT)
-                        ]);
-
-                        flash("Password reset", "success");
-                    } else {
-                        flash("Current password is invalid", "warning");
-                    }
-                }
-            } catch (Exception $e) {
-                echo "<pre>" . var_export($e->errorInfo, true) . "</pre>";
-            }
-        } else {
-            flash("New passwords don't match", "warning");
-        }
+        // Log the error for debugging purposes
+        error_log("RabbitMQ Error: " . $e->getMessage());
     }
 }
-?>
 
-<?php
-$email = get_user_email();
-$username = get_username();
-?>
-<form method="POST" onsubmit="return validate(this);">
-    <div class="mb-3">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?php se($email); ?>" />
-    </div>
-    <div class="mb-3">
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" value="<?php se($username); ?>" />
-    </div>
-    <!-- DO NOT PRELOAD PASSWORD -->
-    <div>Password Reset</div>
-    <div class="mb-3">
-        <label for="cp">Current Password</label>
-        <input type="password" name="currentPassword" id="cp" />
-    </div>
-    <div class="mb-3">
-        <label for="np">New Password</label>
-        <input type="password" name="newPassword" id="np" />
-    </div>
-    <div class="mb-3">
-        <label for="conp">Confirm Password</label>
-        <input type="password" name="confirmPassword" id="conp" />
-    </div>
-    <input type="submit" value="Update Profile" name="save" />
-</form>
+// Check if the user is logged in
+if (!is_logged_in()) {
+    header("Location: " . get_url('login.php'));
+    exit;
+}
 
-<script>
+// Get user data (this is just an example; adjust based on your implementation)
+$username = $_SESSION['username'];
+// Fetch other user profile data as needed
+
+// Log the action of viewing the profile
+sendToRabbitMQ('user_actions_queue', "User viewed profile: $username");
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo get_url('styles.css'); ?>">
+    <title>User Profile</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>
+            <li><a href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
+            <li><a href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
+        </ul>
+    </nav>
     
-    function validate(form) {
-        let pw = form.newPassword.value;
-        let con = form.confirmPassword.value;
-        let isValid = true;
-        //TODO add other client side validation....
+    <h1>User Profile</h1>
+    <p>Username: <?php echo htmlspecialchars($username); ?></p>
+    <!-- Display other user profile information here -->
 
-        //example of using flash via javascript
-        //find the flash container, create a new element, appendChild
-        if (!isEqual(pw, con)) {
-            flash("Password and Confrim password must match", "warning");
-            isValid = false;
-        }
-        return isValid;
-    } 
-    /*function validate(form) {
-        let email = form.email.value;
-        let username = form.username.value;
-        let currentPw = form.currentPw.value;
-        let pw = form.newPassword.value;
-        let con = form.confirmPassword.value;
-        let isValid = true;
-        //TODO add other client side validation....
-
-        //example of using flash via javascript
-        //find the flash container, create a new element, appendChild
-        if (pw !== con) {
-            flash("Password and Confrim password must match", "warning");
-            isValid = false;
-        }
-
-        //new password length
-        if (pw.length > 0 && pw.length < 8)
-        {
-            flash("Password must be at least 8 characters long", "danger");
-            isValid = false;
-        }
-        
-        //email
-        if (!validateEmail(email))
-        {
-            flash("Invalid email address", "danger");
-            isValid = false;
-        }
-
-        //username
-        if (!validateUsername(username))
-        {
-            flash("Invalid username", "danger");
-            isValid = false;
-        }
-
-        return isValid;
-    }*/
-</script>
-<?php
-require_once(__DIR__ . "/../../partials/flash.php");
-?>
+    <!-- Additional functionality or links can be added here -->
+</body>
+</html>
