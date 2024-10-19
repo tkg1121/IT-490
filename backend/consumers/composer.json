@@ -1,0 +1,17 @@
+{
+    "name": "stanley/consumers",
+    "autoload": {
+        "psr-4": {
+            "Stanley\\Consumers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "StanleySainte",
+            "email": "srs29@njit.edu"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
