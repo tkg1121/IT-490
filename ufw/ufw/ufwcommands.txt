@@ -1,0 +1,26 @@
+[rabbitmq]
+
+ufw allow 5672/tcp
+
+
+[frontend]
+
+ufw allow  [rabbitmq ip] to any port 5672
+ufw allow [rabbitmq] to any port 15672
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 22/tcp
+deny incoming allow outgoing
+
+[backend/database]
+
+ufw allow 22/tcp
+ufw allow [front end ip] to any port 5672
+ufw allow [front end ip] to any port 15672
+deny incoming allow outgoing
+
+[DMZ]
+ufw allow 3306/tcp
+ufw allow [rabbitmq ip address] to any port 5672
+ufw allow [rabbitmq ip address] to any port 15672
+deny incoming allow outgoing
