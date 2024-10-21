@@ -6,20 +6,50 @@ $dotenv->load();
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-$RABBITMQ_HOST = getenv('RABBITMQ_HOST');
-$RABBITMQ_PORT = getenv('RABBITMQ_PORT');
-$RABBITMQ_USER = getenv('RABBITMQ_USER');
-$RABBITMQ_PASS = getenv('RABBITMQ_PASS');
+// Set error logging to both console and a log file
+ini_set('display_errors', 1);  // Show errors in the console (CLI)
+ini_set('log_errors', 1);      // Log errors to a file
+ini_set('error_log', '/path/to/your/error.log');  // Path to error log file
+error_reporting(E_ALL);        // Report all types of errors
+
+// Check and log environment variables
+$requiredEnvVars = ['RABBITMQ_HOST', 'RABBITMQ_PORT', 'RABBITMQ_USER', 'RABBITMQ_PASS', 'DB_HOST', 'DB_USER', 'DB_PASS', 'DB_NAME'];
+
+foreach ($requiredEnvVars as $envVar) {
+    if (!isset($_ENV[$envVar]) || empty($_ENV[$envVar])) {
+        error_log("Error: Environment variable $envVar is not set or is empty");
+        die("Error: Required environment variable $envVar is not set or is empty\n");
+    }
+}
+
+// Pull environment variables
+$RABBITMQ_HOST = $_ENV['RABBITMQ_HOST'];
+$RABBITMQ_PORT = $_ENV['RABBITMQ_PORT'];
+$RABBITMQ_USER = $_ENV['RABBITMQ_USER'];
+$RABBITMQ_PASS = $_ENV['RABBITMQ_PASS'];
+$DB_HOST = $_ENV['DB_HOST'];
+$DB_USER = $_ENV['DB_USER'];
+$DB_PASS = $_ENV['DB_PASS'];
+$DB_NAME = $_ENV['DB_NAME'];
+
+// Log environment variable values for debugging
+error_log("RABBITMQ_HOST: $RABBITMQ_HOST");
+error_log("RABBITMQ_PORT: $RABBITMQ_PORT");
+error_log("RABBITMQ_USER: $RABBITMQ_USER");
+error_log("DB_HOST: $DB_HOST");
+error_log("DB_USER: $DB_USER");
 
 function sendToRabbitMQ($queue, $message) {
+    global $RABBITMQ_HOST, $RABBITMQ_PORT, $RABBITMQ_USER, $RABBITMQ_PASS;
+
     try {
         // Connect to RabbitMQ
+        error_log("Attempting to connect to RabbitMQ at $RABBITMQ_HOST:$RABBITMQ_PORT with user $RABBITMQ_USER");
         $connection = new AMQPStreamConnection(
             $RABBITMQ_HOST,  // RabbitMQ server IP
             $RABBITMQ_PORT,  // RabbitMQ port
             $RABBITMQ_USER,  // RabbitMQ username
-            $RABBITMQ_PASS,  // RabbitMQ password
-            '/',             // Virtual host
+            $RABBITMQ_PASS   // RabbitMQ password
         );
 
         // Create a channel
@@ -41,6 +71,7 @@ function sendToRabbitMQ($queue, $message) {
         );
 
         // Publish the message to the queue
+        error_log("Publishing message to queue: $queue with correlation_id: $correlation_id");
         $channel->basic_publish($msg, '', $queue);
 
         // Set up to wait for the response
@@ -59,6 +90,7 @@ function sendToRabbitMQ($queue, $message) {
         }
 
         // Close the channel and connection
+        error_log("Response received: $response");
         $channel->close();
         $connection->close();
 
@@ -66,6 +98,8 @@ function sendToRabbitMQ($queue, $message) {
         return $response;
 
     } catch (Exception $e) {
+        error_log("Error occurred while communicating with RabbitMQ: " . $e->getMessage());
         return "Error: " . $e->getMessage();
     }
 }
+

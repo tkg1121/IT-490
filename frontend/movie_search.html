@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+</head>
+<body>
+
+<h1>Search for a Movie</h1>
+
+<!-- Search Form -->
+<form id="movieSearchForm">
+    <input type="text" id="movieName" placeholder="Enter movie name" required>
+    <button type="submit">Search</button>
+</form>
+
+<!-- Display movie data here -->
+<div id="movieResult"></div>
+
+<script>
+    document.getElementById('movieSearchForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent the form from refreshing the page
+
+        const movieName = document.getElementById('movieName').value;
+
+        // Send an AJAX request to the backend
+        fetch('test_api.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: movieName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the movie data in the result div
+            const movieResultDiv = document.getElementById('movieResult');
+            if (data.error) {
+                movieResultDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+            } else {
+                movieResultDiv.innerHTML = `<h3>Movie Data:</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
+</body>
+</html>
