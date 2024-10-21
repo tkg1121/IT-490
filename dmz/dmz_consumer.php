@@ -4,19 +4,23 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once('/home/alisa-maloku/vendor/autoload.php');  // Path to php-amqplib autoload
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);  // Load .env from the same directory
+$dotenv = Dotenv\Dotenv::createImmutable('/home/alisa-maloku/Documents/GitHub/IT-490/dmz');  // Path to your .env file
 $dotenv->load();
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 // Pull credentials from .env file
-$RABBITMQ_HOST = getenv('RABBITMQ_HOST');
-$RABBITMQ_PORT = getenv('RABBITMQ_PORT');
-$RABBITMQ_USER = getenv('RABBITMQ_USER');
-$RABBITMQ_PASS = getenv('RABBITMQ_PASS');
-$OMDB_API_KEY = getenv('OMDB_API_KEY');
-$OMDB_URL = getenv('OMDB_URL');
+$RABBITMQ_HOST = $_ENV['RABBITMQ_HOST'];
+$RABBITMQ_PORT = $_ENV['RABBITMQ_PORT'];
+$RABBITMQ_USER = $_ENV['RABBITMQ_USER'];
+$RABBITMQ_PASS = $_ENV['RABBITMQ_PASS'];
+$DB_HOST = $_ENV['DB_HOST'];
+$DB_USER = $_ENV['DB_USER'];
+$DB_PASS = $_ENV['DB_PASS'];
+$DB_NAME = $_ENV['DB_NAME'];
+$OMDB_API_KEY = $_ENV['OMDB_API_KEY'];
+$OMDB_URL = $_ENV['OMDB_URL'];
 
 try {
     // Connect to RabbitMQ
