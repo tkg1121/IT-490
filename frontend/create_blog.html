@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+</head>
+
+<form id="blogForm"></form>
+    <input type="text" id="title" placeholder="Blog Title" required>
+    <textarea id="content" placeholder="Blog Content" required></textarea>
+    <button type="submit">Create Blog</button>
+
+</form>
+</head>
+
+<script>
+    document.getElementById('blogForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const blogData = {
+        title: document.getElementById('title').value,
+        content: document.getElementById('content').value
+    };
+
+    fetch('http://backend/api/create_blog', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(blogData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Blog post created successfully!');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+</script>
+
+</html>
