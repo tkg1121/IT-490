@@ -16,7 +16,7 @@ body {
 
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color: purple;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -24,7 +24,7 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #f7e7e7;
+  background-color: purple;
   color: pink;
 }
 
@@ -41,16 +41,33 @@ body {
   position: absolute;
   width: 100%;
   bottom: 0;
+  overflow: hidden;
 }
 .footer a {
-  color: #ddd;
+  color: black;
   margin: 0 15px;
   text-decoration: none;
 }
 
 .footer a:hover {
-  color: #fff;
+  color: purple;
 }
+.movie {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.movie img {
+  width: 50px;
+  height: 75px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.movie h4 {
+  margin: 0;
+}
+
+
 </style>
 </head>
 <body>
@@ -60,17 +77,59 @@ body {
   <a href="create_blog.html">Blog</a>
   <a href="index.php">Sign in/log in</a>
   <a href="movieLists.html">add to your list</a>
+  <a href="trivia.html">Trivia</a>
 </div>
 
 <div style="padding-left:16px">
   <h2>MovieMania</h2>
-  <p>content..</p>
+  <p>under construction</p>
 </div>
 
+<h1>Search Movies</h1>
+  
+<!-- Search Bar -->
+<input type="text" id="searchInput" placeholder="Search for a movie...">
+<button onclick="searchMovies()">Search</button>
+
+<!-- Results Container -->
+<div id="results"></div>
+
+<script>
+  async function searchMovies() {
+    const query = document.getElementById('searchInput').value;
+
+    // Send search request to the DMZ (which will route it via RabbitMQ)
+    const response = await fetch('/dmz/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ query })
+    });
+
+    const movies = await response.json();
+    const results = document.getElementById('results');
+    results.innerHTML = ''; // Clear previous results
+
+    // Check if any movies were found
+    if (movies.length === 0) {
+      results.innerHTML = '<p>No movies found.</p>';
+      return;
+    }
+
+    // Display each movie
+    movies.forEach(movie => {
+      const movieItem = 
+        <div class="movie">
+          <img src="${movie.poster_url}" alt="${movie.title}">
+          <h4>${movie.title}</h4>
+        </div>
+      ;
+      results.insertAdjacentHTML('beforeend', movieItem);
+    });
+  }
+</script>
 </body>
-
-
-
 
 <footer class="footer">
   <p>&copy; 2024 MovieMania. All rights reserved.</p>
@@ -80,7 +139,5 @@ body {
       <a href="">Contact Us</a>
   </p>
 </footer>
-
-
 
 </html>

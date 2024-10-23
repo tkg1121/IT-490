@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php'; // assuming this is your DB connection file
+include 'db_connection.php'; // assuming this is your DB file
 
 if (isset($_COOKIE['session_token'])) {
     $session_token = $_COOKIE['session_token'];

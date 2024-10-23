@@ -2,7 +2,12 @@
 require 'vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
-$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+$connection = new AMQPStreamConnection(
+    '192.168.193.197',    // IP address or hostname of the RabbitMQ machine
+    5672,             // Port RabbitMQ is listening on (default 5672)
+    'guest',          // RabbitMQ username
+    'guest'           // RabbitMQ password
+);
 $channel = $connection->channel();
 
 $channel->queue_declare('blog_queue', false, false, false, false);

@@ -21,7 +21,12 @@ if ($movieData) {
     $movie = json_decode($movieData, true);
 
     // Set up RabbitMQ connection
-    $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+    $connection = new AMQPStreamConnection(
+        '192.168.193.197',    // IP address or hostname of the RabbitMQ machine
+        5672,             // Port RabbitMQ is listening on (default 5672)
+        'guest',          // RabbitMQ username
+        'guest'           // RabbitMQ password
+    );
     $channel = $connection->channel();
 
     // Declare a queue where messages will be sent

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movie</title>
+    <title>Movie Trivia Game</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
-            background-color: rgb(112, 90, 165);
+            overflow: hidden;
+            background-color: rgb(125, 216, 252);
         }
 
         /* Top Navigation Styles */
@@ -16,6 +18,7 @@
             overflow: hidden;
             background-color: pink; /* Top navigation background */
             padding: 10px 0; /* Padding for better spacing */
+            position: relative; /* Allows positioning of child elements */
             z-index: 1000; /* Ensures it's on top of other elements */
         }
 
@@ -44,8 +47,10 @@
             color: black;
             text-align: center;
             padding: 20px 0;
-            position: relative; /* Ensure the footer stays below the content */
+            position: absolute;
             width: 100%;
+            bottom: 0;
+            overflow: hidden;
         }
 
         .footer a {
@@ -58,53 +63,69 @@
             color: purple;
         }
 
-        /* Form Styles */
-        form {
-            max-width: 400px; /* Set a maximum width for the form */
-            margin: 50px auto; /* Center the form */
-            padding: 20px;
-            background-color: #fff; /* White background for the form */
+        /* Trivia Container Styles */
+        #trivia-container {
+            background-color: #fff;
             border-radius: 8px;
+            padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            margin: 50px auto; /* Center the trivia container */
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .btn-container {
+            margin: 20px 0;
         }
 
-        input[type="submit"] {
+        .btn {
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 4px;
             padding: 10px;
             cursor: pointer;
+            margin: 5px;
             transition: background-color 0.3s;
         }
 
-        input[type="submit"]:hover {
+        .btn:hover {
             background-color: #0056b3;
+        }
+
+        .score-container {
+            margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
+    <!-- Top Navigation -->
     <div class="topnav">
         <a href="index.html">Home</a>
         <a href="create_blog.html">Blog</a>
         <a href="index.php">Sign in/log in</a>
-        <a href="movieLists.html" class="active">Add to Your List</a>
-        <a href="trivia.html">Trivia</a>
+        <a href="movieLists.html">Add to Your List</a>
+        <a href="trivia.html" class="active">Trivia</a>
     </div>
-    
-    <form action="movieLists.php" method="POST">
-        <input type="text" name="movie_id" placeholder="Movie ID" required>
-        <input type="submit" value="Add Movie">
-    </form>
 
+    <!-- Trivia Game Container -->
+    <div id="trivia-container">
+        <h1>Movie Trivia Game</h1>
+        <div id="question-container">
+            <h2 id="question">Question will go here</h2>
+            <div id="answer-buttons" class="btn-container"></div>
+        </div>
+        <button id="next-button" class="btn" onclick="nextQuestion()">Next Question</button>
+        <div id="score-container" class="score-container" style="display: none;">
+            <h2>Your Score: <span id="score"></span></h2>
+            <button id="restart-button" class="btn" onclick="restartGame()">Restart Game</button>
+        </div>
+    </div>
+
+    <script src="trivia.js"></script>
+
+    <!-- Footer Section -->
     <footer class="footer">
         <p>&copy; 2024 MovieMania. All rights reserved.</p>
         <p>
@@ -114,4 +135,5 @@
         </p>
     </footer>
 </body>
+
 </html>
