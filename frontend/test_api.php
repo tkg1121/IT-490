@@ -127,17 +127,20 @@
                 }
             });
 
-            // Wait for the response from RabbitMQ
-            while (!$response) {
-                $channel->wait();  // Wait for the callback to trigger
+            // Wait for the response from RabbitMQ with a timeout
+            $timeout = 10; // Set timeout in seconds
+            $startTime = time();
+
+            while (!$response && (time() - $startTime) < $timeout) {
+                $channel->wait(null, false, 1);  // 1-second wait timeout
             }
 
             // Close the channel and connection
             $channel->close();
             $connection->close();
 
-            // Return the response to the caller
-            return $response;
+            // Return the response or timeout message
+            return $response ? $response : "Timeout: No response from RabbitMQ.";
 
         } catch (Exception $e) {
             return "Error: " . $e->getMessage();
