@@ -3,72 +3,7 @@
   
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: pink;
-}
-
-.topnav a {
-  float: left;
-  color: purple;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: purple;
-  color: pink;
-}
-
-.topnav a.active {
-  background-color: pink;
-  color: black;
-}
-
-.footer {
-  background-color: pink;
-  color: black;
-  text-align: center;
-  padding: 20px 0;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  overflow: hidden;
-}
-.footer a {
-  color: black;
-  margin: 0 15px;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: purple;
-}
-.movie {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-.movie img {
-  width: 50px;
-  height: 75px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-.movie h4 {
-  margin: 0;
-}
-
-
-</style>
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
 
@@ -121,7 +56,7 @@ body {
     movies.forEach(movie => {
       const movieItem = 
         <div class="movie">
-          <img src="${movie.poster_url}" alt="${movie.title}">
+          <img src="${movie.poster_url}" alt="${movie.title}"></img>
           <h4>${movie.title}</h4>
         </div>
       ;
