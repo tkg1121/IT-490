@@ -233,11 +233,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sending movie request to RabbitMQ
         $response = sendToRabbitMQ('omdb_request_queue', $request_data);
 
+        // DEBUG: Echo the response to check if it's being received properly
+        echo "<pre>RabbitMQ Response: " . htmlspecialchars($response) . "</pre>";
+
         // Assuming the response is JSON with movie details (adjust according to your RabbitMQ response format)
         $movie_data = json_decode($response, true);
 
         if ($movie_data) {
+            // DEBUG: Echo movie data as JSON for further inspection
+            echo "<pre>Parsed Movie Data: " . json_encode($movie_data, JSON_PRETTY_PRINT) . "</pre>";
             echo "<script>let movies = " . json_encode($movie_data) . ";</script>";
+        } else {
+            echo "<pre>Error: Unable to parse movie data</pre>";
         }
     }
 }
@@ -247,7 +254,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     const moviesContainer = document.getElementById('movies-container');
     const sideBox = document.getElementById('side-box');
 
-    if (typeof movies !== 'undefined') {
+    // DEBUG: Log the movie data
+    console.log("Movies data:", movies);
+
+    if (typeof movies !== 'undefined' && movies.length > 0) {
         movies.forEach(movie => {
             const movieBox = document.createElement('div');
             movieBox.classList.add('movie-box');
@@ -273,6 +283,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             moviesContainer.appendChild(movieBox);
         });
+    } else {
+        console.log("No movie data found or movies array is empty.");
     }
 </script>
 
