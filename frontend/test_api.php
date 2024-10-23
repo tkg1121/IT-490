@@ -4,14 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .movie-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+        .movie-poster img {
+            width: 200px;
+            border-radius: 8px;
+        }
+        .movie-details {
+            margin-left: 20px;
+        }
+        .movie-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .movie-plot {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .movie-info {
+            margin-bottom: 10px;
+        }
+        .movie-info span {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>Search for a Movie</h1>
-    <form method="POST" action="">
-        <label for="movie_name">Enter Movie Name:</label>
-        <input type="text" id="movie_name" name="movie_name" required>
-        <button type="submit">Search</button>
-    </form>
+
+<h1>Search for a Movie</h1>
+<form method="POST" action="">
+    <label for="movie_name">Enter Movie Name:</label>
+    <input type="text" id="movie_name" name="movie_name" required>
+    <button type="submit">Search</button>
+</form>
 
     <?php
     require_once('/var/www/html/vendor/autoload.php');  // Path to php-amqplib autoload
