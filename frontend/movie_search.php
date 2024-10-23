@@ -118,8 +118,8 @@
             $connection = new AMQPStreamConnection(
                 '192.168.193.197',  // RabbitMQ server IP
                 5672,               // RabbitMQ port
-                'T',            // RabbitMQ username
-                'dev1121!!@@',            // RabbitMQ password
+                'T',                // RabbitMQ username
+                'dev1121!!@@',       // RabbitMQ password
                 '/'                 // Virtual host
             );
 
@@ -154,12 +154,12 @@
                 }
             });
 
-            // Wait for the response from RabbitMQ with a timeout
-            $timeout = 10; // Set timeout in seconds
+            // Wait for the response from RabbitMQ with a timeout of 30 seconds
+            $timeout = 30; // Set timeout in seconds
             $startTime = time();
 
             while (!$response && (time() - $startTime) < $timeout) {
-                $channel->wait(null, false, 1);  // 1-second wait timeout
+                $channel->wait(null, false, 2);  // 2-second wait timeout per iteration
             }
 
             // Close the channel and connection
