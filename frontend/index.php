@@ -91,8 +91,6 @@ include 'header.php';
             margin-top: 10px;
         }
 
-
-
         .movie-mania h1 {
             font-size: 36px;
             color: white;
@@ -109,12 +107,11 @@ include 'header.php';
 </head>
 <body>
 
-   
     <div class="login-container">
         <!-- Left half for MovieMania -->
         <div class="left-half">
             <div class="movie-mania">
-                <h1>"MovieMania: Where Every Flick Fuels the Frenzy!</h1>
+                <h1>"MovieMania: Where Every Flick Fuels the Frenzy!"</h1>
                 <img src="images/LogIn.png" alt="MovieMania Logo">
             </div>
         </div>
@@ -127,16 +124,17 @@ include 'header.php';
                     echo "<h2>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</h2>";
                     echo "<p><a href='logout.php'>Log out</a></p>";
                 } else {
-                    echo '<h1>Log in page!</h1>';
+                    echo '<h2>Log in page!</h2>';
+                    echo '<form action="login.php" method="POST">
+                            <div class="input-box">
+                                <input type="text" name="username" placeholder="Username" required>
+                            </div>
+                            <div class="input-box">
+                                <input type="password" name="password" placeholder="Password" required>
+                            </div>
+                            <button type="submit">Login</button>
+                          </form>';
                     echo '
-                    <div class="input-box">
-                        <input type="text" placeholder="Username" required>
-                    </div>
-                    <div class="input-box">
-                        <input type="password" placeholder="Password" required>
-                    </div>
-                    <button>Login</button>
-                    
                     <div class="sign-up">
                         <p>Don\'t have an account with us?</p>
                         <a href="signup.html"><button>Sign Up</button></a>
