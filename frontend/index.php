@@ -18,11 +18,27 @@ include 'header.php';
 
         .login-container {
             width: 100%;
-            height: 90vh;
+            height: 100vh;
+            display: flex;
+        }
+
+        /* Left section for MovieMania */
+        .left-half {
+            background-color: #795833; /* Background color for the left side */
+            width: 50%; /* Takes up half the screen */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f3e4d0;
+            flex-direction: column;
+            color: white;
+        }
+
+        /* Right section for Login box */
+        .right-half {
+            width: 50%; /* Takes up half the screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .login-box {
@@ -75,54 +91,60 @@ include 'header.php';
             margin-top: 10px;
         }
 
-        .top-bar {
-            background-color: #80592d;
+
+
+        .movie-mania h1 {
+            font-size: 36px;
             color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            font-size: 16px;
+            margin-bottom: 20px;
         }
 
-  
-
-        .logo img {
-            height: 50px; /* Adjust size as needed */
+        .movie-mania img {
+            width: 500px;
+            height: auto;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-
-
+   
     <div class="login-container">
-        <div class="login-box">
-            <?php
-            if (isset($_SESSION['username'])) {
-                echo "<h2>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</h2>";
-                echo "<p><a href='logout.php'>Log out</a></p>";
-            } else {
-                echo '<h1>Log in page!</h1>';
-                echo '
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <button>Login</button>
-                
-                <div class="sign-up">
-                    <p>Don\'t have an account with us?</p>
-                    <a href="signup.html"><button>Sign Up</button></a>
-                </div>';
-            }
-            ?>
+        <!-- Left half for MovieMania -->
+        <div class="left-half">
+            <div class="movie-mania">
+                <h1>MovieMania</h1>
+                <img src="images/Logo (1).png" alt="MovieMania Logo">
+            </div>
+        </div>
+
+        <!-- Right half for Login Box -->
+        <div class="right-half">
+            <div class="login-box">
+                <?php
+                if (isset($_SESSION['username'])) {
+                    echo "<h2>Welcome, " . htmlspecialchars($_SESSION['username']) . "!</h2>";
+                    echo "<p><a href='logout.php'>Log out</a></p>";
+                } else {
+                    echo '<h1>Log in page!</h1>';
+                    echo '
+                    <div class="input-box">
+                        <input type="text" placeholder="Username" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button>Login</button>
+                    
+                    <div class="sign-up">
+                        <p>Don\'t have an account with us?</p>
+                        <a href="signup.html"><button>Sign Up</button></a>
+                    </div>';
+                }
+                ?>
+            </div>
         </div>
     </div>
 
 </body>
 </html>
-
-
