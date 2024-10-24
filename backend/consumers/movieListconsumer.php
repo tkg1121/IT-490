@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require_once('/home/stanley/Documents/GitHub/IT-490/backend/consumers/vendor/autoload.php');
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 

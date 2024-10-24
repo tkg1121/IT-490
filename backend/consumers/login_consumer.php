@@ -1,5 +1,5 @@
 <?php
-require_once('/home/stanley/consumers/vendor/autoload.php');  // Path to php-amqplib autoload
+require_once('/home/stanley/Documents/GitHub/IT-490/backend/consumers/vendor/autoload.php');  // Path to php-amqplib autoload
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);  // Load .env from the same directory
 $dotenv->load();
 
@@ -8,15 +8,15 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 error_log("Login Consumer: Starting login_consumer.php");
 
-// Pull credentials from .env file
-$RABBITMQ_HOST = getenv('RABBITMQ_HOST');
-$RABBITMQ_PORT = getenv('RABBITMQ_PORT');
-$RABBITMQ_USER = getenv('RABBITMQ_USER');
-$RABBITMQ_PASS = getenv('RABBITMQ_PASS');
-$DB_HOST = getenv('DB_HOST');
-$DB_USER = getenv('DB_USER');
-$DB_PASS = getenv('DB_PASS');
-$DB_NAME = getenv('DB_NAME');
+// Pull credentials from .env file using $_ENV
+$RABBITMQ_HOST = $_ENV['RABBITMQ_HOST'];
+$RABBITMQ_PORT = $_ENV['RABBITMQ_PORT'];
+$RABBITMQ_USER = $_ENV['RABBITMQ_USER'];
+$RABBITMQ_PASS = $_ENV['RABBITMQ_PASS'];
+$DB_HOST = $_ENV['DB_HOST'];
+$DB_USER = $_ENV['DB_USER'];
+$DB_PASS = $_ENV['DB_PASS'];
+$DB_NAME = $_ENV['DB_NAME'];
 
 // Establish RabbitMQ connection
 $connection = new AMQPStreamConnection(
