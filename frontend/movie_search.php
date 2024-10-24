@@ -1,3 +1,5 @@
+<?php include 'header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -157,7 +159,7 @@
 </div>
 
 <?php
-require_once('/var/www/html/vendor/autoload.php'); // RabbitMQ autoload
+require_once('/home/ashleys/IT-490/frontend/vendor/autoload.php');
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;

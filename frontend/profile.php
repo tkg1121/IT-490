@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once('rabbitmq_send.php');  // Ensure this includes the RabbitMQ sending logic
-
+include 'header.php';
 session_start();
 
 // Check if the session token exists

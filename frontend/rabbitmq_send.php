@@ -1,5 +1,5 @@
 <?php
-require_once('/var/www/html/vendor/autoload.php');
+require_once('/home/ashleys/IT-490/frontend/vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable('/home/ashleys');  // Load .env from /home/ashleys
 $dotenv->load();
 
