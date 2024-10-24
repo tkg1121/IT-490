@@ -3,8 +3,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once('/home/alisa-maloku/vendor/autoload.php');  // Path to php-amqplib autoload
-$dotenv = Dotenv\Dotenv::createImmutable('/home/alisa-maloku/Documents/GitHub/IT-490/dmz');  // Path to your .env file
+require_once('/home/alisa-maloku/Documents/GitHub/IT-490/dmz/vendor/autoload.php');  // Path to php-amqplib autoload
+$dotenv = Dotenv\Dotenv::createImmutable('/home/alisa-maloku');  // Load .env from /home/ashleys
 $dotenv->load();
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
