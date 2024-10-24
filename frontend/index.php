@@ -97,10 +97,11 @@ include 'header.php';
             font-size: 36px;
             color: white;
             margin-bottom: 20px;
+            font-family: 'Lobster', cursive;
         }
 
         .movie-mania img {
-            width: 500px;
+            width: 650px;
             height: auto;
             margin-bottom: 20px;
         }
@@ -113,8 +114,8 @@ include 'header.php';
         <!-- Left half for MovieMania -->
         <div class="left-half">
             <div class="movie-mania">
-                <h1>MovieMania</h1>
-                <img src="images/Logo (1).png" alt="MovieMania Logo">
+                <h1>"MovieMania: Where Every Flick Fuels the Frenzy!</h1>
+                <img src="images/LogIn.png" alt="MovieMania Logo">
             </div>
         </div>
 
