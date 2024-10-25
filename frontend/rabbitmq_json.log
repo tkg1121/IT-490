@@ -1,0 +1,21 @@
+Index - Sending JSON to RabbitMQ: {"name":"the florida projects"}
+Index - Sending JSON to RabbitMQ: {"name":"the florida project"}
+Movie Details - Sending JSON to RabbitMQ: {"action":"fetch_movie_details","movie_id":"tt5649144"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"4a8baa9a0d5c15adcc32189d38a30ea2b5e5922c76e6992eb36814d383c2b951","movie_id":"<br \/>\r\n<b>Warning<\/b>:  Undefined array key ","review_text":"no CP","rating":"1"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"e2d416ddc595758ff216fb97c917efed7fd6769787865c6091a5210088d59ead","movie_id":"<br \/>\r\n<b>Warning<\/b>:  Undefined array key ","review_text":"tell me","rating":"1"}
+Index - Sending JSON to RabbitMQ: {"name":"mars needs mom"}
+Index - Sending JSON to RabbitMQ: {"name":"Up"}
+Index - Sending JSON to RabbitMQ: {"name":"mar needs mom"}
+Movie Details - Sending JSON to RabbitMQ: {"action":"fetch_movie_details","movie_id":"tt1049413"}
+Index - Sending JSON to RabbitMQ: {"name":" Mars Needs Moms"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"14be79b913ebcfd9a291463079a4f9e64cfa2d9eb818bc6221e92586158907d5","movie_id":"<br \/>\r\n<b>Warning<\/b>:  Undefined array key ","review_text":"here","rating":"3"}
+Index - Sending JSON to RabbitMQ: {"name":"Up"}
+Movie Details - Sending JSON to RabbitMQ: {"action":"fetch_movie_details","movie_id":"tt1049413"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"14be79b913ebcfd9a291463079a4f9e64cfa2d9eb818bc6221e92586158907d5","movie_id":"<br \/>\r\n<b>Warning<\/b>:  Undefined array key ","review_text":"sad movie","rating":"1"}
+Index - Sending JSON to RabbitMQ: {"name":"pikachu"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"d878e75836b9d9b08e2e5d1ca1ca9d98b26e738a82f9775dcfdde7ccb43d3c27","movie_id":"tt5884052","review_text":"lol","rating":"1"}
+Index - Sending JSON to RabbitMQ: {"name":"pokemon"}
+Index - Sending JSON to RabbitMQ: {"name":"pokemon"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"edcc7d4a453456d4a8b58172296d12887ed3cd6654bf2c9ff2e0fd4415d59c16","movie_id":"tt0287635","review_text":"why","rating":"1"}
+Index - Sending JSON to RabbitMQ: {"name":"Batman"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"98a1c5aacd6dfce65d69bce8901e89fc89f70d06e313c73e6973f859c04b4307","movie_id":"tt0096895","review_text":"your mom","rating":"5"}

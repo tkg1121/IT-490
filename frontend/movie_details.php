@@ -3,10 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Log errors to a file for easier debugging
-ini_set('log_errors', 1);
-
-include 'header.php'; 
+include 'header.php';
 
 // Ensure session is already active from header.php
 if (!isset($_COOKIE['session_token'])) {
@@ -20,9 +17,9 @@ $session_token = $_COOKIE['session_token'];
 // Fetch movie details from RabbitMQ
 if (isset($_GET['movie_id'])) {
     $movie_id = $_GET['movie_id'];
-    
+
     // Add debugging log for movie_id
-    error_log("Movie ID: " . $movie_id);  
+    error_log("Movie ID received in movie_details.php: " . $movie_id);
 
     // Fetch movie details via RabbitMQ
     $data = ['action' => 'fetch_movie_details', 'movie_id' => $movie_id];
@@ -33,6 +30,9 @@ if (isset($_GET['movie_id'])) {
         echo "<p>Movie not found.</p>";
         exit();
     }
+} else {
+    echo "<p>Error: No movie ID provided.</p>";
+    exit();
 }
 ?>
 
@@ -61,8 +61,8 @@ if (isset($_GET['movie_id'])) {
             <option value="4">4 Stars</option>
             <option value="5">5 Stars</option>
         </select>
-        <!-- Verify that movie_id is correctly set -->
-        <input type="hidden" name="movie_id" value="<?php echo htmlspecialchars($movie_data['imdbID']); ?>"> 
+        <!-- Correctly pass the movie_id -->
+        <input type="hidden" name="movie_id" value="<?php echo htmlspecialchars($movie_id); ?>">
         <button type="submit">Submit Review</button>
     </form>
 
@@ -88,3 +88,4 @@ if (isset($_GET['movie_id'])) {
     </script>
 </body>
 </html>
+
