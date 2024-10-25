@@ -25,6 +25,6 @@ Personal deliverables:
       
 - [x] users get to play a little trivia
       
-- [ ] users can see what websites/streaming services they can watch the movie on
+- [x] users can see what websites/streaming services they can watch the movie on
       
 - [ ] users have a blog (social media aspect)
