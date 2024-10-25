@@ -1,7 +1,11 @@
 <?php
 include 'header.php'; 
-
 require_once('rabbitmq_send.php');
+
+// Function to log data to a file
+function log_json_data($data) {
+    file_put_contents(__DIR__ . '/rabbitmq_json.log', $data . PHP_EOL, FILE_APPEND);
+}
 
 // Check if the user is logged in via session token
 if (!isset($_COOKIE['session_token'])) {
@@ -25,8 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'rating' => $rating
     ];
 
+    $json_data = json_encode($data);
+
+    // Display JSON data in the browser
+    echo "<h3>JSON Data Sent to RabbitMQ:</h3>";
+    echo "<pre>" . htmlspecialchars($json_data) . "</pre>";
+
+    // Log JSON data to a file
+    log_json_data("Add Review - Sending JSON to RabbitMQ: " . $json_data);
+
     // Send the data to RabbitMQ
-    $response = sendToRabbitMQ('review_queue', json_encode($data));
+    $response = sendToRabbitMQ('review_queue', $json_data);
 
     // Decode the response
     $decoded_response = json_decode($response, true);
@@ -37,3 +50,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['status' => 'error', 'message' => 'An error occurred while submitting your review.']);
     }
 }
+
