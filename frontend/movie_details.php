@@ -4,24 +4,18 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include 'header.php';
+include_once '/home/ashleys/IT-490/frontend/rabbitmq_send.php';
 
-// Ensure session is already active from header.php
 if (!isset($_COOKIE['session_token'])) {
     echo "<script>alert('Error: User not logged in');</script>";
     exit();
 }
 
-// Check if user is logged in by validating session token
 $session_token = $_COOKIE['session_token'];
 
-// Fetch movie details from RabbitMQ
 if (isset($_GET['movie_id'])) {
     $movie_id = $_GET['movie_id'];
 
-    // Add debugging log for movie_id
-    error_log("Movie ID received in movie_details.php: " . $movie_id);
-
-    // Fetch movie details via RabbitMQ
     $data = ['action' => 'fetch_movie_details', 'movie_id' => $movie_id];
     $response = sendToRabbitMQ('movie_queue', json_encode($data));
     $movie_data = json_decode($response, true);
@@ -29,6 +23,17 @@ if (isset($_GET['movie_id'])) {
     if ($movie_data['status'] !== 'success') {
         echo "<p>Movie not found.</p>";
         exit();
+    }
+
+    $review_data = ['action' => 'fetch_movie_reviews', 'movie_id' => $movie_id];
+    $review_response = sendToRabbitMQ('review_queue', json_encode($review_data));
+    $reviews = json_decode($review_response, true);
+
+    if ($reviews['status'] !== 'success') {
+        echo "<p>No reviews found for this movie.</p>";
+        $reviews_list = [];
+    } else {
+        $reviews_list = $reviews['reviews'];
     }
 } else {
     echo "<p>Error: No movie ID provided.</p>";
@@ -49,7 +54,6 @@ if (isset($_GET['movie_id'])) {
     <p><strong>Genre:</strong> <?php echo htmlspecialchars($movie_data['Genre']); ?></p>
     <p><strong>Plot:</strong> <?php echo htmlspecialchars($movie_data['Plot']); ?></p>
 
-    <!-- Review Form -->
     <h2>Leave a Review:</h2>
     <form id="review-form">
         <textarea name="review_text" placeholder="Your review..."></textarea>
@@ -61,10 +65,29 @@ if (isset($_GET['movie_id'])) {
             <option value="4">4 Stars</option>
             <option value="5">5 Stars</option>
         </select>
-        <!-- Correctly pass the movie_id -->
         <input type="hidden" name="movie_id" value="<?php echo htmlspecialchars($movie_id); ?>">
         <button type="submit">Submit Review</button>
     </form>
+
+    <h2>Movie Reviews:</h2>
+    <div id="movie-reviews">
+        <?php if (count($reviews_list) > 0): ?>
+            <?php foreach ($reviews_list as $review): ?>
+                <div class="review">
+                    <p><strong>User:</strong> <?php echo htmlspecialchars($review['username'] ?? 'Unknown'); ?></p>
+                    <p><strong>Rating:</strong> <?php echo htmlspecialchars($review['rating'] ?? 'No rating'); ?> Stars</p>
+                    <p><?php echo htmlspecialchars($review['review_text'] ?? 'No review text'); ?></p>
+
+                    <?php if (isset($review['review_id'])): ?>
+                        <button class="like-btn" data-review-id="<?php echo htmlspecialchars($review['review_id']); ?>">Like</button>
+                        <button class="dislike-btn" data-review-id="<?php echo htmlspecialchars($review['review_id']); ?>">Dislike</button>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No reviews yet. Be the first to leave a review!</p>
+        <?php endif; ?>
+    </div>
 
     <script>
     document.getElementById('review-form').addEventListener('submit', function(event) {
@@ -79,13 +102,46 @@ if (isset($_GET['movie_id'])) {
         .then(data => {
             if (data.status === 'success') {
                 alert('Review added!');
-                location.reload();  // Refresh the page to show the new review
+                location.reload();
             } else {
                 alert('Error: ' + data.message);
             }
         });
     });
+
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            let reviewId = this.getAttribute('data-review-id');
+            handleLikeDislike(reviewId, 'like_review');
+        });
+    });
+
+    document.querySelectorAll('.dislike-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            let reviewId = this.getAttribute('data-review-id');
+            handleLikeDislike(reviewId, 'dislike_review');
+        });
+    });
+
+    function handleLikeDislike(reviewId, action) {
+        let formData = new FormData();
+        formData.append('review_id', reviewId);
+        formData.append('action', action);
+
+        fetch('sendToRabbitMQ.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                alert(data.message);
+                location.reload();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        });
+    }
     </script>
 </body>
 </html>
-

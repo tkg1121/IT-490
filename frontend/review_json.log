@@ -1,0 +1,8 @@
+[2024-10-25 05:31:36] Step: Movie ID Received | Data: {"movie_id":"tt0384537"}
+[2024-10-25 05:31:38] Step: Fetched Reviews | Data: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}
+[2024-10-25 05:42:52] Step: Movie ID Received | Data: {"movie_id":"tt0384537"}
+[2024-10-25 05:43:07] Step: Fetched Reviews | Data: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}
+[2024-10-25 06:06:33] Step: Movie ID Received | Data: {"movie_id":"tt0384537"}
+[2024-10-25 06:06:35] Step: Fetched Reviews | Data: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}
+[2024-10-25 06:08:48] Step: Movie ID Received | Data: {"movie_id":"tt0384537"}
+[2024-10-25 06:08:50] Step: Fetched Reviews | Data: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}

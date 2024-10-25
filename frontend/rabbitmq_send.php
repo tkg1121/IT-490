@@ -9,7 +9,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 // Set error logging to both console and a log file
 ini_set('display_errors', 1);  // Show errors in the console (CLI)
 ini_set('log_errors', 1);      // Log errors to a file
-ini_set('error_log', '/path/to/your/error.log');  // Path to error log file
+ini_set('error_log', '/home/ashleys/IT-490/frontend/error.log');  // Updated error log path
 error_reporting(E_ALL);        // Report all types of errors
 
 // Check and log environment variables
@@ -102,4 +102,4 @@ function sendToRabbitMQ($queue, $message) {
         return "Error: " . $e->getMessage();
     }
 }
-
+?>

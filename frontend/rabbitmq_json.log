@@ -19,3 +19,15 @@ Index - Sending JSON to RabbitMQ: {"name":"pokemon"}
 Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"edcc7d4a453456d4a8b58172296d12887ed3cd6654bf2c9ff2e0fd4415d59c16","movie_id":"tt0287635","review_text":"why","rating":"1"}
 Index - Sending JSON to RabbitMQ: {"name":"Batman"}
 Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"98a1c5aacd6dfce65d69bce8901e89fc89f70d06e313c73e6973f859c04b4307","movie_id":"tt0096895","review_text":"your mom","rating":"5"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"9348d8e996f4e20102000bd4547e63b775448c734b5fd24f34f1aa551b277b8a","movie_id":"tt0384537","review_text":"this still works yeah?","rating":"1"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}
+Index - Sending JSON to RabbitMQ: {"name":"silent"}

@@ -1,0 +1,491 @@
+[25-Oct-2024 06:15:13 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:15:13 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:15:13 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:15:13 UTC] DB_HOST: localhost
+[25-Oct-2024 06:15:13 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:15:13 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:15:14 UTC] Publishing message to queue: profile_queue with correlation_id: 671b37721aec8
+[25-Oct-2024 06:15:14 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:15:18 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:15:18 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:15:18 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:15:18 UTC] DB_HOST: localhost
+[25-Oct-2024 06:15:18 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:15:18 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:15:19 UTC] Publishing message to queue: profile_queue with correlation_id: 671b377751ab1
+[25-Oct-2024 06:15:19 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:15:19 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:15:20 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b377887a85
+[25-Oct-2024 06:15:20 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:15:24 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:15:24 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:15:24 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:15:24 UTC] DB_HOST: localhost
+[25-Oct-2024 06:15:24 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:15:24 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:15:25 UTC] Publishing message to queue: profile_queue with correlation_id: 671b377d73cd6
+[25-Oct-2024 06:15:25 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:15:25 UTC] PHP Fatal error:  Cannot redeclare sendToRabbitMQ() (previously declared in /home/ashleys/IT-490/frontend/rabbitmq_send.php:42) in /home/ashleys/IT-490/frontend/rabbitmq_send.php on line 42
+[25-Oct-2024 06:16:22 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:22 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:22 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:22 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:22 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:25 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:25 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:25 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:25 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:25 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:25 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:26 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b37ba09b50
+[25-Oct-2024 06:16:26 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:16:28 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:28 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:28 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:28 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:28 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:32 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:32 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:32 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:32 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:32 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:36 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:36 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:36 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:36 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:36 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:36 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:36 UTC] Publishing message to queue: login_queue with correlation_id: 671b37c4cbabf
+[25-Oct-2024 06:16:37 UTC] Response received: {"status":"success","session_token":"2fdd1a6c24799e127013b90cf568b678e84bd66b159634bf2def9037ed8124ff"}
+[25-Oct-2024 06:16:37 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:37 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:37 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:37 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:37 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:37 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:38 UTC] Publishing message to queue: profile_queue with correlation_id: 671b37c60601f
+[25-Oct-2024 06:16:38 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:16:38 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 06:16:38 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"2fdd1a6c24799e127013b90cf568b678e84bd66b159634bf2def9037ed8124ff"}
+[25-Oct-2024 06:16:38 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:39 UTC] Publishing message to queue: profile_queue with correlation_id: 671b37c725645
+[25-Oct-2024 06:16:39 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:16:39 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:16:41 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:41 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:41 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:41 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:41 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:41 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:42 UTC] Publishing message to queue: profile_queue with correlation_id: 671b37ca222c4
+[25-Oct-2024 06:16:42 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:16:45 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:45 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:45 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:45 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:45 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:45 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:46 UTC] Publishing message to queue: profile_queue with correlation_id: 671b37ce39571
+[25-Oct-2024 06:16:46 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:16:46 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:48 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b37d056b5c
+[25-Oct-2024 06:16:48 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:16:49 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:16:49 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:16:49 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:16:49 UTC] DB_HOST: localhost
+[25-Oct-2024 06:16:49 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:16:49 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:50 UTC] Publishing message to queue: profile_queue with correlation_id: 671b37d27bea7
+[25-Oct-2024 06:16:50 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:16:50 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:51 UTC] Publishing message to queue: movie_queue with correlation_id: 671b37d39a698
+[25-Oct-2024 06:16:51 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:16:52 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:16:52 UTC] Publishing message to queue: review_queue with correlation_id: 671b37d4bcb45
+[25-Oct-2024 06:16:52 UTC] Response received: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:16:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:16:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:42 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:18:42 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:18:42 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:18:42 UTC] DB_HOST: localhost
+[25-Oct-2024 06:18:42 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:18:42 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:18:43 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3843169be
+[25-Oct-2024 06:18:43 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:18:46 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:18:46 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:18:46 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:18:46 UTC] DB_HOST: localhost
+[25-Oct-2024 06:18:46 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:18:46 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:18:47 UTC] Publishing message to queue: profile_queue with correlation_id: 671b384710e6c
+[25-Oct-2024 06:18:47 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:18:47 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:18:48 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b38483251b
+[25-Oct-2024 06:18:48 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:18:49 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:18:49 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:18:49 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:18:49 UTC] DB_HOST: localhost
+[25-Oct-2024 06:18:49 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:18:49 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:18:50 UTC] Publishing message to queue: profile_queue with correlation_id: 671b384a23bf7
+[25-Oct-2024 06:18:50 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:18:50 UTC] PHP Warning:  include(rabbitmq_connection.php): Failed to open stream: No such file or directory in /home/ashleys/IT-490/frontend/sendToRabbitMQ.php on line 2
+[25-Oct-2024 06:18:50 UTC] PHP Warning:  include(): Failed opening 'rabbitmq_connection.php' for inclusion (include_path='.:/usr/share/php') in /home/ashleys/IT-490/frontend/sendToRabbitMQ.php on line 2
+[25-Oct-2024 06:18:50 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:18:51 UTC] Publishing message to queue: movie_queue with correlation_id: 671b384b39dc5
+[25-Oct-2024 06:18:51 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:18:51 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:18:52 UTC] Publishing message to queue: review_queue with correlation_id: 671b384ca2bd9
+[25-Oct-2024 06:18:52 UTC] Response received: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:18:53 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:18:53 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 91
+[25-Oct-2024 06:28:31 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:28:31 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:28:31 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:28:31 UTC] DB_HOST: localhost
+[25-Oct-2024 06:28:31 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:28:34 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:28:34 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:28:34 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:28:34 UTC] DB_HOST: localhost
+[25-Oct-2024 06:28:34 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:28:39 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:28:39 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:28:39 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:28:39 UTC] DB_HOST: localhost
+[25-Oct-2024 06:28:39 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:28:39 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:28:40 UTC] Publishing message to queue: login_queue with correlation_id: 671b3a989d8a4
+[25-Oct-2024 06:28:40 UTC] Response received: {"status":"success","session_token":"9348d8e996f4e20102000bd4547e63b775448c734b5fd24f34f1aa551b277b8a"}
+[25-Oct-2024 06:28:41 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:28:41 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:28:41 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:28:41 UTC] DB_HOST: localhost
+[25-Oct-2024 06:28:41 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:28:41 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:28:41 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3a99c9e07
+[25-Oct-2024 06:28:42 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:28:42 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 06:28:42 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"9348d8e996f4e20102000bd4547e63b775448c734b5fd24f34f1aa551b277b8a"}
+[25-Oct-2024 06:28:42 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:28:42 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3a9aedb16
+[25-Oct-2024 06:28:43 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:28:43 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:28:45 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:28:45 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:28:45 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:28:45 UTC] DB_HOST: localhost
+[25-Oct-2024 06:28:45 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:28:45 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:28:45 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3a9db8f8e
+[25-Oct-2024 06:28:45 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:28:57 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:28:57 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:28:57 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:28:57 UTC] DB_HOST: localhost
+[25-Oct-2024 06:28:57 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:28:57 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:28:58 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3aaa53fc3
+[25-Oct-2024 06:28:58 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:28:58 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:28:59 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b3aab7fc39
+[25-Oct-2024 06:28:59 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:29:01 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:29:01 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:29:01 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:29:01 UTC] DB_HOST: localhost
+[25-Oct-2024 06:29:01 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:29:01 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:02 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3aae886cb
+[25-Oct-2024 06:29:02 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:29:02 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:03 UTC] Publishing message to queue: movie_queue with correlation_id: 671b3aafa1c7a
+[25-Oct-2024 06:29:03 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:29:04 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:04 UTC] Publishing message to queue: review_queue with correlation_id: 671b3ab0d803b
+[25-Oct-2024 06:29:05 UTC] Response received: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1}]}
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:16 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:29:16 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:29:16 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:29:16 UTC] DB_HOST: localhost
+[25-Oct-2024 06:29:16 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:29:16 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:17 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3abdaa42c
+[25-Oct-2024 06:29:17 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:29:18 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:18 UTC] Publishing message to queue: review_queue with correlation_id: 671b3abec8968
+[25-Oct-2024 06:29:19 UTC] Response received: {"status":"success","message":"Review added successfully!"}
+[25-Oct-2024 06:29:26 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:29:26 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:29:26 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:29:26 UTC] DB_HOST: localhost
+[25-Oct-2024 06:29:26 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:29:26 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:26 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3ac6dd0d2
+[25-Oct-2024 06:29:27 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:29:31 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:29:31 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:29:31 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:29:31 UTC] DB_HOST: localhost
+[25-Oct-2024 06:29:31 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:29:31 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:32 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3acc1562d
+[25-Oct-2024 06:29:32 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:29:32 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:33 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b3acd44f8e
+[25-Oct-2024 06:29:33 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:29:36 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:29:36 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:29:36 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:29:36 UTC] DB_HOST: localhost
+[25-Oct-2024 06:29:36 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:29:36 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:37 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3ad1199f3
+[25-Oct-2024 06:29:37 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:29:37 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:38 UTC] Publishing message to queue: movie_queue with correlation_id: 671b3ad2395e8
+[25-Oct-2024 06:29:38 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:29:38 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:29:39 UTC] Publishing message to queue: review_queue with correlation_id: 671b3ad362c5e
+[25-Oct-2024 06:29:39 UTC] Response received: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1},{"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:29:39 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:29:39 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:33 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:33:33 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:33:33 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:33:33 UTC] DB_HOST: localhost
+[25-Oct-2024 06:33:33 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:33:33 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:33:34 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3bbec019a
+[25-Oct-2024 06:33:34 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:33:35 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:33:36 UTC] Publishing message to queue: movie_queue with correlation_id: 671b3bc029485
+[25-Oct-2024 06:33:36 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:33:36 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:33:37 UTC] Publishing message to queue: review_queue with correlation_id: 671b3bc1ad441
+[25-Oct-2024 06:33:37 UTC] Response received: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1},{"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:33:38 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:38 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:33:43 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:33:43 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:33:43 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:33:43 UTC] DB_HOST: localhost
+[25-Oct-2024 06:33:43 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:33:43 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:33:44 UTC] Publishing message to queue: review_queue with correlation_id: 671b3bc81caa5
+[25-Oct-2024 06:38:01 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:38:01 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:38:01 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:38:01 UTC] DB_HOST: localhost
+[25-Oct-2024 06:38:01 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:38:01 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:38:02 UTC] Publishing message to queue: profile_queue with correlation_id: 671b3cca53ce9
+[25-Oct-2024 06:38:02 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:38:02 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:38:03 UTC] Publishing message to queue: movie_queue with correlation_id: 671b3ccb7cb75
+[25-Oct-2024 06:38:03 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:38:03 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:38:04 UTC] Publishing message to queue: review_queue with correlation_id: 671b3ccc9f196
+[25-Oct-2024 06:38:04 UTC] Response received: {"status":"success","reviews":[{"username":"test1","review_text":"It works","rating":1},{"username":"test1","review_text":"this movie sucked","rating":1},{"username":"test1","review_text":"i dont like it\r\n","rating":1},{"username":"test1","review_text":"tell me why aint nothing","rating":1},{"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 89
+[25-Oct-2024 06:38:05 UTC] PHP Warning:  Undefined array key "review_id" in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 90
+[25-Oct-2024 06:38:11 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:38:11 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:38:11 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:38:11 UTC] DB_HOST: localhost
+[25-Oct-2024 06:38:11 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:38:11 UTC] Received review_id: <br />
+<b>Warning</b>:  Undefined array key , action: like_review
+[25-Oct-2024 06:38:11 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:38:12 UTC] Publishing message to queue: review_queue with correlation_id: 671b3cd46d639
+[25-Oct-2024 06:51:10 UTC] Response received: {"status":"error","message":"Invalid review ID"}
+[25-Oct-2024 06:52:17 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:17 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:17 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:17 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:17 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:17 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:17 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:17 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:17 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:17 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:22 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:22 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:22 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:22 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:22 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:22 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:23 UTC] Publishing message to queue: login_queue with correlation_id: 671b402754984
+[25-Oct-2024 06:52:24 UTC] Response received: {"status":"success","session_token":"2dbf9983b7f5063f5e911c753b5569f8946cdc4e738af813552c8ab0fe4c72bc"}
+[25-Oct-2024 06:52:24 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:24 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:24 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:24 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:24 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:24 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:25 UTC] Publishing message to queue: profile_queue with correlation_id: 671b402916cee
+[25-Oct-2024 06:52:25 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:52:25 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 06:52:25 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"2dbf9983b7f5063f5e911c753b5569f8946cdc4e738af813552c8ab0fe4c72bc"}
+[25-Oct-2024 06:52:25 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:26 UTC] Publishing message to queue: profile_queue with correlation_id: 671b402aa21f6
+[25-Oct-2024 06:52:26 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:52:27 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:52:37 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:37 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:37 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:37 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:37 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:37 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:38 UTC] Publishing message to queue: profile_queue with correlation_id: 671b403622a55
+[25-Oct-2024 06:52:38 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:52:42 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:42 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:42 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:42 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:42 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:42 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:43 UTC] Publishing message to queue: profile_queue with correlation_id: 671b403b04c87
+[25-Oct-2024 06:52:43 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:52:43 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:44 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b403c3497a
+[25-Oct-2024 06:52:44 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 06:52:46 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:46 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:46 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:46 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:46 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:46 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:46 UTC] Publishing message to queue: profile_queue with correlation_id: 671b403ecfce7
+[25-Oct-2024 06:52:47 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:52:47 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:48 UTC] Publishing message to queue: movie_queue with correlation_id: 671b40400785b
+[25-Oct-2024 06:52:48 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:52:48 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:49 UTC] Publishing message to queue: review_queue with correlation_id: 671b40412f814
+[25-Oct-2024 06:52:49 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 06:52:57 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:52:57 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:52:57 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:52:57 UTC] DB_HOST: localhost
+[25-Oct-2024 06:52:57 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:52:57 UTC] Received review_id: 7, action: like_review
+[25-Oct-2024 06:52:57 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:52:58 UTC] Publishing message to queue: review_queue with correlation_id: 671b404aa83e4
+[25-Oct-2024 06:52:58 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 06:53:01 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 06:53:01 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 06:53:01 UTC] RABBITMQ_USER: T
+[25-Oct-2024 06:53:01 UTC] DB_HOST: localhost
+[25-Oct-2024 06:53:01 UTC] DB_USER: dbadmin
+[25-Oct-2024 06:53:01 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:53:02 UTC] Publishing message to queue: profile_queue with correlation_id: 671b404e00298
+[25-Oct-2024 06:53:02 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 06:53:02 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:53:03 UTC] Publishing message to queue: movie_queue with correlation_id: 671b404f13a69
+[25-Oct-2024 06:53:03 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 06:53:03 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 06:53:04 UTC] Publishing message to queue: review_queue with correlation_id: 671b40502dff5
+[25-Oct-2024 06:53:04 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1}]}
