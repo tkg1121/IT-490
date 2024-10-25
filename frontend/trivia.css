@@ -42,13 +42,12 @@ body {
     color: black;
 }
 
-/* Footer Styles */
 .footer {
     background-color: pink;
     color: black;
     text-align: center;
     padding: 20px 0;
-    position: fixed; /* Fix footer at the bottom */
+    position: fixed; 
     width: 100%;
     bottom: 0;
     z-index: 1000;
@@ -64,7 +63,7 @@ body {
     color: purple;
 }
 
-/* Container Styles */
+
 .container {
     padding: 20px;
     background-color: #fff;
@@ -73,8 +72,8 @@ body {
     max-width: 600px;
     width: 100%;
     height: auto;
-    overflow-y: auto; /* Add scroll if content exceeds container */
-    flex-grow: 1; /* Allow the container to grow and take available space */
+    overflow-y: auto; 
+    flex-grow: 1; 
 }
 
 #trivia-question {
@@ -101,15 +100,15 @@ body {
     cursor: pointer;
 }
 
-/* Content Wrapper Styles */
+
 .content-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align items from the top */
+    justify-content: flex-start; 
     align-items: center;
-    min-height: 100vh; /* Ensure it takes up the full viewport height */
+    min-height: 100vh; 
     text-align: center;
     background-color: #f4f4f4;
-    overflow-y: auto; /* Enable scrolling for the entire content */
-    padding-bottom: 60px; /* Space to prevent overlap with the footer */
+    overflow-y: auto; 
+    padding-bottom: 60px; 
 }

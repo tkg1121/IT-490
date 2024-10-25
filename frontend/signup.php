@@ -4,6 +4,7 @@ ini_set('log_errors', 1);      // Log errors to a file
 ini_set('error_log', '/path/to/your/error.log');  // Path to error log file
 error_reporting(E_ALL);        // Report all types of errors
 
+include 'header.php';
 require_once('rabbitmq_send.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
