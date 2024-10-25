@@ -50,82 +50,77 @@ $callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAM
             $response = json_encode(['status' => 'error', 'message' => 'Database connection failed.']);
             error_log("Movie Consumer: Database connection failed: " . $mysqli->connect_error);
         } else {
-            // Fetch movie details from the database
-            $stmt = $mysqli->prepare("SELECT imdb_id, title, year, genre, plot, poster FROM movies WHERE imdb_id=?");
+            // Check if the movie is already in the local database
+            $stmt = $mysqli->prepare("SELECT imdb_id, title, year, genre, plot, poster FROM movies WHERE imdb_id = ?");
+            $stmt->bind_param('s', $movie_id);
+            $stmt->execute();
+            $stmt->bind_result($imdb_id, $title, $year, $genre, $plot, $poster);
 
-            if (!$stmt) {
-                $response = json_encode(['status' => 'error', 'message' => 'SQL preparation error.']);
-                error_log("Movie Consumer: SQL preparation error: " . $mysqli->error);
+            if ($stmt->fetch()) {
+                // Prepare movie data response from the database
+                $movie_data = [
+                    'status' => 'success',
+                    'Title' => $title,
+                    'Year' => $year,
+                    'Genre' => $genre,
+                    'Plot' => $plot,
+                    'Poster' => $poster
+                ];
+                $response = json_encode($movie_data);
+                error_log("Movie Consumer: Successfully fetched movie details for ID: $movie_id from local database");
             } else {
-                $stmt->bind_param('s', $movie_id);
-                $stmt->execute();
-                $stmt->bind_result($imdb_id, $title, $year, $genre, $plot, $poster);
+                // If movie is not found in the local database, fetch it from the OMDb API
+                error_log("Movie Consumer: Movie not found for ID: $movie_id in local database, fetching from OMDb API");
 
-                if ($stmt->fetch()) {
-                    // Prepare movie data response from database
-                    $movie_data = [
-                        'status' => 'success',
-                        'Title' => $title,
-                        'Year' => $year,
-                        'Genre' => $genre,
-                        'Plot' => $plot,
-                        'Poster' => $poster
-                    ];
-                    $response = json_encode($movie_data);
-                    error_log("Movie Consumer: Successfully fetched movie details for ID: $movie_id");
-                } else {
-                    // If movie is not found in the local database, fetch from OMDb API
-                    error_log("Movie Consumer: Movie not found for ID: $movie_id, fetching from OMDb API");
+                $omdb_url = $OMDB_URL . '?i=' . urlencode($movie_id) . '&apikey=' . $OMDB_API_KEY;
+                $omdb_response = file_get_contents($omdb_url);
+                $omdb_data = json_decode($omdb_response, true);
 
-                    $omdb_url = $OMDB_URL . '?i=' . urlencode($movie_id) . '&apikey=' . $OMDB_API_KEY;
-                    $omdb_response = file_get_contents($omdb_url);
-                    $omdb_data = json_decode($omdb_response, true);
+                if (isset($omdb_data['Title'])) {
+                    // Insert the movie into the local database
+                    $stmt = $mysqli->prepare("INSERT INTO movies (imdb_id, title, year, genre, plot, poster) VALUES (?, ?, ?, ?, ?, ?)");
+                    if ($stmt) {
+                        $stmt->bind_param(
+                            'ssisss',
+                            $omdb_data['imdbID'],
+                            $omdb_data['Title'],
+                            $omdb_data['Year'],
+                            $omdb_data['Genre'],
+                            $omdb_data['Plot'],
+                            $omdb_data['Poster']
+                        );
+                        if ($stmt->execute()) {
+                            error_log("Movie Consumer: Successfully inserted movie with ID: $movie_id into the database");
 
-                    if (isset($omdb_data['Title'])) {
-                        // Insert the movie into the local database
-                        $stmt = $mysqli->prepare("INSERT INTO movies (imdb_id, title, year, genre, plot, poster) VALUES (?, ?, ?, ?, ?, ?)");
-                        if ($stmt) {
-                            $stmt->bind_param(
-                                'ssisss',
-                                $omdb_data['imdbID'],
-                                $omdb_data['Title'],
-                                $omdb_data['Year'],
-                                $omdb_data['Genre'],
-                                $omdb_data['Plot'],
-                                $omdb_data['Poster']
-                            );
-                            if ($stmt->execute()) {
-                                error_log("Movie Consumer: Successfully inserted movie with ID: $movie_id into the database");
-
-                                // Prepare movie data response from OMDb
-                                $movie_data = [
-                                    'status' => 'success',
-                                    'Title' => $omdb_data['Title'],
-                                    'Year' => $omdb_data['Year'],
-                                    'Genre' => $omdb_data['Genre'],
-                                    'Plot' => $omdb_data['Plot'],
-                                    'Poster' => $omdb_data['Poster']
-                                ];
-                                $response = json_encode($movie_data);
-                            } else {
-                                $response = json_encode(['status' => 'error', 'message' => 'Failed to insert movie into database.']);
-                                error_log("Movie Consumer: SQL execution error during movie insert: " . $stmt->error);
-                            }
+                            // Prepare movie data response from OMDb
+                            $movie_data = [
+                                'status' => 'success',
+                                'Title' => $omdb_data['Title'],
+                                'Year' => $omdb_data['Year'],
+                                'Genre' => $omdb_data['Genre'],
+                                'Plot' => $omdb_data['Plot'],
+                                'Poster' => $omdb_data['Poster']
+                            ];
+                            $response = json_encode($movie_data);
                         } else {
-                            $response = json_encode(['status' => 'error', 'message' => 'SQL preparation error for insert.']);
-                            error_log("Movie Consumer: SQL preparation error during movie insert: " . $mysqli->error);
+                            $response = json_encode(['status' => 'error', 'message' => 'Failed to insert movie into database.']);
+                            error_log("Movie Consumer: SQL execution error during movie insert: " . $stmt->error);
                         }
                     } else {
-                        $response = json_encode(['status' => 'error', 'message' => 'Movie not found on OMDb API.']);
-                        error_log("Movie Consumer: Movie not found on OMDb API for ID: $movie_id");
+                        $response = json_encode(['status' => 'error', 'message' => 'SQL preparation error for insert.']);
+                        error_log("Movie Consumer: SQL preparation error during movie insert: " . $mysqli->error);
                     }
+                } else {
+                    $response = json_encode(['status' => 'error', 'message' => 'Movie not found on OMDb API.']);
+                    error_log("Movie Consumer: Movie not found on OMDb API for ID: $movie_id");
                 }
-                $stmt->close();
             }
+            $stmt->close();
             $mysqli->close();
         }
     }
 
+    // Send response back to RabbitMQ
     $reply_msg = new AMQPMessage(
         $response,
         ['correlation_id' => $msg->get('correlation_id')]
@@ -145,3 +140,4 @@ while ($channel->is_consuming()) {
 $channel->close();
 $connection->close();
 error_log("Movie Consumer: Closed RabbitMQ connection");
+
