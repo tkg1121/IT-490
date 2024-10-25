@@ -77,6 +77,8 @@ if (isset($_GET['movie_id'])) {
                     <p><strong>User:</strong> <?php echo htmlspecialchars($review['username'] ?? 'Unknown'); ?></p>
                     <p><strong>Rating:</strong> <?php echo htmlspecialchars($review['rating'] ?? 'No rating'); ?> Stars</p>
                     <p><?php echo htmlspecialchars($review['review_text'] ?? 'No review text'); ?></p>
+                    <p><strong>Likes:</strong> <?php echo htmlspecialchars($review['like_count'] ?? 0); ?>
+                       <strong>Dislikes:</strong> <?php echo htmlspecialchars($review['dislike_count'] ?? 0); ?></p>
 
                     <?php if (isset($review['review_id'])): ?>
                         <button class="like-btn" data-review-id="<?php echo htmlspecialchars($review['review_id']); ?>">Like</button>
