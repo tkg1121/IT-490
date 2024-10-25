@@ -42,3 +42,7 @@ Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"7
 Index - Sending JSON to RabbitMQ: {"name":"silent"}
 Index - Sending JSON to RabbitMQ: {"name":"silent"}
 Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"b5bee32740f4edc7a45d4d13133bd86d512ec8fba8e1ba210a34eee5684f213a","movie_id":"tt0384537","review_text":"and ima leave another review\r\n","rating":"1"}
+Index - Sending JSON to RabbitMQ: {"name":"pixels"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"9adfd0e74a78efe3c6493c85108b22db9fc61f30a7df56a00e4b3602c583b59e","movie_id":"tt2120120","review_text":"tell me about it","rating":"3"}
+Index - Sending JSON to RabbitMQ: {"name":"pixels"}
+Index - Sending JSON to RabbitMQ: {"name":"pixels"}

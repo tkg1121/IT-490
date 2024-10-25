@@ -4,48 +4,129 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once('rabbitmq_send.php');  // Ensure this includes the RabbitMQ sending logic
+require_once('rabbitmq_send.php');
 include 'header.php';
 session_start();
 
-// Check if the session token exists
+// Check if session_token and username cookies are set before trying to access them
 if (isset($_COOKIE['session_token'])) {
     $session_token = $_COOKIE['session_token'];
+    $username = isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : 'Guest';  // Default to 'Guest' if username is not set
 
-    // Prepare the data to send to RabbitMQ
-    $data = [
-        'action' => 'fetch_profile',  // Define the action for profile fetching
-        'session_token' => $session_token  // Send the session token
-    ];
+    echo "<h1>Welcome, $username</h1>";
 
-    // Log the data being sent
-    error_log("Sending data to RabbitMQ: " . json_encode($data));
+    // Movie Search Form
+    echo '<h2>Search for a Movie to Add to Your Watchlist</h2>';
+    echo '<form method="POST" action="">';
+    echo '<label for="movie_name">Enter Movie Name:</label>';
+    echo '<input type="text" id="movie_name" name="movie_name" required>';
+    echo '<button type="submit" name="search_movie">Search</button>';
+    echo '</form>';
 
-    // Send the data to RabbitMQ to get the profile information
-    $response = sendToRabbitMQ('profile_queue', json_encode($data));
+    // Handle the form submission for adding a movie
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search_movie'])) {
+        if (!empty($_POST['movie_name'])) {
+            $movie_name = htmlspecialchars($_POST['movie_name']);
+            $request_data = json_encode(['name' => $movie_name]);
 
-    // Log the response received from RabbitMQ
-    error_log("Response from RabbitMQ: " . $response);
+            // Send movie name to RabbitMQ for searching
+            $movie_data = sendToRabbitMQ('omdb_request_queue', $request_data);
+            $movie_data = json_decode($movie_data, true);
 
-    // Decode the JSON response
-    $profile_data = json_decode($response, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                echo "<p>Error decoding JSON response</p>";
+            } elseif (isset($movie_data['Error'])) {
+                echo "<p>Error: " . htmlspecialchars($movie_data['Error']) . "</p>";
+            } else {
+                $imdb_id = $movie_data['imdbID'];
+                echo "<div class='movie-card'>";
+                echo "<img src='" . htmlspecialchars($movie_data['Poster']) . "' alt='" . htmlspecialchars($movie_data['Title']) . "'>";
+                echo "<h3>" . htmlspecialchars($movie_data['Title']) . " (" . htmlspecialchars($movie_data['Year']) . ")</h3>";
+                echo "<p><strong>Genre:</strong> " . htmlspecialchars($movie_data['Genre']) . "</p>";
+                echo "<p><strong>Rating:</strong> " . htmlspecialchars($movie_data['imdbRating']) . "</p>";
+                echo '<form method="POST" action="">';
+                echo '<input type="hidden" name="imdb_id" value="' . htmlspecialchars($imdb_id) . '">';
+                echo '<button type="submit" name="add_to_watchlist">Add to Watchlist</button>';
+                echo '</form>';
+                echo "</div>";
+            }
+        }
+    }
 
-    // Check if the response was successful
-    if ($profile_data && isset($profile_data['status']) && $profile_data['status'] === 'success') {
-        // Display the profile information
-        echo "<h1>Welcome, " . htmlspecialchars($profile_data['username']) . "</h1>";
-        echo "<p>Email: " . htmlspecialchars($profile_data['email']) . "</p>";
-        
-        // If there are other fields, display them as well
-        if (isset($profile_data['other_fields'])) {
-            echo "<p>Other Info: " . htmlspecialchars($profile_data['other_fields']) . "</p>";
+    // Add Movie to Watchlist
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_watchlist'])) {
+        $imdb_id = $_POST['imdb_id'];
+        $watchlist_data = json_encode([
+            'action' => 'add_movie',
+            'session_token' => $session_token,
+            'imdb_id' => $imdb_id
+        ]);
+
+        // Send the add-to-watchlist request to RabbitMQ
+        $watchlist_response = sendToRabbitMQ('watchlist_queue', $watchlist_data);
+        $watchlist_result = json_decode($watchlist_response, true);
+
+        if (isset($watchlist_result['message'])) {
+            echo "<p>" . htmlspecialchars($watchlist_result['message']) . "</p>";
+        } else {
+            echo "<p>Error adding movie to watchlist.</p>";
+        }
+    }
+
+    // Display Favorite Movies in "My Favorites" box using IMDb ID
+    echo "<div class='favorites-box'>";
+    echo "<h2>My Favorites</h2>";
+
+    // Query the watchlist for the user's saved movies
+    $favorites_request = json_encode([
+        'action' => 'get_watchlist',
+        'session_token' => $session_token
+    ]);
+
+    $favorites_response = sendToRabbitMQ('watchlist_queue', $favorites_request);
+
+    // Log the raw favorites response for debugging
+    error_log("Favorites response raw: " . $favorites_response);
+
+    $favorites_data = json_decode($favorites_response, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        error_log("Error decoding favorites response: " . json_last_error_msg());
+        echo "<p>Error retrieving favorites.</p>";
+    } elseif (isset($favorites_data['favorites']) && is_array($favorites_data['favorites'])) {
+        foreach ($favorites_data['favorites'] as $favorite) {
+            $imdb_id = $favorite['imdb_id'];
+
+            // Log movie request to favorites_queue
+            error_log("Sending movie request for IMDb ID $imdb_id to favorites_queue");
+
+            // Fetch movie details from OMDb API using IMDb ID via favorites_queue
+            $movie_request = json_encode(['id' => $imdb_id]);
+            $movie_response = sendToRabbitMQ('favorites_queue', $movie_request);  // Use the new queue
+            $movie_info = json_decode($movie_response, true);
+
+            // Log the response from favorites_queue
+            error_log("Response from favorites_queue for IMDb ID $imdb_id: " . print_r($movie_info, true));
+
+            // Check if the movie information is valid
+            if (isset($movie_info['Title'])) {
+                echo "<div class='movie-card'>";
+                echo "<img src='" . htmlspecialchars($movie_info['Poster']) . "' alt='" . htmlspecialchars($movie_info['Title']) . "'>";
+                echo "<h3>" . htmlspecialchars($movie_info['Title']) . " (" . htmlspecialchars($movie_info['Year']) . ")</h3>";
+                echo "<p><strong>Genre:</strong> " . htmlspecialchars($movie_info['Genre']) . "</p>";
+                echo "<p><strong>Rating:</strong> " . htmlspecialchars($movie_info['imdbRating']) . "</p>";
+                echo "</div>";
+            } else {
+                // Log any errors when fetching movie data
+                echo "<p>Error: Could not retrieve details for IMDb ID: " . htmlspecialchars($imdb_id) . "</p>";
+            }
         }
     } else {
-        // Handle error responses from the backend
-        echo "<p>Failed to load profile information. " . htmlspecialchars($profile_data['message'] ?? 'Unknown error') . "</p>";
+        echo "<p>No favorites found.</p>";
     }
+
+    echo "</div>";
 } else {
-    // If no session token is found, redirect to the login page
     header('Location: login.php');
     exit;
 }
