@@ -18,8 +18,13 @@ Midterm deliverables:
 Personal deliverables:
 
 - [x] users can like, dislike comment and rate the movies
+  
 - [x] users can add and delete movies to lists
+      
 - [ ] users get recommendation based on their watch history
+      
 - [x] users get to play a little trivia
+      
 - [ ] users can see what websites/streaming services they can watch the movie on
+      
 - [ ] users have a blog (social media aspect)
