@@ -27,4 +27,4 @@ Personal deliverables:
       
 - [x] users can see what websites/streaming services they can watch the movie on
       
-- [ ] users have a blog (social media aspect)
+- [x] users have a blog (social media aspect)
