@@ -13,7 +13,7 @@ $RABBITMQ_HOST = $_ENV['RABBITMQ_HOST'] ?? 'localhost';
 $RABBITMQ_PORT = $_ENV['RABBITMQ_PORT'] ?? '5672';
 $RABBITMQ_USER = $_ENV['RABBITMQ_USER'] ?? 'guest';
 $RABBITMQ_PASS = $_ENV['RABBITMQ_PASS'] ?? 'guest';
-$DB_HOST = $_ENV['DB_HOST'] ?? 'localhost';  // Internal database credentials
+$DB_HOST = $_ENV['DB_HOST'] ?? 'localhost';
 $DB_USER = $_ENV['DB_USER'] ?? 'root';
 $DB_PASS = $_ENV['DB_PASS'] ?? '';
 $DB_NAME_MOVIE_REVIEWS = $_ENV['DB_NAME_MOVIE_REVIEWS'] ?? 'movie_reviews_db';
@@ -44,7 +44,6 @@ function addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL)
         return false;
     }
 
-    // Fetch movie details from OMDb API
     $omdb_url = $OMDB_URL . '?i=' . urlencode($movie_id) . '&apikey=' . $OMDB_API_KEY;
     $omdb_response = file_get_contents($omdb_url);
 
@@ -56,7 +55,6 @@ function addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL)
     $omdb_data = json_decode($omdb_response, true);
 
     if (isset($omdb_data['Title'])) {
-        // Insert the movie into the local database
         $stmt = $mysqli_reviews->prepare("INSERT INTO movies (imdb_id, title, year, genre, plot, poster) VALUES (?, ?, ?, ?, ?, ?)");
         if ($stmt) {
             $stmt->bind_param(
@@ -100,85 +98,170 @@ $callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAM
     error_log("Review Consumer: Received message: " . $msg->body);
 
     $data = json_decode($msg->body, true);
-    $session_token = $data['session_token'] ?? null;
+    $action = $data['action'] ?? null;
     $movie_id = $data['movie_id'] ?? null;
-    $review_text = $data['review_text'] ?? null;
-    $rating = $data['rating'] ?? null;
 
-    // Log the values for debugging
-    error_log("Review Consumer - Movie ID: $movie_id");
-    error_log("Review Consumer - Session Token: $session_token");
-    error_log("Review Consumer - Review Text: $review_text");
-    error_log("Review Consumer - Rating: $rating");
+    // Handle different actions
+    if ($action === 'add_review') {
+        $session_token = $data['session_token'] ?? null;
+        $review_text = $data['review_text'] ?? null;
+        $rating = $data['rating'] ?? null;
 
-    if (!$session_token || !$movie_id || !$review_text || !$rating) {
-        $response = json_encode(['status' => 'error', 'message' => 'Missing required fields.']);
-        error_log("Review Consumer: Missing required fields");
-    } else {
-        // Connect to `user_auth` database to fetch the user ID
-        $mysqli_auth = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
-
-        if ($mysqli_auth->connect_error) {
-            $response = json_encode(['status' => 'error', 'message' => 'Database connection to user_auth failed.']);
-            error_log("Review Consumer: Database connection to user_auth failed: " . $mysqli_auth->connect_error);
+        if (!$session_token || !$movie_id || !$review_text || !$rating) {
+            $response = json_encode(['status' => 'error', 'message' => 'Missing required fields.']);
+            error_log("Review Consumer: Missing required fields");
         } else {
-            // Fetch user ID using session token
+            $mysqli_auth = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
+            if ($mysqli_auth->connect_error) {
+                $response = json_encode(['status' => 'error', 'message' => 'Database connection to user_auth failed.']);
+                error_log("Review Consumer: Database connection to user_auth failed: " . $mysqli_auth->connect_error);
+            } else {
+                $user_id = fetchUserIdByToken($session_token, $mysqli_auth);
+                $mysqli_auth->close();
+
+                if (!$user_id) {
+                    $response = json_encode(['status' => 'error', 'message' => 'Invalid session token.']);
+                    error_log("Review Consumer: Invalid session token: $session_token");
+                } else {
+                    $mysqli_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
+                    if ($mysqli_reviews->connect_error) {
+                        $response = json_encode(['status' => 'error', 'message' => 'Database connection to movie_reviews_db failed.']);
+                        error_log("Review Consumer: Database connection to movie_reviews_db failed: " . $mysqli_reviews->connect_error);
+                    } else {
+                        $stmt = $mysqli_reviews->prepare("SELECT imdb_id FROM movies WHERE imdb_id = ?");
+                        $stmt->bind_param('s', $movie_id);
+                        $stmt->execute();
+                        $stmt->store_result();
+
+                        if ($stmt->num_rows == 0) {
+                            if (!addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL)) {
+                                $response = json_encode(['status' => 'error', 'message' => 'Failed to add movie.']);
+                                error_log("Review Consumer: Failed to add movie with ID: $movie_id");
+                            }
+                        }
+
+                        $stmt->close();
+                        $stmt = $mysqli_reviews->prepare("INSERT INTO reviews (user_id, imdb_id, review_text, rating) VALUES (?, ?, ?, ?)");
+                        if ($stmt) {
+                            $stmt->bind_param('issi', $user_id, $movie_id, $review_text, $rating);
+                            if ($stmt->execute()) {
+                                $response = json_encode(['status' => 'success', 'message' => 'Review added successfully!']);
+                                error_log("Review Consumer: Successfully added review for movie ID: $movie_id by user ID: $user_id");
+                            } else {
+                                $response = json_encode(['status' => 'error', 'message' => 'SQL execution error.']);
+                                error_log("Review Consumer: SQL execution error: " . $stmt->error);
+                            }
+                            $stmt->close();
+                        } else {
+                            $response = json_encode(['status' => 'error', 'message' => 'SQL preparation error.']);
+                            error_log("Review Consumer: SQL preparation error: " . $mysqli_reviews->error);
+                        }
+                        $mysqli_reviews->close();
+                    }
+                }
+            }
+        }
+    } elseif ($action === 'fetch_movie_reviews') {
+        if (!$movie_id) {
+            $response = json_encode(['status' => 'error', 'message' => 'Missing movie ID.']);
+            error_log("Review Consumer: Missing movie ID for fetching reviews");
+        } else {
+            $mysqli_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
+            if ($mysqli_reviews->connect_error) {
+                $response = json_encode(['status' => 'error', 'message' => 'Database connection failed']);
+                error_log("Review Consumer: Database connection failed: " . $mysqli_reviews->connect_error);
+            } else {
+                $stmt = $mysqli_reviews->prepare("SELECT review_id, user_id, review_text, rating FROM reviews WHERE imdb_id = ?");
+                $stmt->bind_param('s', $movie_id);
+                $stmt->execute();
+                $stmt->bind_result($review_id, $user_id, $review_text, $rating);
+
+                $reviews = [];
+                while ($stmt->fetch()) {
+                    $mysqli_auth = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
+                    $user_stmt = $mysqli_auth->prepare("SELECT username FROM users WHERE id = ?");
+                    $user_stmt->bind_param('i', $user_id);
+                    $user_stmt->execute();
+                    $user_stmt->bind_result($username);
+                    $user_stmt->fetch();
+
+                    $reviews[] = [
+                        'review_id' => $review_id,
+                        'username' => $username,
+                        'review_text' => $review_text,
+                        'rating' => $rating
+                    ];
+
+                    $user_stmt->close();
+                    $mysqli_auth->close();
+                }
+
+                $stmt->close();
+                $mysqli_reviews->close();
+
+                $response = empty($reviews) ? json_encode(['status' => 'error', 'message' => 'No reviews found']) :
+                    json_encode(['status' => 'success', 'reviews' => $reviews]);
+            }
+        }
+    } elseif ($action === 'like_review' || $action === 'dislike_review') {
+        $session_token = $data['session_token'] ?? null;
+        $review_id = $data['review_id'] ?? null;
+        $like_status = $action === 'like_review' ? 'like' : 'dislike';
+
+        if (!$session_token || !$review_id) {
+            $response = json_encode(['status' => 'error', 'message' => 'Missing required fields']);
+            error_log("Review Consumer: Missing required fields for like/dislike");
+        } else {
+            $mysqli_auth = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
             $user_id = fetchUserIdByToken($session_token, $mysqli_auth);
             $mysqli_auth->close();
 
             if (!$user_id) {
-                $response = json_encode(['status' => 'error', 'message' => 'Invalid session token.']);
-                error_log("Review Consumer: Invalid session token: $session_token");
+                $response = json_encode(['status' => 'error', 'message' => 'Invalid session token']);
+                error_log("Review Consumer: Invalid session token");
             } else {
-                // Connect to `movie_reviews_db` to check if the movie exists
                 $mysqli_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
 
                 if ($mysqli_reviews->connect_error) {
-                    $response = json_encode(['status' => 'error', 'message' => 'Database connection to movie_reviews_db failed.']);
-                    error_log("Review Consumer: Database connection to movie_reviews_db failed: " . $mysqli_reviews->connect_error);
+                    $response = json_encode(['status' => 'error', 'message' => 'Database connection failed']);
+                    error_log("Review Consumer: Database connection to movie_reviews_db failed");
                 } else {
-                    // Check if the movie exists in the `movies` table
-                    $stmt = $mysqli_reviews->prepare("SELECT imdb_id FROM movies WHERE imdb_id = ?");
-                    $stmt->bind_param('s', $movie_id);
-                    $stmt->execute();
-                    $stmt->store_result();
+                    $stmt_check = $mysqli_reviews->prepare("SELECT 1 FROM reviews WHERE review_id = ?");
+                    $stmt_check->bind_param('i', $review_id);
+                    $stmt_check->execute();
+                    $stmt_check->store_result();
 
-                    if ($stmt->num_rows == 0) {
-                        // Movie not found, add it to the database
-                        if (!addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL)) {
-                            $response = json_encode(['status' => 'error', 'message' => 'Failed to add movie.']);
-                            error_log("Review Consumer: Failed to add movie with ID: $movie_id");
-                        }
-                    }
-
-                    // Insert the review into the reviews table
-                    $stmt->close();
-                    $stmt = $mysqli_reviews->prepare("INSERT INTO reviews (user_id, imdb_id, review_text, rating) VALUES (?, ?, ?, ?)");
-
-                    if (!$stmt) {
-                        $response = json_encode(['status' => 'error', 'message' => 'SQL preparation error.']);
-                        error_log("Review Consumer: SQL preparation error: " . $mysqli_reviews->error);
+                    if ($stmt_check->num_rows == 0) {
+                        $response = json_encode(['status' => 'error', 'message' => 'Invalid review ID']);
+                        error_log("Review Consumer: Invalid review ID: $review_id");
                     } else {
-                        error_log("Review Consumer: Inserting review for user_id: $user_id, movie_id: $movie_id");
-                        $stmt->bind_param('issi', $user_id, $movie_id, $review_text, $rating);
+                        $stmt = $mysqli_reviews->prepare("
+                            INSERT INTO review_likes_dislikes (user_id, review_id, like_dislike)
+                            VALUES (?, ?, ?)
+                            ON DUPLICATE KEY UPDATE like_dislike = ?
+                        ");
+                        $stmt->bind_param('iiss', $user_id, $review_id, $like_status, $like_status);
 
                         if ($stmt->execute()) {
-                            $response = json_encode(['status' => 'success', 'message' => 'Review added successfully!']);
-                            error_log("Review Consumer: Successfully added review for movie ID: $movie_id by user ID: $user_id");
+                            $response = json_encode(['status' => 'success', 'message' => ucfirst($like_status) . ' added successfully']);
+                            error_log("Review Consumer: Successfully added $like_status for review ID: $review_id by user ID: $user_id");
                         } else {
-                            $response = json_encode(['status' => 'error', 'message' => 'SQL execution error.']);
-                            error_log("Review Consumer: SQL execution error: " . $stmt->error);
+                            $response = json_encode(['status' => 'error', 'message' => 'Failed to update like/dislike']);
+                            error_log("Review Consumer: Failed to update like/dislike: " . $stmt->error);
                         }
                         $stmt->close();
                     }
 
+                    $stmt_check->close();
                     $mysqli_reviews->close();
                 }
             }
         }
+    } else {
+        $response = json_encode(['status' => 'error', 'message' => 'Invalid action']);
+        error_log("Review Consumer: Invalid action received");
     }
 
-    // Reply with the response
     $reply_msg = new AMQPMessage(
         $response,
         ['correlation_id' => $msg->get('correlation_id')]
@@ -190,12 +273,9 @@ $callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAM
 
 $channel->basic_consume('review_queue', '', false, false, false, false, $callback);
 
-// Keep the consumer running
 while ($channel->is_consuming()) {
     $channel->wait();
 }
 
 $channel->close();
 $connection->close();
-?>
-

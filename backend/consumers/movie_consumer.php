@@ -1,6 +1,6 @@
 <?php
 require_once('/home/stanley/Documents/GitHub/IT-490/backend/consumers/vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable('/home/stanley');  // Load .env from /home/ashleys
+$dotenv = Dotenv\Dotenv::createImmutable('/home/stanley');  // Load .env from /home/stanley
 $dotenv->load();
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
