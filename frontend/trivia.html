@@ -5,98 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Trivia Game</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            overflow: hidden;
-            background-color: rgb(125, 216, 252);
-        }
-
-        /* Top Navigation Styles */
-        .topnav {
-            overflow: hidden;
-            background-color: pink; /* Top navigation background */
-            padding: 10px 0; /* Padding for better spacing */
-            position: relative; /* Allows positioning of child elements */
-            z-index: 1000; /* Ensures it's on top of other elements */
-        }
-
-        .topnav a {
-            float: left;
-            color: purple;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav a:hover {
-            background-color: purple;
-            color: pink;
-        }
-
-        .topnav a.active {
-            background-color: pink;
-            color: black;
-        }
-
-        /* Footer Styles */
-        .footer {
-            background-color: pink;
-            color: black;
-            text-align: center;
-            padding: 20px 0;
-            position: absolute;
-            width: 100%;
-            bottom: 0;
-            overflow: hidden;
-        }
-
-        .footer a {
-            color: black;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: purple;
-        }
-
-        /* Trivia Container Styles */
-        #trivia-container {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            margin: 50px auto; /* Center the trivia container */
-        }
-
-        .btn-container {
-            margin: 20px 0;
-        }
-
-        .btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px;
-            cursor: pointer;
-            margin: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        .score-container {
-            margin-top: 20px;
-        }
-    </style>
 </head>
 
 <body>
@@ -109,7 +17,17 @@
         <a href="trivia.html" class="active">Trivia</a>
     </div>
 
-    <!-- Trivia Game Container -->
+
+    <div class="content-wrapper">
+        <div class="container">
+            <h1>Movie Trivia</h1>
+            <div id="trivia-question"></div>
+            <div id="trivia-answers"></div>
+            <button id="next-question">Next Question</button>
+        </div>
+    </div>
+
+    <!-- Trivia Game Container 
     <div id="trivia-container">
         <h1>Movie Trivia Game</h1>
         <div id="question-container">
@@ -122,8 +40,11 @@
             <button id="restart-button" class="btn" onclick="restartGame()">Restart Game</button>
         </div>
     </div>
+    -->
 
     <script src="trivia.js"></script>
+    <link rel="stylesheet" href="trivia.css">
+
 
     <!-- Footer Section -->
     <footer class="footer">

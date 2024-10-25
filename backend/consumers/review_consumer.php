@@ -186,3 +186,5 @@ while ($channel->is_consuming()) {
 $channel->close();
 $connection->close();
 error_log("Review Consumer: Closed RabbitMQ connection");
+
+?>

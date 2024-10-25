@@ -1,0 +1,115 @@
+
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(125, 216, 252);
+    height: 100%;
+}
+
+/* Top Navigation Styles */
+.topnav {
+    overflow: hidden;
+    background-color: pink;
+    padding: 10px 0;
+    position: relative;
+    z-index: 1000;
+}
+
+.topnav a {
+    float: left;
+    color: purple;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: purple;
+    color: pink;
+}
+
+.topnav a.active {
+    background-color: pink;
+    color: black;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: pink;
+    color: black;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed; /* Fix footer at the bottom */
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.footer a {
+    color: black;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: purple;
+}
+
+/* Container Styles */
+.container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    overflow-y: auto; /* Add scroll if content exceeds container */
+    flex-grow: 1; /* Allow the container to grow and take available space */
+}
+
+#trivia-question {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#trivia-answers button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#next-question {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Content Wrapper Styles */
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items from the top */
+    align-items: center;
+    min-height: 100vh; /* Ensure it takes up the full viewport height */
+    text-align: center;
+    background-color: #f4f4f4;
+    overflow-y: auto; /* Enable scrolling for the entire content */
+    padding-bottom: 60px; /* Space to prevent overlap with the footer */
+}
