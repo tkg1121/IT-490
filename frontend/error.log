@@ -489,3 +489,769 @@
 [25-Oct-2024 06:53:03 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
 [25-Oct-2024 06:53:04 UTC] Publishing message to queue: review_queue with correlation_id: 671b40502dff5
 [25-Oct-2024 06:53:04 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 13:22:25 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:22:25 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:22:25 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:22:25 UTC] DB_HOST: localhost
+[25-Oct-2024 13:22:25 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:22:28 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:22:28 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:22:28 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:22:28 UTC] DB_HOST: localhost
+[25-Oct-2024 13:22:28 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:22:32 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:22:32 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:22:32 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:22:32 UTC] DB_HOST: localhost
+[25-Oct-2024 13:22:32 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:22:32 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:22:33 UTC] Publishing message to queue: login_queue with correlation_id: 671b9b994f9cd
+[25-Oct-2024 13:22:33 UTC] Response received: {"status":"success","session_token":"ce836223b89beb2600d664ab5ecf215a20dc3065a175c690836318d24cc3977f"}
+[25-Oct-2024 13:22:33 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:22:33 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:22:33 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:22:33 UTC] DB_HOST: localhost
+[25-Oct-2024 13:22:33 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:22:33 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:22:34 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9b9a7d2c0
+[25-Oct-2024 13:22:53 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:22:54 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 13:22:54 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"ce836223b89beb2600d664ab5ecf215a20dc3065a175c690836318d24cc3977f"}
+[25-Oct-2024 13:22:54 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:22:54 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9baea982e
+[25-Oct-2024 13:22:55 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:22:55 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:22:57 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:22:57 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:22:57 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:22:57 UTC] DB_HOST: localhost
+[25-Oct-2024 13:22:57 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:22:57 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:22:58 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bb272dc6
+[25-Oct-2024 13:22:58 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:01 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:01 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:01 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:01 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:01 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:01 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:04 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bb89c06a
+[25-Oct-2024 13:23:04 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:05 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:06 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b9bba2bf45
+[25-Oct-2024 13:23:06 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 13:23:08 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:08 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:08 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:08 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:08 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:08 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:08 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bbcd93a8
+[25-Oct-2024 13:23:09 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:09 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:09 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9bbddd4a2
+[25-Oct-2024 13:23:10 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:23:10 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:11 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bbf04214
+[25-Oct-2024 13:23:11 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 13:23:17 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:17 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:17 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:17 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:17 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:17 UTC] Received review_id: 11, action: like_review
+[25-Oct-2024 13:23:17 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:17 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bc5bdbf1
+[25-Oct-2024 13:23:17 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 13:23:18 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:18 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:18 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:18 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:18 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:18 UTC] Received review_id: 10, action: dislike_review
+[25-Oct-2024 13:23:18 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:18 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bc6ba96d
+[25-Oct-2024 13:23:18 UTC] Response received: {"status":"success","message":"Dislike added successfully"}
+[25-Oct-2024 13:23:20 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:20 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:20 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:20 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:20 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:20 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:20 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bc8c393f
+[25-Oct-2024 13:23:20 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:21 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:21 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9bc9d1d7c
+[25-Oct-2024 13:23:22 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:23:22 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:22 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bcae3fa2
+[25-Oct-2024 13:23:23 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 13:23:23 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:23 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:23 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:23 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:23 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:23 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:24 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bcc0d6b4
+[25-Oct-2024 13:23:24 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:24 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:25 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9bcd19438
+[25-Oct-2024 13:23:25 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:23:25 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:26 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bce215df
+[25-Oct-2024 13:23:26 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1}]}
+[25-Oct-2024 13:23:37 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:37 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:37 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:37 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:37 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:37 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:38 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bda21666
+[25-Oct-2024 13:23:38 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:38 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:39 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bdb37751
+[25-Oct-2024 13:23:39 UTC] Response received: {"status":"success","message":"Review added successfully!"}
+[25-Oct-2024 13:23:57 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:23:57 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:23:57 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:23:57 UTC] DB_HOST: localhost
+[25-Oct-2024 13:23:57 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:23:57 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:58 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9bee836c3
+[25-Oct-2024 13:23:58 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:23:58 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:23:59 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9bef9139e
+[25-Oct-2024 13:23:59 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:23:59 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:24:00 UTC] Publishing message to queue: review_queue with correlation_id: 671b9bf0a39a2
+[25-Oct-2024 13:24:00 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4}]}
+[25-Oct-2024 13:25:55 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:25:55 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:25:55 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:25:55 UTC] DB_HOST: localhost
+[25-Oct-2024 13:25:55 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:25:55 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:25:56 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9c6427c3d
+[25-Oct-2024 13:25:56 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:26:06 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:06 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:06 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:06 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:06 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:06 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:26:07 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9c6f80153
+[25-Oct-2024 13:26:07 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:26:07 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 13:26:07 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"ce836223b89beb2600d664ab5ecf215a20dc3065a175c690836318d24cc3977f"}
+[25-Oct-2024 13:26:07 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:26:08 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9c7087122
+[25-Oct-2024 13:26:08 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:26:08 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 13:26:26 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:26 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:26 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:26 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:26 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:28 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:28 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:28 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:28 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:28 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:41 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:41 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:41 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:41 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:41 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:41 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:26:42 UTC] Publishing message to queue: signup_queue with correlation_id: 671b9c920f450
+[25-Oct-2024 13:26:42 UTC] Response received: Signup successful
+[25-Oct-2024 13:26:53 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:53 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:53 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:53 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:53 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:55 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:55 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:55 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:55 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:55 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:59 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:26:59 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:26:59 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:26:59 UTC] DB_HOST: localhost
+[25-Oct-2024 13:26:59 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:26:59 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:00 UTC] Publishing message to queue: login_queue with correlation_id: 671b9ca460740
+[25-Oct-2024 13:27:00 UTC] Response received: {"status":"success","session_token":"b6f845e04eb1491c6b627010379e7ad5c1465fad921370287c7ee9286e7ee5c3"}
+[25-Oct-2024 13:27:00 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:00 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:00 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:00 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:00 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:00 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:01 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9ca593ef0
+[25-Oct-2024 13:27:01 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:01 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 13:27:01 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"b6f845e04eb1491c6b627010379e7ad5c1465fad921370287c7ee9286e7ee5c3"}
+[25-Oct-2024 13:27:01 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:02 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9ca69e1e6
+[25-Oct-2024 13:27:02 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:03 UTC] Response from RabbitMQ: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:04 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:04 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:04 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:04 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:04 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:04 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:05 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9ca959750
+[25-Oct-2024 13:27:05 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:09 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:09 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:09 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:09 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:09 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:09 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:09 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9cadb5256
+[25-Oct-2024 13:27:09 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:10 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:10 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671b9caec2c3d
+[25-Oct-2024 13:27:11 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 13:27:12 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:12 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:12 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:12 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:12 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:12 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:13 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9cb145b74
+[25-Oct-2024 13:27:13 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:13 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:14 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9cb25315c
+[25-Oct-2024 13:27:14 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:27:14 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:15 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cb373ccf
+[25-Oct-2024 13:27:15 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4}]}
+[25-Oct-2024 13:27:18 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:18 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:18 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:18 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:18 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:18 UTC] Received review_id: 9, action: like_review
+[25-Oct-2024 13:27:18 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:19 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cb77e80f
+[25-Oct-2024 13:27:19 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 13:27:19 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:19 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:19 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:19 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:19 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:19 UTC] Received review_id: 10, action: like_review
+[25-Oct-2024 13:27:19 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:20 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cb88c205
+[25-Oct-2024 13:27:20 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 13:27:21 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:21 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:21 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:21 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:21 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:21 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:22 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9cba1a588
+[25-Oct-2024 13:27:22 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:22 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:23 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9cbb29dc1
+[25-Oct-2024 13:27:23 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:27:23 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:23 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:23 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:23 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:23 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:23 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:23 UTC] Received review_id: 11, action: like_review
+[25-Oct-2024 13:27:23 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:24 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cbc88b3f
+[25-Oct-2024 13:27:24 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cbca0de4
+[25-Oct-2024 13:27:24 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4}]}
+[25-Oct-2024 13:27:24 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 13:27:24 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:24 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:24 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:24 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:24 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:24 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:25 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9cbda0ca5
+[25-Oct-2024 13:27:25 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:26 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:26 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9cbef06a6
+[25-Oct-2024 13:27:27 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:27:27 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:28 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cc015456
+[25-Oct-2024 13:27:28 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4}]}
+[25-Oct-2024 13:27:28 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:28 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:28 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:28 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:28 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:28 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:29 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9cc12f560
+[25-Oct-2024 13:27:29 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:29 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:29 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:29 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:29 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:29 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:29 UTC] Received review_id: 7, action: like_review
+[25-Oct-2024 13:27:29 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:29 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:30 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cc247cc1
+[25-Oct-2024 13:27:30 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9cc247d4f
+[25-Oct-2024 13:27:30 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:27:30 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 13:27:30 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:31 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cc36d001
+[25-Oct-2024 13:27:31 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4}]}
+[25-Oct-2024 13:27:31 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:31 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:31 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:31 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:31 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:31 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:32 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9cc4944f0
+[25-Oct-2024 13:27:32 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:32 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:33 UTC] Publishing message to queue: movie_queue with correlation_id: 671b9cc59d5d0
+[25-Oct-2024 13:27:33 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:27:34 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:34 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cc6abf10
+[25-Oct-2024 13:27:34 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4}]}
+[25-Oct-2024 13:27:42 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:27:42 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:27:42 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:27:42 UTC] DB_HOST: localhost
+[25-Oct-2024 13:27:42 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:27:42 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:43 UTC] Publishing message to queue: profile_queue with correlation_id: 671b9ccf754e2
+[25-Oct-2024 13:27:43 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:27:43 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:27:44 UTC] Publishing message to queue: review_queue with correlation_id: 671b9cd07792b
+[25-Oct-2024 13:27:44 UTC] Response received: {"status":"success","message":"Review added successfully!"}
+[25-Oct-2024 13:41:13 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:13 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:13 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:13 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:13 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:13 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:13 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:13 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:13 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:13 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:18 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:18 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:18 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:18 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:18 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:18 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:19 UTC] Publishing message to queue: login_queue with correlation_id: 671b9fff03319
+[25-Oct-2024 13:41:19 UTC] Response received: {"status":"success","session_token":"fc09ba8583168a357ccbafed17c4c0023bcdc7c09ae07c8e8b2fe07a929d5aa5"}
+[25-Oct-2024 13:41:19 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:19 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:19 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:19 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:19 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:19 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:20 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba000300d5
+[25-Oct-2024 13:41:20 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:41:20 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 13:41:20 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"fc09ba8583168a357ccbafed17c4c0023bcdc7c09ae07c8e8b2fe07a929d5aa5"}
+[25-Oct-2024 13:41:20 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:21 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba00153f5b
+[25-Oct-2024 13:41:21 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:41:21 UTC] Response from RabbitMQ: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:41:23 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:23 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:23 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:23 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:23 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:23 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:24 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba0043451f
+[25-Oct-2024 13:41:24 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:41:27 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:27 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:27 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:27 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:27 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:27 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:28 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba00807b1b
+[25-Oct-2024 13:41:28 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:41:28 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:29 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671ba0091bd11
+[25-Oct-2024 13:41:29 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 13:41:31 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:41:31 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:41:31 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:41:31 UTC] DB_HOST: localhost
+[25-Oct-2024 13:41:31 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:41:31 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:31 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba00bed2e1
+[25-Oct-2024 13:41:32 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:41:32 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:33 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba00d0c33e
+[25-Oct-2024 13:41:33 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:41:33 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:41:34 UTC] Publishing message to queue: review_queue with correlation_id: 671ba00e1c732
+[25-Oct-2024 13:45:33 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1}]}
+[25-Oct-2024 13:45:34 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:45:34 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:45:34 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:45:34 UTC] DB_HOST: localhost
+[25-Oct-2024 13:45:34 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:45:34 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:34 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba0fed3240
+[25-Oct-2024 13:45:35 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:45:35 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:36 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba10003d92
+[25-Oct-2024 13:45:36 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:45:36 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:37 UTC] Publishing message to queue: review_queue with correlation_id: 671ba1011f9b6
+[25-Oct-2024 13:45:37 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1}]}
+[25-Oct-2024 13:45:40 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:45:40 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:45:40 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:45:40 UTC] DB_HOST: localhost
+[25-Oct-2024 13:45:40 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:45:40 UTC] Received review_id: 8, action: like_review
+[25-Oct-2024 13:45:40 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:41 UTC] Publishing message to queue: review_queue with correlation_id: 671ba10544a55
+[25-Oct-2024 13:45:41 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 13:45:44 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:45:44 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:45:44 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:45:44 UTC] DB_HOST: localhost
+[25-Oct-2024 13:45:44 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:45:44 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:45 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba10931374
+[25-Oct-2024 13:45:45 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:45:45 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:46 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba10a4bff7
+[25-Oct-2024 13:45:46 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:45:46 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:47 UTC] Publishing message to queue: review_queue with correlation_id: 671ba10b64887
+[25-Oct-2024 13:45:47 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1}]}
+[25-Oct-2024 13:45:54 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:45:54 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:45:54 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:45:54 UTC] DB_HOST: localhost
+[25-Oct-2024 13:45:54 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:45:54 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:55 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba113a0612
+[25-Oct-2024 13:45:55 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:45:59 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:45:59 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:45:59 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:45:59 UTC] DB_HOST: localhost
+[25-Oct-2024 13:45:59 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:45:59 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:45:59 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba117f41fd
+[25-Oct-2024 13:46:00 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:46:00 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:46:01 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671ba11933ce8
+[25-Oct-2024 13:46:01 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 13:46:03 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:46:03 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:46:03 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:46:03 UTC] DB_HOST: localhost
+[25-Oct-2024 13:46:03 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:46:03 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:46:04 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba11c3777a
+[25-Oct-2024 13:46:04 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:46:04 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:46:05 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba11d6abb2
+[25-Oct-2024 13:46:05 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:46:05 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:46:06 UTC] Publishing message to queue: review_queue with correlation_id: 671ba11e818df
+[25-Oct-2024 13:46:06 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1},{"review_id":12,"username":"test1","review_text":"i like it","rating":4},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1}]}
+[25-Oct-2024 13:51:57 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:51:57 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:51:57 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:51:57 UTC] DB_HOST: localhost
+[25-Oct-2024 13:51:57 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:51:58 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:51:58 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:51:58 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:51:58 UTC] DB_HOST: localhost
+[25-Oct-2024 13:51:58 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:52:03 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:52:03 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:52:03 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:52:03 UTC] DB_HOST: localhost
+[25-Oct-2024 13:52:03 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:52:03 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:04 UTC] Publishing message to queue: login_queue with correlation_id: 671ba2841b94c
+[25-Oct-2024 13:52:04 UTC] Response received: {"status":"success","session_token":"7df17c5b05e5f28bc2327613084f8db422269be051a5e6b2e791560ef3017ef8"}
+[25-Oct-2024 13:52:04 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:52:04 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:52:04 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:52:04 UTC] DB_HOST: localhost
+[25-Oct-2024 13:52:04 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:52:04 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:05 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba2857ae37
+[25-Oct-2024 13:52:05 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:52:05 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 13:52:05 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"7df17c5b05e5f28bc2327613084f8db422269be051a5e6b2e791560ef3017ef8"}
+[25-Oct-2024 13:52:05 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:06 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba286a0998
+[25-Oct-2024 13:52:06 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:52:07 UTC] Response from RabbitMQ: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:52:08 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:52:08 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:52:08 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:52:08 UTC] DB_HOST: localhost
+[25-Oct-2024 13:52:08 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:52:08 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:09 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba289d5c1a
+[25-Oct-2024 13:52:10 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:52:16 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:52:16 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:52:16 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:52:16 UTC] DB_HOST: localhost
+[25-Oct-2024 13:52:16 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:52:16 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:16 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba290dc6b3
+[25-Oct-2024 13:52:17 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:52:17 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:17 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671ba291ee614
+[25-Oct-2024 13:52:18 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 13:52:19 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:52:19 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:52:19 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:52:19 UTC] DB_HOST: localhost
+[25-Oct-2024 13:52:19 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:52:19 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:20 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba29489fe8
+[25-Oct-2024 13:52:20 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:52:20 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:21 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba295a5ce4
+[25-Oct-2024 13:52:22 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:52:22 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:52:23 UTC] Publishing message to queue: review_queue with correlation_id: 671ba29713a1a
+[25-Oct-2024 13:59:06 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":2,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 13:59:06 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:59:06 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:59:06 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:59:06 UTC] DB_HOST: localhost
+[25-Oct-2024 13:59:06 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:59:06 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:07 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba42b1ddae
+[25-Oct-2024 13:59:07 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:59:07 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:08 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba42c3568a
+[25-Oct-2024 13:59:08 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:59:08 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:09 UTC] Publishing message to queue: review_queue with correlation_id: 671ba42d4f07e
+[25-Oct-2024 13:59:09 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":2,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 13:59:09 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:59:09 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:59:09 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:59:09 UTC] DB_HOST: localhost
+[25-Oct-2024 13:59:09 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:59:09 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:10 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba42e7bd34
+[25-Oct-2024 13:59:10 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:59:10 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:11 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba42f94047
+[25-Oct-2024 13:59:11 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 13:59:12 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:12 UTC] Publishing message to queue: review_queue with correlation_id: 671ba430b2abc
+[25-Oct-2024 13:59:13 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":2,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 13:59:21 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:59:21 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:59:21 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:59:21 UTC] DB_HOST: localhost
+[25-Oct-2024 13:59:21 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:59:21 UTC] Received review_id: 7, action: like_review
+[25-Oct-2024 13:59:21 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:22 UTC] Publishing message to queue: review_queue with correlation_id: 671ba43a7101d
+[25-Oct-2024 13:59:48 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 13:59:48 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 13:59:48 UTC] RABBITMQ_USER: T
+[25-Oct-2024 13:59:48 UTC] DB_HOST: localhost
+[25-Oct-2024 13:59:48 UTC] DB_USER: dbadmin
+[25-Oct-2024 13:59:48 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:49 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba4552889b
+[25-Oct-2024 13:59:49 UTC] Response received: {"status":"success","username":"test2","email":"test2@test2.com"}
+[25-Oct-2024 13:59:49 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 13:59:50 UTC] Publishing message to queue: review_queue with correlation_id: 671ba4563c5b3
+[25-Oct-2024 14:07:46 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:07:46 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:07:46 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:07:46 UTC] DB_HOST: localhost
+[25-Oct-2024 14:07:46 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:07:59 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:07:59 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:07:59 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:07:59 UTC] DB_HOST: localhost
+[25-Oct-2024 14:07:59 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:04 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:08:04 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:08:04 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:08:04 UTC] DB_HOST: localhost
+[25-Oct-2024 14:08:04 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:04 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:05 UTC] Publishing message to queue: login_queue with correlation_id: 671ba64587ee0
+[25-Oct-2024 14:08:05 UTC] Response received: {"status":"success","session_token":"b5bee32740f4edc7a45d4d13133bd86d512ec8fba8e1ba210a34eee5684f213a"}
+[25-Oct-2024 14:08:06 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:08:06 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:08:06 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:08:06 UTC] DB_HOST: localhost
+[25-Oct-2024 14:08:06 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:06 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:06 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba646c56fa
+[25-Oct-2024 14:08:06 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:08:07 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 14:08:07 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"b5bee32740f4edc7a45d4d13133bd86d512ec8fba8e1ba210a34eee5684f213a"}
+[25-Oct-2024 14:08:07 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:10 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba64a46a68
+[25-Oct-2024 14:08:10 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:08:10 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:08:12 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:08:12 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:08:12 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:08:12 UTC] DB_HOST: localhost
+[25-Oct-2024 14:08:12 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:12 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:13 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba64d6546d
+[25-Oct-2024 14:08:13 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:08:16 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:08:16 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:08:16 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:08:16 UTC] DB_HOST: localhost
+[25-Oct-2024 14:08:16 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:16 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:17 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba651aba17
+[25-Oct-2024 14:08:17 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:08:18 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:18 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671ba652d6038
+[25-Oct-2024 14:08:19 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 14:08:21 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:08:21 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:08:21 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:08:21 UTC] DB_HOST: localhost
+[25-Oct-2024 14:08:21 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:21 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:22 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba656560c7
+[25-Oct-2024 14:08:22 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:08:22 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:23 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba6576e0c8
+[25-Oct-2024 14:08:23 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 14:08:23 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:24 UTC] Publishing message to queue: review_queue with correlation_id: 671ba6589986f
+[25-Oct-2024 14:08:24 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":2,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 14:08:29 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:08:29 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:08:29 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:08:29 UTC] DB_HOST: localhost
+[25-Oct-2024 14:08:29 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:08:29 UTC] Received review_id: 7, action: like_review
+[25-Oct-2024 14:08:29 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:08:30 UTC] Publishing message to queue: review_queue with correlation_id: 671ba65e9c4e4
+[25-Oct-2024 14:09:00 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:00 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:00 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:00 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:00 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:00 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:01 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba67d8e2e0
+[25-Oct-2024 14:09:01 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:09:04 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:04 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:04 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:04 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:04 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:04 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:05 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba6817f596
+[25-Oct-2024 14:09:05 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:09:05 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:06 UTC] Publishing message to queue: omdb_request_queue with correlation_id: 671ba68296bca
+[25-Oct-2024 14:09:06 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 14:09:08 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:08 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:08 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:08 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:08 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:08 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:08 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba684ed523
+[25-Oct-2024 14:09:09 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:09:09 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:10 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba6860b50c
+[25-Oct-2024 14:09:10 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 14:09:10 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:11 UTC] Publishing message to queue: review_queue with correlation_id: 671ba6872f72d
+[25-Oct-2024 14:09:11 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":2,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 14:09:15 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:15 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:15 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:15 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:15 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:15 UTC] Received review_id: 7, action: like_review
+[25-Oct-2024 14:09:15 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:16 UTC] Publishing message to queue: review_queue with correlation_id: 671ba68c585e7
+[25-Oct-2024 14:09:16 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 14:09:19 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:19 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:19 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:19 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:19 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:19 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:20 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba69059d70
+[25-Oct-2024 14:09:20 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:09:20 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:21 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba691708d2
+[25-Oct-2024 14:09:21 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 14:09:21 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:22 UTC] Publishing message to queue: review_queue with correlation_id: 671ba6928de36
+[25-Oct-2024 14:09:22 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":3,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 14:09:33 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:33 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:33 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:33 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:33 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:33 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:34 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba69e9d3d0
+[25-Oct-2024 14:09:34 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:09:35 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:35 UTC] Publishing message to queue: review_queue with correlation_id: 671ba69fac14f
+[25-Oct-2024 14:09:35 UTC] Response received: {"status":"success","message":"Review added successfully!"}
+[25-Oct-2024 14:09:43 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:09:43 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:09:43 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:09:43 UTC] DB_HOST: localhost
+[25-Oct-2024 14:09:43 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:09:43 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:43 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba6a7e72a1
+[25-Oct-2024 14:09:44 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:09:44 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:45 UTC] Publishing message to queue: movie_queue with correlation_id: 671ba6a90ade3
+[25-Oct-2024 14:09:45 UTC] Response received: {"status":"success","Title":"Silent Hill","Year":2006,"Genre":"Horror, Mystery","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 14:09:45 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:09:48 UTC] Publishing message to queue: review_queue with correlation_id: 671ba6ac2077e
+[25-Oct-2024 14:09:48 UTC] Response received: {"status":"success","reviews":[{"review_id":7,"username":"test1","review_text":"It works","rating":1,"like_count":3,"dislike_count":0},{"review_id":8,"username":"test1","review_text":"this movie sucked","rating":1,"like_count":1,"dislike_count":0},{"review_id":9,"username":"test1","review_text":"i dont like it\r\n","rating":1,"like_count":1,"dislike_count":0},{"review_id":10,"username":"test1","review_text":"tell me why aint nothing","rating":1,"like_count":1,"dislike_count":1},{"review_id":11,"username":"test1","review_text":"this still works yeah?","rating":1,"like_count":2,"dislike_count":0},{"review_id":12,"username":"test1","review_text":"i like it","rating":4,"like_count":0,"dislike_count":0},{"review_id":13,"username":"test2","review_text":"I loved this movie","rating":1,"like_count":0,"dislike_count":0},{"review_id":14,"username":"test1","review_text":"and ima leave another review\r\n","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 14:12:28 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:12:28 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:12:28 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:12:28 UTC] DB_HOST: localhost
+[25-Oct-2024 14:12:28 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:12:28 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:12:29 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba74d4ee68
+[25-Oct-2024 14:12:29 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:13:27 UTC] RABBITMQ_HOST: 192.168.193.197
+[25-Oct-2024 14:13:27 UTC] RABBITMQ_PORT: 5672
+[25-Oct-2024 14:13:27 UTC] RABBITMQ_USER: T
+[25-Oct-2024 14:13:27 UTC] DB_HOST: localhost
+[25-Oct-2024 14:13:27 UTC] DB_USER: dbadmin
+[25-Oct-2024 14:13:27 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:13:28 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba7887a34c
+[25-Oct-2024 14:13:28 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:13:28 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 14:13:28 UTC] Sending data to RabbitMQ: {"action":"fetch_profile","session_token":"b5bee32740f4edc7a45d4d13133bd86d512ec8fba8e1ba210a34eee5684f213a"}
+[25-Oct-2024 14:13:28 UTC] Attempting to connect to RabbitMQ at 192.168.193.197:5672 with user T
+[25-Oct-2024 14:13:29 UTC] Publishing message to queue: profile_queue with correlation_id: 671ba78997393
+[25-Oct-2024 14:13:29 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 14:13:30 UTC] Response from RabbitMQ: {"status":"success","username":"test1","email":"test1@test1.com"}
