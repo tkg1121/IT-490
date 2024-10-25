@@ -1,50 +1,44 @@
 <?php
 session_start();
-
 require_once('rabbitmq_send.php');
 
-// Set session timeout (in seconds)
+// Session timeout in seconds
 $session_timeout = 600; // 10 minutes
 
-// Initialize username as "Guest"
+// Default username display
 $username_display = 'Guest';
 
-// Check if a session token exists in cookies
 if (isset($_COOKIE['session_token'])) {
     $session_token = $_COOKIE['session_token'];
 
-    // Prepare the data to send to RabbitMQ for profile fetching
+    // Prepare data to fetch profile through RabbitMQ
     $data = [
         'action' => 'fetch_profile',
         'session_token' => $session_token
     ];
 
-    // Send the data to RabbitMQ and get the response
+    // Send request and decode profile data
     $response = sendToRabbitMQ('profile_queue', json_encode($data));
     $profile_data = json_decode($response, true);
 
-    // If the response is successful, update the username for display
     if ($profile_data && isset($profile_data['status']) && $profile_data['status'] === 'success') {
         $username_display = htmlspecialchars($profile_data['username']);
     }
 }
 
-// Optional: Display session timeout management logic for session timestamp
+// Manage session timeout
 if (isset($_SESSION['last_activity'])) {
-    $elapsed_time = time() - $_SESSION['last_activity'];  // Calculate elapsed time
+    $elapsed_time = time() - $_SESSION['last_activity'];
 
     if ($elapsed_time >= $session_timeout) {
-        // Session expired, destroy session and redirect to login
         session_unset();
         session_destroy();
         header("Location: login.php");
         exit();
     } else {
-        // Session is still valid, update the timestamp
         $_SESSION['last_activity'] = time();
     }
 } else {
-    // First interaction or session just started
     $_SESSION['last_activity'] = time();
 }
 ?>
@@ -58,41 +52,46 @@ if (isset($_SESSION['last_activity'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, hotpink, purple);
-            color: white;
             margin: 0;
         }
 
-        /* Navigation bar */
+        /* Responsive Navbar */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
-        /* Logo/Profile icon */
+        /* Profile Section */
         .profile-icon {
             display: flex;
             align-items: center;
             cursor: pointer;
+            color: white;
         }
 
         .profile-icon img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             margin-right: 10px;
             border: 2px solid white;
         }
 
-        /* Navigation Links */
+        .profile-icon span {
+            font-size: 1em;
+        }
+
+        /* Nav Links */
         .nav-links {
             list-style-type: none;
             display: flex;
             margin: 0;
             padding: 0;
+            flex-wrap: wrap;
         }
 
         .nav-links li {
@@ -102,11 +101,31 @@ if (isset($_SESSION['last_activity'])) {
         .nav-links li a {
             text-decoration: none;
             color: white;
-            font-size: 1.2em;
+            font-size: 1em;
+            transition: color 0.3s;
         }
 
         .nav-links li a:hover {
             color: hotpink;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .profile-icon img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
@@ -114,14 +133,14 @@ if (isset($_SESSION['last_activity'])) {
     <header>
         <div class="navbar">
             <div class="profile-icon">
-                <img src="profile_icon.png" alt="Profile Icon"> <!-- Profile icon, replace with dynamic image -->
-                <span><?php echo $username_display; ?></span> <!-- Display the username or "Guest" -->
+                <img src="profile_icon.png" alt="Profile Icon">
+                <span><?php echo $username_display; ?></span>
             </div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="movies.php">Movies</a></li>
+                <li><a href="where_to_watch.php">Where to Watch</a></li>
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="about.php">About</a></li>
                 <?php if ($username_display !== 'Guest'): ?>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
@@ -133,3 +152,4 @@ if (isset($_SESSION['last_activity'])) {
     </header>
 </body>
 </html>
+
