@@ -7,6 +7,12 @@ error_reporting(E_ALL);
 session_start();
 include 'header.php';
 require_once('rabbitmq_send.php');  // Include this instead of redeclaring the function
+
+// Function to log data to a file
+function log_json_data($data) {
+    file_put_contents(__DIR__ . '/rabbitmq_json.log', $data . PHP_EOL, FILE_APPEND);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +37,13 @@ require_once('rabbitmq_send.php');  // Include this instead of redeclaring the f
                 if (!empty($_POST['movie_name'])) {
                     $movie_name = htmlspecialchars($_POST['movie_name']);  // Sanitize user input
                     $request_data = json_encode(['name' => $movie_name]);
+
+                    // Display JSON data in the browser
+                    echo "<h3>JSON Data Sent to RabbitMQ:</h3>";
+                    echo "<pre>" . htmlspecialchars($request_data) . "</pre>";
+
+                    // Log JSON data to a file
+                    log_json_data("Index - Sending JSON to RabbitMQ: " . $request_data);
 
                     // Sending movie request to RabbitMQ
                     $movie_data = sendToRabbitMQ('omdb_request_queue', $request_data);
@@ -62,3 +75,4 @@ require_once('rabbitmq_send.php');  // Include this instead of redeclaring the f
     </div>
 </body>
 </html>
+
