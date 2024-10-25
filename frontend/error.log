@@ -3631,3 +3631,2273 @@
     [Response] => True
 )
 
+[25-Oct-2024 19:06:41 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 19:06:50 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 19:06:51 UTC] Message published to queue: login_queue with correlation_id: 671bec4b727e2
+[25-Oct-2024 19:06:52 UTC] Response received: {"status":"success","session_token":"1a17fa54586d967a3e2ceb29ed1732b96d3fe83909ac0d866d7ff1997f1fd6b4"}
+[25-Oct-2024 19:06:52 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 19:06:53 UTC] Message published to queue: profile_queue with correlation_id: 671bec4ced65c
+[25-Oct-2024 19:06:53 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 19:06:53 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 19:06:53 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 19:06:54 UTC] Message published to queue: watchlist_queue with correlation_id: 671bec4e1e25f
+[25-Oct-2024 19:06:54 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 19:06:54 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 19:06:54 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 19:06:54 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 19:06:55 UTC] Message published to queue: favorites_queue with correlation_id: 671bec4f515be
+[25-Oct-2024 19:07:00 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 19:07:00 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [error] => The connection timed out after 5 sec while awaiting incoming data
+)
+
+[25-Oct-2024 19:07:00 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 19:07:00 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 19:07:01 UTC] Message published to queue: favorites_queue with correlation_id: 671bec551c8ba
+[25-Oct-2024 19:07:06 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 19:07:06 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [error] => The connection timed out after 5 sec while awaiting incoming data
+)
+
+[25-Oct-2024 19:07:06 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 19:07:06 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 19:07:07 UTC] Message published to queue: favorites_queue with correlation_id: 671bec5ae8b3e
+[25-Oct-2024 19:07:12 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 19:07:12 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [error] => The connection timed out after 5 sec while awaiting incoming data
+)
+
+[25-Oct-2024 19:07:12 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 19:07:12 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 19:07:12 UTC] Message published to queue: favorites_queue with correlation_id: 671bec60b3ca0
+[25-Oct-2024 19:07:17 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 19:07:17 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [error] => The connection timed out after 5 sec while awaiting incoming data
+)
+
+[25-Oct-2024 19:07:17 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 19:07:17 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 19:07:18 UTC] Message published to queue: favorites_queue with correlation_id: 671bec66c67ab
+[25-Oct-2024 19:07:23 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 19:07:23 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [error] => The connection timed out after 5 sec while awaiting incoming data
+)
+
+[25-Oct-2024 20:29:18 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 20:29:19 UTC] Message published to queue: login_queue with correlation_id: 671bff9f51910
+[25-Oct-2024 20:29:24 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 20:33:31 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 20:33:32 UTC] Message published to queue: login_queue with correlation_id: 671c009c71850
+[25-Oct-2024 20:33:33 UTC] Response received: {"status":"success","session_token":"cc9e21c7dd59a8fe22522c6871508b66b8cad7183fcd5b099f08b229d6e46496"}
+[25-Oct-2024 20:33:33 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:33:34 UTC] Message published to queue: profile_queue with correlation_id: 671c009e2a2fa
+[25-Oct-2024 20:33:34 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:33:34 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 20:33:34 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 20:33:35 UTC] Message published to queue: watchlist_queue with correlation_id: 671c009f5b173
+[25-Oct-2024 20:33:35 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:33:35 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:33:35 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 20:33:35 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:33:36 UTC] Message published to queue: favorites_queue with correlation_id: 671c00a093605
+[25-Oct-2024 20:33:37 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 20:33:37 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 20:33:37 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 20:33:37 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:33:38 UTC] Message published to queue: favorites_queue with correlation_id: 671c00a206a42
+[25-Oct-2024 20:33:38 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:33:38 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:33:38 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 20:33:38 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:33:39 UTC] Message published to queue: favorites_queue with correlation_id: 671c00a37ac75
+[25-Oct-2024 20:33:40 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:33:40 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:33:40 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 20:33:40 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:33:41 UTC] Message published to queue: favorites_queue with correlation_id: 671c00a4d6a51
+[25-Oct-2024 20:33:41 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:33:41 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:33:41 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 20:33:41 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:33:42 UTC] Message published to queue: favorites_queue with correlation_id: 671c00a63ccbf
+[25-Oct-2024 20:33:43 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:33:43 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:16 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:34:17 UTC] Message published to queue: profile_queue with correlation_id: 671c00c9133b6
+[25-Oct-2024 20:34:17 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:34:17 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 20:34:17 UTC] Connecting to RabbitMQ for queue: omdb_request_queue
+[25-Oct-2024 20:34:18 UTC] Message published to queue: omdb_request_queue with correlation_id: 671c00ca5e140
+[25-Oct-2024 20:34:19 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 20:34:19 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 20:34:20 UTC] Message published to queue: watchlist_queue with correlation_id: 671c00cbd0105
+[25-Oct-2024 20:34:20 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:34:20 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:34:20 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 20:34:20 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:21 UTC] Message published to queue: favorites_queue with correlation_id: 671c00cd23ddc
+[25-Oct-2024 20:34:21 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 20:34:21 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:21 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 20:34:21 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:22 UTC] Message published to queue: favorites_queue with correlation_id: 671c00ce7d037
+[25-Oct-2024 20:34:23 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:23 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:23 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 20:34:23 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:24 UTC] Message published to queue: favorites_queue with correlation_id: 671c00cfd237a
+[25-Oct-2024 20:34:24 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:24 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:24 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 20:34:24 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:25 UTC] Message published to queue: favorites_queue with correlation_id: 671c00d13ea1c
+[25-Oct-2024 20:34:25 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:25 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:25 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 20:34:25 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:29 UTC] Message published to queue: favorites_queue with correlation_id: 671c00d508ad6
+[25-Oct-2024 20:34:30 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:30 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:35 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:34:36 UTC] Message published to queue: profile_queue with correlation_id: 671c00dc86948
+[25-Oct-2024 20:34:37 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:34:37 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 20:34:37 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 20:34:38 UTC] Message published to queue: watchlist_queue with correlation_id: 671c00dde9f4c
+[25-Oct-2024 20:34:38 UTC] Response received: {"status":"success","message":"Movie added to watchlist."}
+[25-Oct-2024 20:34:38 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 20:34:39 UTC] Message published to queue: watchlist_queue with correlation_id: 671c00df7a267
+[25-Oct-2024 20:34:40 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:34:40 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:34:40 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 20:34:40 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:40 UTC] Message published to queue: favorites_queue with correlation_id: 671c00e0ba217
+[25-Oct-2024 20:34:41 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 20:34:41 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:41 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 20:34:41 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:42 UTC] Message published to queue: favorites_queue with correlation_id: 671c00e20dd34
+[25-Oct-2024 20:34:42 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:42 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:42 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 20:34:42 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:43 UTC] Message published to queue: favorites_queue with correlation_id: 671c00e36fc22
+[25-Oct-2024 20:34:44 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:44 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:44 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 20:34:44 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:45 UTC] Message published to queue: favorites_queue with correlation_id: 671c00e4d6a14
+[25-Oct-2024 20:34:45 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:45 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:45 UTC] Sending movie request for IMDb ID tt1103987 to favorites_queue
+[25-Oct-2024 20:34:45 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:46 UTC] Message published to queue: favorites_queue with correlation_id: 671c00e635256
+[25-Oct-2024 20:34:46 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 20:34:46 UTC] Response from favorites_queue for IMDb ID tt1103987: Array
+(
+    [Title] => Leverage
+    [Year] => 2008–2012
+    [Rated] => TV-PG
+    [Released] => 07 Dec 2008
+    [Runtime] => 42 min
+    [Genre] => Crime, Mystery, Thriller
+    [Director] => N/A
+    [Writer] => Chris Downey, John Rogers
+    [Actors] => Timothy Hutton, Gina Bellman, Christian Kane
+    [Plot] => Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.
+    [Language] => English
+    [Country] => United States
+    [Awards] => 3 wins & 20 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 7.9
+    [imdbVotes] => 54,886
+    [imdbID] => tt1103987
+    [Type] => series
+    [totalSeasons] => 5
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:46 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 20:34:46 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:34:48 UTC] Message published to queue: favorites_queue with correlation_id: 671c00e783528
+[25-Oct-2024 20:34:48 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:34:48 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:34:57 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:34:58 UTC] Message published to queue: profile_queue with correlation_id: 671c00f259828
+[25-Oct-2024 20:34:59 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:02 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:04 UTC] Message published to queue: profile_queue with correlation_id: 671c00f7ce1d4
+[25-Oct-2024 20:35:04 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:04 UTC] Connecting to RabbitMQ for queue: omdb_request_queue
+[25-Oct-2024 20:35:05 UTC] Message published to queue: omdb_request_queue with correlation_id: 671c00f91b46d
+[25-Oct-2024 20:35:05 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 20:35:07 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:08 UTC] Message published to queue: profile_queue with correlation_id: 671c00fc587f3
+[25-Oct-2024 20:35:09 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:09 UTC] Connecting to RabbitMQ for queue: movie_queue
+[25-Oct-2024 20:35:09 UTC] Message published to queue: movie_queue with correlation_id: 671c00fda04b7
+[25-Oct-2024 20:35:10 UTC] Response received: {"status":"success","Title":"Leverage","Year":null,"Genre":"Crime, Mystery, Thriller","Plot":null,"Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 20:35:10 UTC] Connecting to RabbitMQ for queue: review_queue
+[25-Oct-2024 20:35:11 UTC] Message published to queue: review_queue with correlation_id: 671c00fee37ed
+[25-Oct-2024 20:35:11 UTC] Response received: {"status":"error","message":"No reviews found"}
+[25-Oct-2024 20:35:11 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 52
+[25-Oct-2024 20:35:11 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 55
+[25-Oct-2024 20:35:22 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:23 UTC] Message published to queue: profile_queue with correlation_id: 671c010b5ad9c
+[25-Oct-2024 20:35:24 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:24 UTC] Connecting to RabbitMQ for queue: review_queue
+[25-Oct-2024 20:35:25 UTC] Message published to queue: review_queue with correlation_id: 671c010cc8354
+[25-Oct-2024 20:35:25 UTC] Response received: {"status":"success","message":"Review added successfully!"}
+[25-Oct-2024 20:35:29 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:29 UTC] Message published to queue: profile_queue with correlation_id: 671c0111aee1e
+[25-Oct-2024 20:35:30 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:30 UTC] Connecting to RabbitMQ for queue: movie_queue
+[25-Oct-2024 20:35:31 UTC] Message published to queue: movie_queue with correlation_id: 671c0112eae18
+[25-Oct-2024 20:35:31 UTC] Response received: {"status":"success","Title":"Leverage","Year":null,"Genre":"Crime, Mystery, Thriller","Plot":null,"Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 20:35:31 UTC] Connecting to RabbitMQ for queue: review_queue
+[25-Oct-2024 20:35:32 UTC] Message published to queue: review_queue with correlation_id: 671c011476c78
+[25-Oct-2024 20:35:33 UTC] Response received: {"status":"success","reviews":[{"review_id":16,"username":"test1","review_text":"I really like this show","rating":1,"like_count":0,"dislike_count":0}]}
+[25-Oct-2024 20:35:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 52
+[25-Oct-2024 20:35:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 55
+[25-Oct-2024 20:35:36 UTC] Received review_id: 16, action: like_review
+[25-Oct-2024 20:35:36 UTC] Connecting to RabbitMQ for queue: review_queue
+[25-Oct-2024 20:35:37 UTC] Message published to queue: review_queue with correlation_id: 671c01194215a
+[25-Oct-2024 20:35:37 UTC] Response received: {"status":"success","message":"Like added successfully"}
+[25-Oct-2024 20:35:39 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:40 UTC] Message published to queue: profile_queue with correlation_id: 671c011c45ffd
+[25-Oct-2024 20:35:40 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:40 UTC] Connecting to RabbitMQ for queue: movie_queue
+[25-Oct-2024 20:35:41 UTC] Message published to queue: movie_queue with correlation_id: 671c011d7acee
+[25-Oct-2024 20:35:42 UTC] Response received: {"status":"success","Title":"Leverage","Year":null,"Genre":"Crime, Mystery, Thriller","Plot":null,"Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg"}
+[25-Oct-2024 20:35:42 UTC] Connecting to RabbitMQ for queue: review_queue
+[25-Oct-2024 20:35:43 UTC] Message published to queue: review_queue with correlation_id: 671c011ebccad
+[25-Oct-2024 20:35:43 UTC] Response received: {"status":"success","reviews":[{"review_id":16,"username":"test1","review_text":"I really like this show","rating":1,"like_count":1,"dislike_count":0}]}
+[25-Oct-2024 20:35:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 52
+[25-Oct-2024 20:35:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/movie_details.php on line 55
+[25-Oct-2024 20:35:51 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:52 UTC] Message published to queue: profile_queue with correlation_id: 671c012807afb
+[25-Oct-2024 20:35:52 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:56 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:35:57 UTC] Message published to queue: profile_queue with correlation_id: 671c012cd4b31
+[25-Oct-2024 20:35:57 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:35:57 UTC] Connecting to RabbitMQ for queue: where_to_watch_queue
+[25-Oct-2024 20:35:58 UTC] Message published to queue: where_to_watch_queue with correlation_id: 671c012e0aa30
+[25-Oct-2024 20:35:58 UTC] Response received: {"title":"Leverage","year":"2023","genre":"28, 35","rating":10,"poster":"https:\/\/image.tmdb.org\/t\/p\/w500\/bYzflTUc8gAtWWw4hbqMXunjpyt.jpg","watch_providers":[]}
+[25-Oct-2024 20:52:50 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 20:52:52 UTC] Message published to queue: login_queue with correlation_id: 671c05242b93a
+[25-Oct-2024 20:52:52 UTC] Response received: {"status":"success","session_token":"d436173ef5d3605a5699e8def20988de1aaa7cf8c0cec1e82f89a71f242bef9a"}
+[25-Oct-2024 20:52:52 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:52:53 UTC] Message published to queue: profile_queue with correlation_id: 671c05255cb6e
+[25-Oct-2024 20:52:53 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:52:53 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 20:52:53 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 20:52:54 UTC] Message published to queue: watchlist_queue with correlation_id: 671c0526963d1
+[25-Oct-2024 20:52:55 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:52:55 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 20:52:55 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 20:52:55 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:52:56 UTC] Message published to queue: favorites_queue with correlation_id: 671c0527d2ef2
+[25-Oct-2024 20:52:56 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 20:52:56 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 20:52:56 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 20:52:56 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:52:57 UTC] Message published to queue: favorites_queue with correlation_id: 671c052929112
+[25-Oct-2024 20:52:57 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:52:57 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:52:57 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 20:52:57 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:52:58 UTC] Message published to queue: favorites_queue with correlation_id: 671c052aad233
+[25-Oct-2024 20:52:59 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:52:59 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:52:59 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 20:52:59 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:53:00 UTC] Message published to queue: favorites_queue with correlation_id: 671c052be522a
+[25-Oct-2024 20:53:00 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:53:00 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:53:00 UTC] Sending movie request for IMDb ID tt1103987 to favorites_queue
+[25-Oct-2024 20:53:00 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:53:01 UTC] Message published to queue: favorites_queue with correlation_id: 671c052d452b2
+[25-Oct-2024 20:53:01 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 20:53:01 UTC] Response from favorites_queue for IMDb ID tt1103987: Array
+(
+    [Title] => Leverage
+    [Year] => 2008–2012
+    [Rated] => TV-PG
+    [Released] => 07 Dec 2008
+    [Runtime] => 42 min
+    [Genre] => Crime, Mystery, Thriller
+    [Director] => N/A
+    [Writer] => Chris Downey, John Rogers
+    [Actors] => Timothy Hutton, Gina Bellman, Christian Kane
+    [Plot] => Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.
+    [Language] => English
+    [Country] => United States
+    [Awards] => 3 wins & 20 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 7.9
+    [imdbVotes] => 54,886
+    [imdbID] => tt1103987
+    [Type] => series
+    [totalSeasons] => 5
+    [Response] => True
+)
+
+[25-Oct-2024 20:53:01 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 20:53:01 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 20:53:02 UTC] Message published to queue: favorites_queue with correlation_id: 671c052e81e86
+[25-Oct-2024 20:53:03 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 20:53:03 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 20:53:20 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:53:21 UTC] Message published to queue: profile_queue with correlation_id: 671c05410abcf
+[25-Oct-2024 20:53:21 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 20:57:04 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 20:57:05 UTC] Message published to queue: social_media_queue with correlation_id: 671c0620d671e
+[25-Oct-2024 20:57:10 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 20:57:10 UTC] PHP Warning:  Undefined array key "status" in /home/ashleys/IT-490/frontend/social_media_post.php on line 22
+[25-Oct-2024 20:57:10 UTC] PHP Warning:  Undefined array key "message" in /home/ashleys/IT-490/frontend/social_media_post.php on line 25
+[25-Oct-2024 20:59:52 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 20:59:52 UTC] Message published to queue: profile_queue with correlation_id: 671c06c891a90
+[25-Oct-2024 20:59:53 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:00:16 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:00:17 UTC] Message published to queue: social_media_queue with correlation_id: 671c06e14821b
+[25-Oct-2024 21:00:22 UTC] Error occurred while communicating with RabbitMQ: The connection timed out after 5 sec while awaiting incoming data
+[25-Oct-2024 21:00:22 UTC] PHP Warning:  Undefined array key "status" in /home/ashleys/IT-490/frontend/social_media_post.php on line 22
+[25-Oct-2024 21:00:22 UTC] PHP Warning:  Undefined array key "message" in /home/ashleys/IT-490/frontend/social_media_post.php on line 25
+[25-Oct-2024 21:01:37 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:01:38 UTC] Message published to queue: profile_queue with correlation_id: 671c073247243
+[25-Oct-2024 21:01:39 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:01:50 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:01:51 UTC] Message published to queue: social_media_queue with correlation_id: 671c073f19396
+[25-Oct-2024 21:01:51 UTC] Response received: {"status":"success","message":"Post created"}
+[25-Oct-2024 21:02:59 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:03:00 UTC] Message published to queue: social_media_queue with correlation_id: 671c07844cb12
+[25-Oct-2024 21:03:00 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:07:22 UTC] PHP Warning:  Undefined array key "post_id" in /home/ashleys/IT-490/frontend/social_media_post.php on line 6
+[25-Oct-2024 21:07:22 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:07:22 UTC] Message published to queue: social_media_queue with correlation_id: 671c088a9a9ea
+[25-Oct-2024 21:07:23 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:07:23 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 92
+[25-Oct-2024 21:10:41 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:10:41 UTC] Message published to queue: social_media_queue with correlation_id: 671c0951ab1a1
+[25-Oct-2024 21:10:42 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:10:49 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:10:49 UTC] Message published to queue: social_media_queue with correlation_id: 671c095999bd8
+[25-Oct-2024 21:10:50 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:11:06 UTC] PHP Warning:  Undefined variable $post_data in /home/ashleys/IT-490/frontend/social_media_post.php on line 77
+[25-Oct-2024 21:11:06 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 152
+[25-Oct-2024 21:11:15 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:11:16 UTC] Message published to queue: social_media_queue with correlation_id: 671c0974857c5
+[25-Oct-2024 21:11:17 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:11:26 UTC] PHP Warning:  Undefined variable $post_data in /home/ashleys/IT-490/frontend/social_media_post.php on line 77
+[25-Oct-2024 21:11:26 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 152
+[25-Oct-2024 21:13:01 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:13:02 UTC] Message published to queue: social_media_queue with correlation_id: 671c09de8773b
+[25-Oct-2024 21:13:03 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:13:11 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 158
+[25-Oct-2024 21:13:17 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:13:17 UTC] Message published to queue: social_media_queue with correlation_id: 671c09ed8bcd9
+[25-Oct-2024 21:13:18 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:13:53 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:13:54 UTC] Message published to queue: social_media_queue with correlation_id: 671c0a128a348
+[25-Oct-2024 21:13:55 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:14:48 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 158
+[25-Oct-2024 21:17:22 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:17:23 UTC] Message published to queue: social_media_queue with correlation_id: 671c0ae305e38
+[25-Oct-2024 21:17:23 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:17:32 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 158
+[25-Oct-2024 21:17:38 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:17:39 UTC] Message published to queue: social_media_queue with correlation_id: 671c0af338e50
+[25-Oct-2024 21:17:39 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:17:48 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/ashleys/IT-490/frontend/social_media_post.php on line 158
+[25-Oct-2024 21:20:07 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:20:08 UTC] Message published to queue: social_media_queue with correlation_id: 671c0b881944d
+[25-Oct-2024 21:20:08 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:24:14 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:24:15 UTC] Message published to queue: social_media_queue with correlation_id: 671c0c7f79bcf
+[25-Oct-2024 21:24:16 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:27:25 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 21:27:26 UTC] Message published to queue: login_queue with correlation_id: 671c0d3e10465
+[25-Oct-2024 21:27:26 UTC] Response received: {"status":"success","session_token":"e4344281de4ec045d0755bb6e9a83b8c89662867f539cbf5358ff26be7f02930"}
+[25-Oct-2024 21:27:26 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:27:27 UTC] Message published to queue: profile_queue with correlation_id: 671c0d3f5e815
+[25-Oct-2024 21:27:27 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:27:27 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 21:27:27 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 21:27:28 UTC] Message published to queue: watchlist_queue with correlation_id: 671c0d408ab7c
+[25-Oct-2024 21:27:29 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 21:27:29 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 21:27:29 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 21:27:29 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:27:30 UTC] Message published to queue: favorites_queue with correlation_id: 671c0d41e4e3b
+[25-Oct-2024 21:27:30 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 21:27:30 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 21:27:30 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 21:27:30 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:27:31 UTC] Message published to queue: favorites_queue with correlation_id: 671c0d434ae7b
+[25-Oct-2024 21:27:32 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:27:32 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:27:32 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 21:27:32 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:27:33 UTC] Message published to queue: favorites_queue with correlation_id: 671c0d44ef58f
+[25-Oct-2024 21:27:33 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:27:33 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:27:33 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 21:27:33 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:27:34 UTC] Message published to queue: favorites_queue with correlation_id: 671c0d4657023
+[25-Oct-2024 21:27:35 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:27:35 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:27:35 UTC] Sending movie request for IMDb ID tt1103987 to favorites_queue
+[25-Oct-2024 21:27:35 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:27:35 UTC] Message published to queue: favorites_queue with correlation_id: 671c0d47b7a7a
+[25-Oct-2024 21:27:36 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 21:27:36 UTC] Response from favorites_queue for IMDb ID tt1103987: Array
+(
+    [Title] => Leverage
+    [Year] => 2008–2012
+    [Rated] => TV-PG
+    [Released] => 07 Dec 2008
+    [Runtime] => 42 min
+    [Genre] => Crime, Mystery, Thriller
+    [Director] => N/A
+    [Writer] => Chris Downey, John Rogers
+    [Actors] => Timothy Hutton, Gina Bellman, Christian Kane
+    [Plot] => Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.
+    [Language] => English
+    [Country] => United States
+    [Awards] => 3 wins & 20 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 7.9
+    [imdbVotes] => 54,886
+    [imdbID] => tt1103987
+    [Type] => series
+    [totalSeasons] => 5
+    [Response] => True
+)
+
+[25-Oct-2024 21:27:36 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 21:27:36 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:27:37 UTC] Message published to queue: favorites_queue with correlation_id: 671c0d4911c2c
+[25-Oct-2024 21:27:37 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:27:37 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:27:52 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:27:53 UTC] Message published to queue: social_media_queue with correlation_id: 671c0d591e1c5
+[25-Oct-2024 21:27:53 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:28:10 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:28:11 UTC] Message published to queue: social_media_queue with correlation_id: 671c0d6b501ad
+[25-Oct-2024 21:28:11 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:30:21 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:30:21 UTC] Message published to queue: social_media_queue with correlation_id: 671c0dedb8ecd
+[25-Oct-2024 21:30:22 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:42:53 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 21:42:53 UTC] Message published to queue: login_queue with correlation_id: 671c10ddaa42a
+[25-Oct-2024 21:42:54 UTC] Response received: {"status":"success","session_token":"f67333c9a443f3a423fd04c881b05d50084faaccb703fdb620ede51f529e3f23"}
+[25-Oct-2024 21:42:54 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:42:55 UTC] Message published to queue: profile_queue with correlation_id: 671c10dedeb7f
+[25-Oct-2024 21:42:55 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:42:55 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 21:42:55 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 21:42:56 UTC] Message published to queue: watchlist_queue with correlation_id: 671c10e0613ad
+[25-Oct-2024 21:42:56 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 21:42:56 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 21:42:56 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 21:42:56 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:42:57 UTC] Message published to queue: favorites_queue with correlation_id: 671c10e18a9ed
+[25-Oct-2024 21:42:58 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 21:42:58 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 21:42:58 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 21:42:58 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:42:59 UTC] Message published to queue: favorites_queue with correlation_id: 671c10e2cf92b
+[25-Oct-2024 21:42:59 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:42:59 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:42:59 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 21:42:59 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:43:00 UTC] Message published to queue: favorites_queue with correlation_id: 671c10e4141ce
+[25-Oct-2024 21:43:00 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:43:00 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:43:00 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 21:43:00 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:43:01 UTC] Message published to queue: favorites_queue with correlation_id: 671c10e565062
+[25-Oct-2024 21:43:02 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:43:02 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:43:02 UTC] Sending movie request for IMDb ID tt1103987 to favorites_queue
+[25-Oct-2024 21:43:02 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:43:02 UTC] Message published to queue: favorites_queue with correlation_id: 671c10e6a05ec
+[25-Oct-2024 21:43:03 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 21:43:03 UTC] Response from favorites_queue for IMDb ID tt1103987: Array
+(
+    [Title] => Leverage
+    [Year] => 2008–2012
+    [Rated] => TV-PG
+    [Released] => 07 Dec 2008
+    [Runtime] => 42 min
+    [Genre] => Crime, Mystery, Thriller
+    [Director] => N/A
+    [Writer] => Chris Downey, John Rogers
+    [Actors] => Timothy Hutton, Gina Bellman, Christian Kane
+    [Plot] => Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.
+    [Language] => English
+    [Country] => United States
+    [Awards] => 3 wins & 20 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 7.9
+    [imdbVotes] => 54,886
+    [imdbID] => tt1103987
+    [Type] => series
+    [totalSeasons] => 5
+    [Response] => True
+)
+
+[25-Oct-2024 21:43:03 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 21:43:03 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:43:04 UTC] Message published to queue: favorites_queue with correlation_id: 671c10e7da17e
+[25-Oct-2024 21:43:04 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:43:04 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:43:23 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:43:23 UTC] Message published to queue: profile_queue with correlation_id: 671c10fbbfe9e
+[25-Oct-2024 21:43:24 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:43:34 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:43:35 UTC] Message published to queue: profile_queue with correlation_id: 671c1106d183e
+[25-Oct-2024 21:43:35 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:43:35 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:43:36 UTC] Message published to queue: social_media_queue with correlation_id: 671c11080f271
+[25-Oct-2024 21:43:36 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:43:53 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:43:54 UTC] Message published to queue: profile_queue with correlation_id: 671c1119e9b6e
+[25-Oct-2024 21:43:54 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:43:54 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:43:55 UTC] Message published to queue: social_media_queue with correlation_id: 671c111b27f82
+[25-Oct-2024 21:43:55 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:44:12 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:44:13 UTC] Message published to queue: profile_queue with correlation_id: 671c112ccbf00
+[25-Oct-2024 21:44:13 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:44:13 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:44:14 UTC] Message published to queue: social_media_queue with correlation_id: 671c112df2e68
+[25-Oct-2024 21:44:14 UTC] Response received: {"status":"success","message":"Post created"}
+[25-Oct-2024 21:45:00 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:45:02 UTC] Message published to queue: profile_queue with correlation_id: 671c115dc581e
+[25-Oct-2024 21:45:02 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:45:02 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:45:03 UTC] Message published to queue: social_media_queue with correlation_id: 671c115ee8ce3
+[25-Oct-2024 21:45:03 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:45:26 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:45:27 UTC] Message published to queue: social_media_queue with correlation_id: 671c11776fb28
+[25-Oct-2024 21:45:28 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:45:31 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:45:32 UTC] Message published to queue: profile_queue with correlation_id: 671c117be48ef
+[25-Oct-2024 21:45:32 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:45:58 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:45:58 UTC] Message published to queue: social_media_queue with correlation_id: 671c119690d4c
+[25-Oct-2024 21:45:59 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:46:04 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:46:05 UTC] Message published to queue: profile_queue with correlation_id: 671c119cdd5e3
+[25-Oct-2024 21:46:05 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:46:56 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:46:56 UTC] Message published to queue: social_media_queue with correlation_id: 671c11d098658
+[25-Oct-2024 21:46:57 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:47:28 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:47:29 UTC] Message published to queue: social_media_queue with correlation_id: 671c11f0ea0b5
+[25-Oct-2024 21:47:29 UTC] Response received: {"status":"success","message":"Post created"}
+[25-Oct-2024 21:47:29 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:47:30 UTC] Message published to queue: social_media_queue with correlation_id: 671c11f228bc0
+[25-Oct-2024 21:47:30 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:51:32 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:51:33 UTC] Message published to queue: profile_queue with correlation_id: 671c12e5307c1
+[25-Oct-2024 21:51:33 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:51:37 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:51:37 UTC] Message published to queue: social_media_queue with correlation_id: 671c12e99600a
+[25-Oct-2024 21:51:38 UTC] Response received: {"status":"success","message":"Post created"}
+[25-Oct-2024 21:51:38 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:51:39 UTC] Message published to queue: social_media_queue with correlation_id: 671c12eacbb6d
+[25-Oct-2024 21:51:39 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1"},"comments":[]},{"post":{"post_id":"5","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:47:25","username":"test1"},"comments":[]},{"post":{"post_id":"4","post_text":"tell me about the why","created_at":"2024-10-25 17:44:11","username":"test1"},"comments":[]},{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:51:42 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:51:43 UTC] Message published to queue: social_media_queue with correlation_id: 671c12ef107c4
+[25-Oct-2024 21:51:43 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:53:10 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:53:10 UTC] Message published to queue: social_media_queue with correlation_id: 671c1346b97df
+[25-Oct-2024 21:53:11 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1"},"comments":[]},{"post":{"post_id":"5","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:47:25","username":"test1"},"comments":[]},{"post":{"post_id":"4","post_text":"tell me about the why","created_at":"2024-10-25 17:44:11","username":"test1"},"comments":[]},{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:53:23 UTC] Connecting to RabbitMQ for queue: login_queue
+[25-Oct-2024 21:53:24 UTC] Message published to queue: login_queue with correlation_id: 671c1353e0498
+[25-Oct-2024 21:53:24 UTC] Response received: {"status":"success","session_token":"f93e0175305d66220a70e4029f3ef0e5127606dc54712fcc0567d62e55113e8f"}
+[25-Oct-2024 21:53:24 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:53:25 UTC] Message published to queue: profile_queue with correlation_id: 671c135521164
+[25-Oct-2024 21:53:25 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:53:25 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active (started from /home/ashleys/IT-490/frontend/header.php on line 2) in /home/ashleys/IT-490/frontend/profile.php on line 9
+[25-Oct-2024 21:53:25 UTC] Connecting to RabbitMQ for queue: watchlist_queue
+[25-Oct-2024 21:53:26 UTC] Message published to queue: watchlist_queue with correlation_id: 671c13565cf21
+[25-Oct-2024 21:53:26 UTC] Response received: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 21:53:26 UTC] Favorites response raw: {"favorites":[{"imdb_id":"tt0206512"},{"imdb_id":"tt0363771"},{"imdb_id":"tt0384537"},{"imdb_id":"tt0499549"},{"imdb_id":"tt1103987"},{"imdb_id":"tt2724236"}]}
+[25-Oct-2024 21:53:26 UTC] Sending movie request for IMDb ID tt0206512 to favorites_queue
+[25-Oct-2024 21:53:26 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:53:27 UTC] Message published to queue: favorites_queue with correlation_id: 671c13577ed8a
+[25-Oct-2024 21:53:28 UTC] Response received: {"Title":"SpongeBob SquarePants","Year":"1999\u2013","Rated":"TV-Y7","Released":"01 May 1999","Runtime":"23 min","Genre":"Animation, Comedy, Family","Director":"N\/A","Writer":"Stephen Hillenburg, Tim Hill, Nick Jennings","Actors":"Tom Kenny, Rodger Bumpass, Bill Fagerbakke","Plot":"The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.","Language":"English, Irish Gaelic, Korean","Country":"United States","Awards":"Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"8.2\/10"}],"Metascore":"N\/A","imdbRating":"8.2","imdbVotes":"114,943","imdbID":"tt0206512","Type":"series","totalSeasons":"14","Response":"True"}
+[25-Oct-2024 21:53:28 UTC] Response from favorites_queue for IMDb ID tt0206512: Array
+(
+    [Title] => SpongeBob SquarePants
+    [Year] => 1999–
+    [Rated] => TV-Y7
+    [Released] => 01 May 1999
+    [Runtime] => 23 min
+    [Genre] => Animation, Comedy, Family
+    [Director] => N/A
+    [Writer] => Stephen Hillenburg, Tim Hill, Nick Jennings
+    [Actors] => Tom Kenny, Rodger Bumpass, Bill Fagerbakke
+    [Plot] => The misadventures of a talking sea sponge who works at a fast food restaurant, attends a boating school, and lives in an underwater pineapple.
+    [Language] => English, Irish Gaelic, Korean
+    [Country] => United States
+    [Awards] => Nominated for 10 Primetime Emmys. 62 wins & 67 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYjJmMjBkZjMtZThiZS00Nzk3LWJlN2UtYmE5ZjkyNjJiZjgxXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 8.2/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 8.2
+    [imdbVotes] => 114,943
+    [imdbID] => tt0206512
+    [Type] => series
+    [totalSeasons] => 14
+    [Response] => True
+)
+
+[25-Oct-2024 21:53:28 UTC] Sending movie request for IMDb ID tt0363771 to favorites_queue
+[25-Oct-2024 21:53:28 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:53:28 UTC] Message published to queue: favorites_queue with correlation_id: 671c1358c1354
+[25-Oct-2024 21:53:29 UTC] Response received: {"Title":"The Chronicles of Narnia: The Lion, the Witch and the Wardrobe","Year":"2005","Rated":"PG","Released":"09 Dec 2005","Runtime":"143 min","Genre":"Adventure, Family, Fantasy","Director":"Andrew Adamson","Writer":"Ann Peacock, Andrew Adamson, Christopher Markus","Actors":"Tilda Swinton, Georgie Henley, William Moseley","Plot":"While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.","Language":"English, German, Brazilian Sign ","Country":"United Kingdom, United States","Awards":"Won 1 Oscar. 18 wins & 46 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.9\/10"},{"Source":"Rotten Tomatoes","Value":"75%"},{"Source":"Metacritic","Value":"75\/100"}],"Metascore":"75","imdbRating":"6.9","imdbVotes":"434,116","imdbID":"tt0363771","Type":"movie","DVD":"N\/A","BoxOffice":"$291,710,957","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:53:29 UTC] Response from favorites_queue for IMDb ID tt0363771: Array
+(
+    [Title] => The Chronicles of Narnia: The Lion, the Witch and the Wardrobe
+    [Year] => 2005
+    [Rated] => PG
+    [Released] => 09 Dec 2005
+    [Runtime] => 143 min
+    [Genre] => Adventure, Family, Fantasy
+    [Director] => Andrew Adamson
+    [Writer] => Ann Peacock, Andrew Adamson, Christopher Markus
+    [Actors] => Tilda Swinton, Georgie Henley, William Moseley
+    [Plot] => While playing, Lucy and her siblings find a wardrobe that lands them in a mystical place called Narnia. Here they realize that it was fated and they must now unite with Aslan to defeat an evil queen.
+    [Language] => English, German, Brazilian Sign 
+    [Country] => United Kingdom, United States
+    [Awards] => Won 1 Oscar. 18 wins & 46 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 75%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 75/100
+                )
+
+        )
+
+    [Metascore] => 75
+    [imdbRating] => 6.9
+    [imdbVotes] => 434,116
+    [imdbID] => tt0363771
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $291,710,957
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:53:29 UTC] Sending movie request for IMDb ID tt0384537 to favorites_queue
+[25-Oct-2024 21:53:29 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:53:30 UTC] Message published to queue: favorites_queue with correlation_id: 671c135a05d13
+[25-Oct-2024 21:53:30 UTC] Response received: {"Title":"Silent Hill","Year":"2006","Rated":"R","Released":"21 Apr 2006","Runtime":"125 min","Genre":"Horror, Mystery","Director":"Christophe Gans","Writer":"Roger Avary","Actors":"Radha Mitchell, Laurie Holden, Sean Bean","Plot":"Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.","Language":"English","Country":"Canada, France, United States, Japan","Awards":"8 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.5\/10"},{"Source":"Rotten Tomatoes","Value":"32%"},{"Source":"Metacritic","Value":"31\/100"}],"Metascore":"31","imdbRating":"6.5","imdbVotes":"247,675","imdbID":"tt0384537","Type":"movie","DVD":"N\/A","BoxOffice":"$46,982,632","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:53:30 UTC] Response from favorites_queue for IMDb ID tt0384537: Array
+(
+    [Title] => Silent Hill
+    [Year] => 2006
+    [Rated] => R
+    [Released] => 21 Apr 2006
+    [Runtime] => 125 min
+    [Genre] => Horror, Mystery
+    [Director] => Christophe Gans
+    [Writer] => Roger Avary
+    [Actors] => Radha Mitchell, Laurie Holden, Sean Bean
+    [Plot] => Rose Da Silva takes her adopted daughter, Sharon, to the town of Silent Hill in an attempt to cure her of her ailment. After a violent car crash, Sharon disappears and Rose begins a horrific journey to get her back.
+    [Language] => English
+    [Country] => Canada, France, United States, Japan
+    [Awards] => 8 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BYTczZmZlZmEtODU4ZS00YzgzLThiMDUtMGE0ZmJhYzdhZGY5XkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 6.5/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 32%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 31/100
+                )
+
+        )
+
+    [Metascore] => 31
+    [imdbRating] => 6.5
+    [imdbVotes] => 247,675
+    [imdbID] => tt0384537
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $46,982,632
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:53:30 UTC] Sending movie request for IMDb ID tt0499549 to favorites_queue
+[25-Oct-2024 21:53:30 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:53:31 UTC] Message published to queue: favorites_queue with correlation_id: 671c135b43a47
+[25-Oct-2024 21:53:31 UTC] Response received: {"Title":"Avatar","Year":"2009","Rated":"PG-13","Released":"18 Dec 2009","Runtime":"162 min","Genre":"Action, Adventure, Fantasy","Director":"James Cameron","Writer":"James Cameron","Actors":"Sam Worthington, Zoe Saldana, Sigourney Weaver","Plot":"A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.","Language":"English, Spanish","Country":"United States, United Kingdom","Awards":"Won 3 Oscars. 91 wins & 131 nominations total","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"},{"Source":"Rotten Tomatoes","Value":"81%"},{"Source":"Metacritic","Value":"83\/100"}],"Metascore":"83","imdbRating":"7.9","imdbVotes":"1,404,088","imdbID":"tt0499549","Type":"movie","DVD":"N\/A","BoxOffice":"$785,221,649","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:53:31 UTC] Response from favorites_queue for IMDb ID tt0499549: Array
+(
+    [Title] => Avatar
+    [Year] => 2009
+    [Rated] => PG-13
+    [Released] => 18 Dec 2009
+    [Runtime] => 162 min
+    [Genre] => Action, Adventure, Fantasy
+    [Director] => James Cameron
+    [Writer] => James Cameron
+    [Actors] => Sam Worthington, Zoe Saldana, Sigourney Weaver
+    [Plot] => A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.
+    [Language] => English, Spanish
+    [Country] => United States, United Kingdom
+    [Awards] => Won 3 Oscars. 91 wins & 131 nominations total
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+            [1] => Array
+                (
+                    [Source] => Rotten Tomatoes
+                    [Value] => 81%
+                )
+
+            [2] => Array
+                (
+                    [Source] => Metacritic
+                    [Value] => 83/100
+                )
+
+        )
+
+    [Metascore] => 83
+    [imdbRating] => 7.9
+    [imdbVotes] => 1,404,088
+    [imdbID] => tt0499549
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => $785,221,649
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:53:31 UTC] Sending movie request for IMDb ID tt1103987 to favorites_queue
+[25-Oct-2024 21:53:31 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:53:32 UTC] Message published to queue: favorites_queue with correlation_id: 671c135c7ff9f
+[25-Oct-2024 21:53:33 UTC] Response received: {"Title":"Leverage","Year":"2008\u20132012","Rated":"TV-PG","Released":"07 Dec 2008","Runtime":"42 min","Genre":"Crime, Mystery, Thriller","Director":"N\/A","Writer":"Chris Downey, John Rogers","Actors":"Timothy Hutton, Gina Bellman, Christian Kane","Plot":"Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.","Language":"English","Country":"United States","Awards":"3 wins & 20 nominations","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.9\/10"}],"Metascore":"N\/A","imdbRating":"7.9","imdbVotes":"54,886","imdbID":"tt1103987","Type":"series","totalSeasons":"5","Response":"True"}
+[25-Oct-2024 21:53:33 UTC] Response from favorites_queue for IMDb ID tt1103987: Array
+(
+    [Title] => Leverage
+    [Year] => 2008–2012
+    [Rated] => TV-PG
+    [Released] => 07 Dec 2008
+    [Runtime] => 42 min
+    [Genre] => Crime, Mystery, Thriller
+    [Director] => N/A
+    [Writer] => Chris Downey, John Rogers
+    [Actors] => Timothy Hutton, Gina Bellman, Christian Kane
+    [Plot] => Nathan Ford and his five-member team of thieves and hackers come together like modern-day Robin Hoods in an attempt to steal from rich and powerful individuals who take advantage of others.
+    [Language] => English
+    [Country] => United States
+    [Awards] => 3 wins & 20 nominations
+    [Poster] => https://m.media-amazon.com/images/M/MV5BODBmMzFjM2EtYWE0OC00YWNiLWExN2MtZmViMzM1ZDk5ZGZjXkEyXkFqcGc@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 7.9/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 7.9
+    [imdbVotes] => 54,886
+    [imdbID] => tt1103987
+    [Type] => series
+    [totalSeasons] => 5
+    [Response] => True
+)
+
+[25-Oct-2024 21:53:33 UTC] Sending movie request for IMDb ID tt2724236 to favorites_queue
+[25-Oct-2024 21:53:33 UTC] Connecting to RabbitMQ for queue: favorites_queue
+[25-Oct-2024 21:53:33 UTC] Message published to queue: favorites_queue with correlation_id: 671c135db284a
+[25-Oct-2024 21:53:34 UTC] Response received: {"Title":"Tell","Year":"2014","Rated":"R","Released":"04 Dec 2014","Runtime":"89 min","Genre":"Action, Crime, Drama","Director":"J.M.R. Luna","Writer":"Timothy Williams","Actors":"Milo Ventimiglia, Katee Sackhoff, Jason Lee","Plot":"Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.","Language":"English","Country":"United States, Canada","Awards":"N\/A","Poster":"https:\/\/m.media-amazon.com\/images\/M\/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"5.6\/10"}],"Metascore":"N\/A","imdbRating":"5.6","imdbVotes":"2,002","imdbID":"tt2724236","Type":"movie","DVD":"N\/A","BoxOffice":"N\/A","Production":"N\/A","Website":"N\/A","Response":"True"}
+[25-Oct-2024 21:53:34 UTC] Response from favorites_queue for IMDb ID tt2724236: Array
+(
+    [Title] => Tell
+    [Year] => 2014
+    [Rated] => R
+    [Released] => 04 Dec 2014
+    [Runtime] => 89 min
+    [Genre] => Action, Crime, Drama
+    [Director] => J.M.R. Luna
+    [Writer] => Timothy Williams
+    [Actors] => Milo Ventimiglia, Katee Sackhoff, Jason Lee
+    [Plot] => Ethan Tell is a small time crook who makes a big-time score when he steals 1 million dollars. Ironically, his life radically changes for the worse when he discovers that stealing the money was the easy part.
+    [Language] => English
+    [Country] => United States, Canada
+    [Awards] => N/A
+    [Poster] => https://m.media-amazon.com/images/M/MV5BMTUwNjIwNTEwNV5BMl5BanBnXkFtZTgwNDI3ODU2MzE@._V1_SX300.jpg
+    [Ratings] => Array
+        (
+            [0] => Array
+                (
+                    [Source] => Internet Movie Database
+                    [Value] => 5.6/10
+                )
+
+        )
+
+    [Metascore] => N/A
+    [imdbRating] => 5.6
+    [imdbVotes] => 2,002
+    [imdbID] => tt2724236
+    [Type] => movie
+    [DVD] => N/A
+    [BoxOffice] => N/A
+    [Production] => N/A
+    [Website] => N/A
+    [Response] => True
+)
+
+[25-Oct-2024 21:54:03 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:54:04 UTC] Message published to queue: profile_queue with correlation_id: 671c137be576f
+[25-Oct-2024 21:54:04 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:54:04 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:54:05 UTC] Message published to queue: social_media_queue with correlation_id: 671c137d63692
+[25-Oct-2024 21:54:06 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1"},"comments":[]},{"post":{"post_id":"5","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:47:25","username":"test1"},"comments":[]},{"post":{"post_id":"4","post_text":"tell me about the why","created_at":"2024-10-25 17:44:11","username":"test1"},"comments":[]},{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1"},"comments":[]},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1"},"comments":[]},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1"},"comments":[]}]}
+[25-Oct-2024 21:54:22 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:54:23 UTC] Message published to queue: social_media_queue with correlation_id: 671c138f28ad8
+[25-Oct-2024 21:54:23 UTC] Response received: {"status":"error","message":"Invalid action"}
+[25-Oct-2024 21:59:10 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:59:11 UTC] Message published to queue: profile_queue with correlation_id: 671c14af7f915
+[25-Oct-2024 21:59:12 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:59:12 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:59:12 UTC] Message published to queue: social_media_queue with correlation_id: 671c14b0af7f3
+[25-Oct-2024 21:59:13 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1","comments_count":"0"}},{"post":{"post_id":"5","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:47:25","username":"test1","comments_count":"0"}},{"post":{"post_id":"4","post_text":"tell me about the why","created_at":"2024-10-25 17:44:11","username":"test1","comments_count":"0"}},{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1","comments_count":"0"}},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1","comments_count":"0"}},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1","comments_count":"0"}}]}
+[25-Oct-2024 21:59:13 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:59:14 UTC] Message published to queue: profile_queue with correlation_id: 671c14b1e94be
+[25-Oct-2024 21:59:14 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:59:25 UTC] Connecting to RabbitMQ for queue: profile_queue
+[25-Oct-2024 21:59:26 UTC] Message published to queue: profile_queue with correlation_id: 671c14be229b6
+[25-Oct-2024 21:59:26 UTC] Response received: {"status":"success","username":"test1","email":"test1@test1.com"}
+[25-Oct-2024 21:59:26 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:59:27 UTC] Message published to queue: social_media_queue with correlation_id: 671c14bf6036a
+[25-Oct-2024 21:59:28 UTC] Response received: {"status":"success","posts":[{"post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1","comments_count":"0"}},{"post":{"post_id":"5","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:47:25","username":"test1","comments_count":"0"}},{"post":{"post_id":"4","post_text":"tell me about the why","created_at":"2024-10-25 17:44:11","username":"test1","comments_count":"0"}},{"post":{"post_id":"3","post_text":"I hate thta movie\r\n","created_at":"2024-10-25 17:01:49","username":"test1","comments_count":"0"}},{"post":{"post_id":"2","post_text":"Tell em why","created_at":"2024-10-25 17:00:15","username":"test1","comments_count":"0"}},{"post":{"post_id":"1","post_text":"Spongebob is over rated","created_at":"2024-10-25 16:58:18","username":"test1","comments_count":"0"}}]}
+[25-Oct-2024 21:59:31 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:59:32 UTC] Message published to queue: social_media_queue with correlation_id: 671c14c42fee2
+[25-Oct-2024 21:59:32 UTC] Response received: {"status":"success","post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1"},"comments":[]}
+[25-Oct-2024 21:59:36 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:59:37 UTC] Message published to queue: social_media_queue with correlation_id: 671c14c92d608
+[25-Oct-2024 21:59:37 UTC] Response received: {"status":"success","message":"Post updated"}
+[25-Oct-2024 21:59:48 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:59:48 UTC] Message published to queue: social_media_queue with correlation_id: 671c14d49e4d0
+[25-Oct-2024 21:59:49 UTC] Response received: {"status":"success","message":"Comment created"}
+[25-Oct-2024 21:59:49 UTC] Connecting to RabbitMQ for queue: social_media_queue
+[25-Oct-2024 21:59:50 UTC] Message published to queue: social_media_queue with correlation_id: 671c14d63356e
+[25-Oct-2024 21:59:50 UTC] Response received: {"status":"success","post":{"post_id":"6","post_text":"Tell me about yourself bimboo","created_at":"2024-10-25 17:51:34","username":"test1"},"comments":[{"comment_id":"1","comment_text":"This is a thoughtful post","created_at":"2024-10-25 17:59:45","username":"test1"}]}

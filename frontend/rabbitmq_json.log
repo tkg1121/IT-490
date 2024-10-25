@@ -46,3 +46,5 @@ Index - Sending JSON to RabbitMQ: {"name":"pixels"}
 Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"9adfd0e74a78efe3c6493c85108b22db9fc61f30a7df56a00e4b3602c583b59e","movie_id":"tt2120120","review_text":"tell me about it","rating":"3"}
 Index - Sending JSON to RabbitMQ: {"name":"pixels"}
 Index - Sending JSON to RabbitMQ: {"name":"pixels"}
+Index - Sending JSON to RabbitMQ: {"name":"leverage"}
+Add Review - Sending JSON to RabbitMQ: {"action":"add_review","session_token":"cc9e21c7dd59a8fe22522c6871508b66b8cad7183fcd5b099f08b229d6e46496","movie_id":"tt1103987","review_text":"I really like this show","rating":"1"}

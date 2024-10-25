@@ -1,4 +1,6 @@
 <?php
+// rabbitmq_send.php
+
 require_once('/home/ashleys/IT-490/frontend/vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable('/home/ashleys');
 $dotenv->load();
@@ -6,11 +8,11 @@ $dotenv->load();
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-// Set error logging to both console and a log file
-ini_set('display_errors', 1);  // Show errors in the console (CLI)
-ini_set('log_errors', 1);      // Log errors to a file
-ini_set('error_log', '/home/ashleys/IT-490/frontend/error.log');  // Updated error log path
-error_reporting(E_ALL);        // Report all types of errors
+// Set error logging
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', '/home/ashleys/IT-490/frontend/error.log');
+error_reporting(E_ALL);
 
 // Pull environment variables
 $RABBITMQ_HOST = $_ENV['RABBITMQ_HOST'];
@@ -20,7 +22,6 @@ $RABBITMQ_PASS = $_ENV['RABBITMQ_PASS'];
 
 function sendToRabbitMQ($queueName, $requestData) {
     global $RABBITMQ_HOST, $RABBITMQ_PORT, $RABBITMQ_USER, $RABBITMQ_PASS;
-
     try {
         // Log connection attempt
         error_log("Connecting to RabbitMQ for queue: $queueName");
@@ -35,7 +36,6 @@ function sendToRabbitMQ($queueName, $requestData) {
         // Generate a unique correlation ID and create a callback queue
         $correlationId = uniqid();
         list($callbackQueue,,) = $channel->queue_declare("", false, false, true, false);
-
         $response = null;
 
         // Set up a consumer on the callback queue
@@ -69,7 +69,6 @@ function sendToRabbitMQ($queueName, $requestData) {
         // Wait for the response with a timeout
         $startTime = time();
         $timeoutSeconds = 5; // Adjust as needed
-
         while (!$response) {
             $channel->wait(null, false, $timeoutSeconds);
             if ((time() - $startTime) > $timeoutSeconds) {
@@ -86,7 +85,6 @@ function sendToRabbitMQ($queueName, $requestData) {
 
         // Return the response to the caller
         return $response;
-
     } catch (Exception $e) {
         error_log("Error occurred while communicating with RabbitMQ: " . $e->getMessage());
         return json_encode(['error' => $e->getMessage()]);
