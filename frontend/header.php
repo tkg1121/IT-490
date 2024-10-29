@@ -50,12 +50,16 @@ if (isset($_SESSION['last_activity'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Website</title>
     <style>
+        /* General Styling */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0dfc8; /* light brown background */
+            color: #333;
             margin: 0;
+            padding: 0;
         }
 
-        /* Responsive Navbar */
+        /* Navbar Styling */
         .navbar {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 15px 20px;
@@ -109,6 +113,103 @@ if (isset($_SESSION['last_activity'])) {
             color: hotpink;
         }
 
+        /* Container Styling */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #795833;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            border: 2px solid #795833;
+            border-radius: 5px;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #795833;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        /* Movie Card Styling */
+        .movie-card {
+            display: flex;
+            align-items: center;
+            background-color: #f0dfc8;
+            border: 1px solid #795833;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+            text-align: left;
+            color: #333;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .movie-poster {
+            width: 80px;
+            height: auto;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+
+        .movie-card h3 {
+            color: #795833;
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .movie-card p {
+            margin: 5px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .profile-icon img {
@@ -153,4 +254,3 @@ if (isset($_SESSION['last_activity'])) {
     </header>
 </body>
 </html>
-
