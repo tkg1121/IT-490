@@ -11,6 +11,7 @@ require_once('rabbitmq_send.php');  // Include this instead of redeclaring the f
 function log_json_data($data) {
     file_put_contents(__DIR__ . '/rabbitmq_json.log', $data . PHP_EOL, FILE_APPEND);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +25,7 @@ function log_json_data($data) {
         body {
             font-family: Arial, sans-serif;
             background-color: #f0dfc8; /* light brown background */
-            color: #333; /* dark text for readability */
+            color: #333;
             margin: 0;
             padding: 0;
         }
@@ -40,7 +41,7 @@ function log_json_data($data) {
         }
 
         h1 {
-            color: #795833; /* dark brown */
+            color: #795833;
             font-size: 2em;
             margin-bottom: 20px;
         }
@@ -65,7 +66,7 @@ function log_json_data($data) {
         }
 
         input[type="text"]:focus {
-            border-color: #333; /* black */
+            border-color: #333;
         }
 
         button {
@@ -80,15 +81,22 @@ function log_json_data($data) {
         }
 
         button:hover {
-            background-color: #333; /* black */
+            background-color: #333;
         }
 
         #movie-results {
             margin-top: 20px;
         }
 
-        h3 {
-            color: #333; /* black for contrast */
+        /* JSON Display */
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            overflow-x: auto;
+            max-width: 100%;
         }
 
         /* Movie Card Styling */
@@ -150,7 +158,7 @@ function log_json_data($data) {
                     $movie_name = htmlspecialchars($_POST['movie_name']);  // Sanitize user input
                     $request_data = json_encode(['name' => $movie_name]);
 
-                    // Display JSON data in the browser
+                    // Display JSON data in a styled box
                     echo "<h3>JSON Data Sent to RabbitMQ:</h3>";
                     echo "<pre>" . htmlspecialchars($request_data) . "</pre>";
 
@@ -168,15 +176,15 @@ function log_json_data($data) {
                         echo "<h2>Error decoding JSON response</h2>";
                     } elseif (isset($movie_data['Error'])) {
                         // Handle error from OMDb API
-                        echo "<h2>Error: " . $movie_data['Error'] . "</h2>";
+                        echo "<h2>Error: " . htmlspecialchars($movie_data['Error']) . "</h2>";
                     } else {
                         // Show the movie card and link to the movie details page
                         echo "<a href='movie_details.php?movie_id=" . urlencode($movie_data['imdbID']) . "'>";
                         echo "<div class='movie-card'>";
-                        echo "<img src='" . $movie_data['Poster'] . "' alt='" . $movie_data['Title'] . "' class='movie-poster'>";
-                        echo "<h3>" . $movie_data['Title'] . " (" . $movie_data['Year'] . ")</h3>";
-                        echo "<p><strong>Genre:</strong> " . $movie_data['Genre'] . "</p>";
-                        echo "<p><strong>Rating:</strong> " . $movie_data['imdbRating'] . "</p>";
+                        echo "<img src='" . htmlspecialchars($movie_data['Poster']) . "' alt='" . htmlspecialchars($movie_data['Title']) . "' class='movie-poster'>";
+                        echo "<h3>" . htmlspecialchars($movie_data['Title']) . " (" . htmlspecialchars($movie_data['Year']) . ")</h3>";
+                        echo "<p><strong>Genre:</strong> " . htmlspecialchars($movie_data['Genre']) . "</p>";
+                        echo "<p><strong>Rating:</strong> " . htmlspecialchars($movie_data['imdbRating']) . "</p>";
                         echo "</div>";
                         echo "</a>";
                     }
