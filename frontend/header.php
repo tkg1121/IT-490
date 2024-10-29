@@ -23,6 +23,7 @@ if (isset($_COOKIE['session_token'])) {
 
     if ($profile_data && isset($profile_data['status']) && $profile_data['status'] === 'success') {
         $username_display = htmlspecialchars($profile_data['username']);
+        $_SESSION['username'] = $username_display; // Store username in session
     }
 }
 
@@ -73,8 +74,9 @@ if (isset($_SESSION['last_activity'])) {
         .profile-icon {
             display: flex;
             align-items: center;
-            cursor: pointer;
+            /* Removed invalid CSS properties */
             color: white;
+            cursor: pointer; /* Added cursor pointer for better UX */
         }
 
         .profile-icon img {
@@ -240,8 +242,9 @@ if (isset($_SESSION['last_activity'])) {
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="trivia.php">Trivia</a></li>
-                <li><a href="movies.php">Movies</a></li>
+                <li><a href="social_media.php">Social Media</a></li>
                 <li><a href="where_to_watch.php">Where to Watch</a></li>
+                <li><a href="recommendation.php">Recommendations</a></li> <!-- Added Recommendations Tab -->
                 <li><a href="profile.php">Profile</a></li>
                 <?php if ($username_display !== 'Guest'): ?>
                     <li><a href="logout.php">Logout</a></li>
