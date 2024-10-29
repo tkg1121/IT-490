@@ -8,7 +8,6 @@ error_reporting(E_ALL);
 
 include 'header.php';
 require_once('rabbitmq_send.php');
-session_start();
 
 // Check if the user is logged in
 if (!isset($_COOKIE['session_token'])) {
