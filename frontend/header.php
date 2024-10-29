@@ -138,6 +138,7 @@ if (isset($_SESSION['last_activity'])) {
             </div>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
+                <li><a href="trivia.php">Trivia</a></li>
                 <li><a href="movies.php">Movies</a></li>
                 <li><a href="where_to_watch.php">Where to Watch</a></li>
                 <li><a href="profile.php">Profile</a></li>

@@ -1,5 +1,6 @@
 <?php
 include 'rabbitmq_send.php'; // Include RabbitMQ send function
+include 'header.php';
 
 // Function to send trivia request via RabbitMQ and get the response
 function getTriviaQuestion() {
@@ -21,14 +22,6 @@ $trivia = getTriviaQuestion();
 </head>
 
 <body>
-    <!-- Top Navigation -->
-    <div class="topnav">
-        <a href="index.html">Home</a>
-        <a href="create_blog.html">Blog</a>
-        <a href="index.php">Sign in/log in</a>
-        <a href="movieLists.html">Add to Your List</a>
-        <a href="trivia.php" class="active">Trivia</a>
-    </div>
 
     <div class="content-wrapper">
         <div class="container">
