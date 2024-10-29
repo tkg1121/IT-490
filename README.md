@@ -21,7 +21,7 @@ Personal deliverables:
   
 - [x] users can add and delete movies to lists
       
-- [ ] users get recommendation based on their watch history
+- [x] users get recommendation based on their watch history
       
 - [x] users get to play a little trivia
       
