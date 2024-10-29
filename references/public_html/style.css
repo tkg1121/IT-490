@@ -1,0 +1,118 @@
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #4CAF50;  
+    color: white;
+}
+
+.alert-warning {
+    background-color: #FFC107; 
+    color: white;
+}
+
+.alert-danger {
+    background-color: #E57373; 
+    color: white;
+}
+
+.alert-info {
+    background-color: #00BCD4; 
+    color: white;
+}
+
+nav {
+    background-color: #512DA8;  
+    padding: 10px;
+}
+
+nav li {
+    display: inline-block; 
+    margin-right: 20px;
+}
+
+nav li a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+body {
+    background-color: #F5F5F5;  
+    color: #333;  
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    margin: 20px;
+    width: 15em;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-body {
+    padding: 18px;
+    overflow: auto; 
+}
+
+.card-footer {
+    background-color: #F5F5F5;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.like-button.liked {
+    background-color: red; 
+}
+
+.card-title {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    color: #757575; 
+    font-size: 0.8em;
+}
+
+.card-text {
+    font-size: 0.85em;
+    white-space: normal;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+}
