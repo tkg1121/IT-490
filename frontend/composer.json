@@ -1,6 +1,18 @@
 {
+    "name": "ashleys/frontend",
+    "autoload": {
+        "psr-4": {
+            "Ashleys\\Frontend\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Trent Gwathney",
+            "email": "tkg@njit.edu"
+        }
+    ],
     "require": {
-        "php-amqplib/php-amqplib": "^3.7",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "php-amqplib/php-amqplib": "^3.7"
     }
 }
