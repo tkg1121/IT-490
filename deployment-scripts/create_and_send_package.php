@@ -31,18 +31,23 @@ if (!file_exists($packageDir)) {
     mkdir($packageDir, 0755, true);
 }
 
-// Copy files to package directory
-$packageContentDir = "{$packageDir}/files";
-mkdir($packageContentDir, 0755, true);
-
-// Copy all files from the source directory to the package's files directory
-exec("cp -r {$pathToFiles}/* {$packageContentDir}/");
+// Copy the entire frontend directory into the package directory
+$destinationDir = "{$packageDir}/frontend";
+exec("cp -r {$pathToFiles} {$destinationDir}");
 
 // Copy setup.sh to package directory
 if (file_exists("{$pathToFiles}/setup.sh")) {
     exec("cp {$pathToFiles}/setup.sh {$packageDir}/");
 } else {
     echo "Error: setup.sh not found in {$pathToFiles}\n";
+    exit(1);
+}
+
+// Copy Apache configuration file to package directory
+if (file_exists("{$pathToFiles}/000-default.conf")) {
+    exec("cp {$pathToFiles}/000-default.conf {$packageDir}/");
+} else {
+    echo "Error: Apache configuration file '000-default.conf' not found in {$pathToFiles}\n";
     exit(1);
 }
 
