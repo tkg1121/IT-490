@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Exit on any error except in specific commands
-set -e
-
 # Variables
 USER_HOME="/home/stanley"
 PACKAGE_DIR="/tmp/package"  # Assuming the package is extracted to /tmp/package
@@ -29,13 +26,15 @@ echo "MySQL user '$MYSQL_USER' created with all privileges."
 
 # Execute SQL script to create database structure
 sudo mysql -u $MYSQL_USER -p$MYSQL_PASSWORD <<EOF
+SET FOREIGN_KEY_CHECKS=0;
+
 -- Create the user_auth database
 CREATE DATABASE IF NOT EXISTS user_auth;
 USE user_auth;
 
 -- Drop and recreate the users table
 DROP TABLE IF EXISTS users;
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -52,7 +51,7 @@ USE movie_reviews_db;
 
 -- Drop and recreate the movies table
 DROP TABLE IF EXISTS movies;
-CREATE TABLE movies (
+CREATE TABLE IF NOT EXISTS movies (
     imdb_id VARCHAR(20) NOT NULL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     year INT,
@@ -65,7 +64,7 @@ CREATE TABLE movies (
 
 -- Drop and recreate the review_likes_dislikes table
 DROP TABLE IF EXISTS review_likes_dislikes;
-CREATE TABLE review_likes_dislikes (
+CREATE TABLE IF NOT EXISTS review_likes_dislikes (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     review_id INT,
     user_id INT,
@@ -75,7 +74,7 @@ CREATE TABLE review_likes_dislikes (
 
 -- Drop and recreate the reviews table
 DROP TABLE IF EXISTS reviews;
-CREATE TABLE reviews (
+CREATE TABLE IF NOT EXISTS reviews (
     review_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     movie_id VARCHAR(20),
     imdb_id VARCHAR(20),
@@ -87,7 +86,7 @@ CREATE TABLE reviews (
 
 -- Drop and recreate the watchlist table
 DROP TABLE IF EXISTS watchlist;
-CREATE TABLE watchlist (
+CREATE TABLE IF NOT EXISTS watchlist (
     watchlist_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     imdb_id VARCHAR(20),
@@ -100,7 +99,7 @@ USE social_media;
 
 -- Drop and recreate the posts table
 DROP TABLE IF EXISTS posts;
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXISTS posts (
     post_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     post_text TEXT NOT NULL,
@@ -110,7 +109,7 @@ CREATE TABLE posts (
 
 -- Drop and recreate the comments table
 DROP TABLE IF EXISTS comments;
-CREATE TABLE comments (
+CREATE TABLE IF NOT EXISTS comments (
     comment_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -122,7 +121,7 @@ CREATE TABLE comments (
 
 -- Drop and recreate the post_likes_dislikes table
 DROP TABLE IF EXISTS post_likes_dislikes;
-CREATE TABLE post_likes_dislikes (
+CREATE TABLE IF NOT EXISTS post_likes_dislikes (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     post_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -134,7 +133,7 @@ CREATE TABLE post_likes_dislikes (
 
 -- Drop and recreate the comment_likes_dislikes table
 DROP TABLE IF EXISTS comment_likes_dislikes;
-CREATE TABLE comment_likes_dislikes (
+CREATE TABLE IF NOT EXISTS comment_likes_dislikes (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     comment_id INT NOT NULL,
     user_id INT NOT NULL,
@@ -143,37 +142,21 @@ CREATE TABLE comment_likes_dislikes (
     FOREIGN KEY (comment_id) REFERENCES comments(comment_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user_auth.users(id) ON DELETE CASCADE
 );
+
+SET FOREIGN_KEY_CHECKS=1;
 EOF
 
 echo "MySQL databases and tables created successfully."
 
 # Configure RabbitMQ
-set +e  # Temporarily disable exit on error
-
-sudo rabbitmqctl add_user $RABBITMQ_USER $RABBITMQ_PASSWORD 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo "RabbitMQ user '$RABBITMQ_USER' created."
-else
+if sudo rabbitmqctl list_users | grep -q "^$RABBITMQ_USER\s"; then
     echo "RabbitMQ user '$RABBITMQ_USER' already exists."
-fi
-
-sudo rabbitmqctl set_user_tags $RABBITMQ_USER administrator 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo "RabbitMQ user '$RABBITMQ_USER' tagged as administrator."
 else
-    echo "RabbitMQ user '$RABBITMQ_USER' already has tags set."
+    sudo rabbitmqctl add_user $RABBITMQ_USER $RABBITMQ_PASSWORD
+    sudo rabbitmqctl set_user_tags $RABBITMQ_USER administrator
+    sudo rabbitmqctl set_permissions -p / $RABBITMQ_USER ".*" ".*" ".*"
+    echo "RabbitMQ user '$RABBITMQ_USER' created and configured."
 fi
-
-sudo rabbitmqctl set_permissions -p / $RABBITMQ_USER ".*" ".*" ".*" 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo "Permissions set for RabbitMQ user '$RABBITMQ_USER'."
-else
-    echo "Permissions already set for RabbitMQ user '$RABBITMQ_USER'."
-fi
-
-set -e  # Re-enable exit on error
-
-echo "RabbitMQ user '$RABBITMQ_USER' created and configured."
 
 # Create consumers directory
 if [ ! -d "$CONSUMERS_DIR" ]; then
@@ -196,16 +179,19 @@ sudo cp "$CONSUMERS_DIR/"*.service /etc/systemd/system/
 sudo systemctl daemon-reload
 
 # Enable and start services
-for service in auth_consumer.service movies_consumer.service social_media_consumer.service; do
-    sudo systemctl enable $service
-    sudo systemctl restart $service
-    echo "Service $service enabled and restarted."
-done
+sudo systemctl enable auth_consumer.service
+sudo systemctl restart auth_consumer.service
+
+sudo systemctl enable movies_consumer.service
+sudo systemctl restart movies_consumer.service
+
+sudo systemctl enable social_media_consumer.service
+sudo systemctl restart social_media_consumer.service
 
 echo "Consumer services enabled and started."
 
 # Set up firewall rules
-sudo ufw reset
+sudo ufw --force reset
 
 # Allow incoming connections
 sudo ufw allow from 68.197.69.8 to any port 22 proto tcp
@@ -224,7 +210,7 @@ sudo ufw allow out to 10.116.0.4 port 15672 proto tcp
 sudo ufw allow out to 10.116.0.4 port 5672 proto tcp
 
 # Enable UFW
-echo "y" | sudo ufw enable
+sudo ufw --force enable
 
 echo "Firewall rules configured."
 
