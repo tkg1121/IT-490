@@ -19,7 +19,7 @@ if ($argc !== 3) {
 }
 
 $packageName = $argv[1];
-$pathToFiles = $argv[2];
+$pathToFiles = rtrim($argv[2], '/');
 
 // Generate timestamp for versioning
 $timestamp = date('YmdHis');
@@ -31,9 +31,18 @@ if (!file_exists($packageDir)) {
     mkdir($packageDir, 0755, true);
 }
 
-// Copy the entire frontend directory into the package directory
-$destinationDir = "{$packageDir}/frontend";
-exec("cp -r {$pathToFiles} {$destinationDir}");
+// Determine if the package should include a subdirectory
+$includeSubdirectory = !in_array($packageName, ['database', 'dmz']);
+
+// Copy files to the package directory
+if ($includeSubdirectory) {
+    // For packages like 'frontend', include a subdirectory
+    $destinationDir = "{$packageDir}/{$packageName}";
+    exec("cp -r {$pathToFiles} {$destinationDir}");
+} else {
+    // For 'database' and 'dmz', copy files directly into the package directory
+    exec("cp -r {$pathToFiles}/* {$packageDir}/");
+}
 
 // Copy setup.sh to package directory
 if (file_exists("{$pathToFiles}/setup.sh")) {
