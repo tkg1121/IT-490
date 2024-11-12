@@ -5,8 +5,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
-use PhpAmqpLib\Wire\AMQPTable;
 use Dotenv\Dotenv;
+use PhpAmqpLib\Wire\AMQPTable;
 
 // Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
@@ -43,21 +43,24 @@ if (file_exists("{$pathToFiles}/setup.sh")) {
     exit(1);
 }
 
-// Copy Apache configuration file to package directory
+// Copy Apache configuration file to package directory (optional)
 if (file_exists("{$pathToFiles}/000-default.conf")) {
     exec("cp {$pathToFiles}/000-default.conf {$packageDir}/");
+    echo "Included Apache configuration file '000-default.conf' in the package.\n";
 } else {
-    echo "Error: Apache configuration file '000-default.conf' not found in {$pathToFiles}\n";
-    exit(1);
+    echo "Apache configuration file '000-default.conf' not found in {$pathToFiles}. Continuing without it.\n";
 }
 
 // Create zip archive
 $zip = new ZipArchive;
 if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
-    $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($packageDir));
+    $files = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($packageDir),
+        RecursiveIteratorIterator::LEAVES_ONLY
+    );
     foreach ($files as $file) {
         if (!$file->isDir()) {
-            $filePath = $file->getRealPath();
+            $filePath     = $file->getRealPath();
             $relativePath = substr($filePath, strlen($packageDir) + 1);
             if ($relativePath !== 'package.zip') {
                 $zip->addFile($filePath, $relativePath);
@@ -103,7 +106,7 @@ $headers = new AMQPTable([
 
 // Create the AMQPMessage with the package data and headers
 $msg = new AMQPMessage($packageData, [
-    'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT,
+    'delivery_mode'       => AMQPMessage::DELIVERY_MODE_PERSISTENT,
     'application_headers' => $headers
 ]);
 
