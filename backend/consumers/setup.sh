@@ -21,7 +21,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y mysql-server rabbitmq-server php php-cli php-mbstring php-curl php-xml composer unzip ufw
 
 # Create MySQL user 'dbadmin' accessible from any host with password 'dbadmin'
-sudo mysql -u root -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+sudo mysql -u root -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
 sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;"
 sudo mysql -u root -e "FLUSH PRIVILEGES;"
 
@@ -29,6 +29,23 @@ echo "MySQL user '$MYSQL_USER' created with all privileges."
 
 # Execute SQL script to create database structure
 sudo mysql -u $MYSQL_USER -p$MYSQL_PASSWORD <<EOF
+-- Create the user_auth database
+CREATE DATABASE IF NOT EXISTS user_auth;
+USE user_auth;
+
+-- Drop and recreate the users table
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    session_token VARCHAR(255),
+    last_activity DATETIME,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 -- Create the movie_reviews_db database
 CREATE DATABASE IF NOT EXISTS movie_reviews_db;
 USE movie_reviews_db;
@@ -125,23 +142,6 @@ CREATE TABLE comment_likes_dislikes (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (comment_id) REFERENCES comments(comment_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user_auth.users(id) ON DELETE CASCADE
-);
-
--- Create the user_auth database
-CREATE DATABASE IF NOT EXISTS user_auth;
-USE user_auth;
-
--- Drop and recreate the users table
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    session_token VARCHAR(255),
-    last_activity DATETIME,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 EOF
 
