@@ -1,0 +1,14 @@
+[Unit]
+Description=Auth Consumer Service
+After=network.target
+
+[Service]
+Type=simple
+User=stanley
+WorkingDirectory=/home/stanley/Documents/GitHub/IT-490/backend/consumers
+ExecStart=/usr/bin/php /home/stanley/Documents/GitHub/IT-490/backend/consumers/auth_consumer.php
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
