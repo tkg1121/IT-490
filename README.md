@@ -15,6 +15,7 @@ Midterm deliverables:
 
 - [x] Authentication
 
+
 Personal deliverables:
 
 - [x] users can like, dislike comment and rate the movies
@@ -28,3 +29,27 @@ Personal deliverables:
 - [x] users can see what websites/streaming services they can watch the movie on
       
 - [x] users have a blog (social media aspect)
+
+##Final deliverables:
+
+- [ ] deployment (systemd, clusters)
+- [x] hashing password
+- [ ] responsive website
+- [ ] hot stand-by
+- [ ] SSL
+- [ ] bundles
+- [ ] database replication
+- [ ] Rsync for file sharing
+- [ ] log system
+- [ ] load balancer
+- [ ] 2fa with no third party app
+- [ ] Nagios (monitoring tool)
+- [ ] OSSIM (show a before and after reports)
+
+Final personal deliverables:
+
+- [ ] #1
+- [ ] #2
+- [ ] #3
+
+
