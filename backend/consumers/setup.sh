@@ -9,7 +9,7 @@ PACKAGE_DIR="/tmp/package"  # Assuming the package is extracted to /tmp/package
 CONSUMERS_DIR="$USER_HOME/Documents/GitHub/IT-490/backend/consumers"
 
 # MySQL and RabbitMQ credentials
-MYSQL_ROOT_PASSWORD="YourRootPassword"  # Replace with your MySQL root password
+MYSQL_ROOT_PASSWORD="IT490roottempPass1121!!@@"  # Replace with your MySQL root password
 MYSQL_USER="dbadmin"
 MYSQL_PASSWORD="dbadmin"
 RABBITMQ_USER="T"
