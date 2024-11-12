@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Exit on any error
+# Exit on any error except in specific commands
 set -e
 
 # Variables
@@ -148,9 +148,30 @@ EOF
 echo "MySQL databases and tables created successfully."
 
 # Configure RabbitMQ
-sudo rabbitmqctl add_user $RABBITMQ_USER $RABBITMQ_PASSWORD
-sudo rabbitmqctl set_user_tags $RABBITMQ_USER administrator
-sudo rabbitmqctl set_permissions -p / $RABBITMQ_USER ".*" ".*" ".*"
+set +e  # Temporarily disable exit on error
+
+sudo rabbitmqctl add_user $RABBITMQ_USER $RABBITMQ_PASSWORD 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo "RabbitMQ user '$RABBITMQ_USER' created."
+else
+    echo "RabbitMQ user '$RABBITMQ_USER' already exists."
+fi
+
+sudo rabbitmqctl set_user_tags $RABBITMQ_USER administrator 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo "RabbitMQ user '$RABBITMQ_USER' tagged as administrator."
+else
+    echo "RabbitMQ user '$RABBITMQ_USER' already has tags set."
+fi
+
+sudo rabbitmqctl set_permissions -p / $RABBITMQ_USER ".*" ".*" ".*" 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo "Permissions set for RabbitMQ user '$RABBITMQ_USER'."
+else
+    echo "Permissions already set for RabbitMQ user '$RABBITMQ_USER'."
+fi
+
+set -e  # Re-enable exit on error
 
 echo "RabbitMQ user '$RABBITMQ_USER' created and configured."
 
@@ -159,6 +180,8 @@ if [ ! -d "$CONSUMERS_DIR" ]; then
     mkdir -p "$CONSUMERS_DIR"
     chown stanley:stanley "$CONSUMERS_DIR"
     echo "Created directory $CONSUMERS_DIR"
+else
+    echo "Directory $CONSUMERS_DIR already exists."
 fi
 
 # Copy all files from the package to the consumers directory
@@ -173,14 +196,11 @@ sudo cp "$CONSUMERS_DIR/"*.service /etc/systemd/system/
 sudo systemctl daemon-reload
 
 # Enable and start services
-sudo systemctl enable auth_consumer.service
-sudo systemctl start auth_consumer.service
-
-sudo systemctl enable movies_consumer.service
-sudo systemctl start movies_consumer.service
-
-sudo systemctl enable social_media_consumer.service
-sudo systemctl start social_media_consumer.service
+for service in auth_consumer.service movies_consumer.service social_media_consumer.service; do
+    sudo systemctl enable $service
+    sudo systemctl restart $service
+    echo "Service $service enabled and restarted."
+done
 
 echo "Consumer services enabled and started."
 
