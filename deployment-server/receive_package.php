@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+use PhpAmqpLib\Wire\AMQPTable;
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -22,19 +24,16 @@ $channel->queue_declare('packages_queue', false, true, false, false);
 echo " [*] Waiting for packages. To exit press CTRL+C\n";
 
 $callback = function ($msg) use ($pdo, $channel) {
-    // ... Existing code ...
+    $headers = $msg->get('application_headers');
+    if ($headers) {
+        $headers = $headers->getNativeData();
+        $packageName = $headers['package_name'];
+    } else {
+        echo " [!] No headers found in the message.\n";
+        return;
+    }
 
-$headers = $msg->get('application_headers');
-if ($headers) {
-    $headers = $headers->getNativeData();
-    $packageName = $headers['package_name'];
-} else {
-    echo " [!] No headers found in the message.\n";
-    return;
-}
-
-// ... Rest of the code ...
-
+    // Get the latest version
     $stmt = $pdo->prepare("SELECT MAX(version) as max_version FROM packages WHERE package_name = ?");
     $stmt->execute([$packageName]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -45,7 +44,7 @@ if ($headers) {
     $stmt->execute([$packageName, $newVersion]);
 
     // Save package data to file system
-    $packageDir = "/home/dev/Documents/GitHub/IT-490/deployment-server/packages/{$packageName}/v{$newVersion}";
+    $packageDir = "/home/dev/Documents/GitHub/IT-490/deployment-server/packages/{$packageName}_v{$newVersion}";
     if (!file_exists($packageDir)) {
         mkdir($packageDir, 0755, true);
     }
@@ -79,4 +78,3 @@ while ($channel->is_consuming()) {
 $channel->close();
 $connection->close();
 ?>
-

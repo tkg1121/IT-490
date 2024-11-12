@@ -116,4 +116,3 @@ echo " [x] Sent package '{$packageName}'\n";
 $channel->close();
 $connection->close();
 ?>
-
