@@ -9,7 +9,6 @@ PACKAGE_DIR="/tmp/package"  # Assuming the package is extracted to /tmp/package
 CONSUMERS_DIR="$USER_HOME/Documents/GitHub/IT-490/backend/consumers"
 
 # MySQL and RabbitMQ credentials
-MYSQL_ROOT_PASSWORD="IT490roottempPass1121!!@@"  # Replace with your MySQL root password
 MYSQL_USER="dbadmin"
 MYSQL_PASSWORD="dbadmin"
 RABBITMQ_USER="T"
@@ -21,17 +20,10 @@ sudo apt update && sudo apt upgrade -y
 # Install required software
 sudo apt install -y mysql-server rabbitmq-server php php-cli php-mbstring php-curl php-xml composer unzip ufw
 
-# Secure MySQL installation
-# Set MySQL root password
-sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$MYSQL_ROOT_PASSWORD';"
-sudo mysql -e "DELETE FROM mysql.user WHERE User='';"
-sudo mysql -e "DROP DATABASE IF EXISTS test;"
-sudo mysql -e "FLUSH PRIVILEGES;"
-
 # Create MySQL user 'dbadmin' accessible from any host with password 'dbadmin'
-sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;"
-sudo mysql -u root -p"$MYSQL_ROOT_PASSWORD" -e "FLUSH PRIVILEGES;"
+sudo mysql -u root -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;"
+sudo mysql -u root -e "FLUSH PRIVILEGES;"
 
 echo "MySQL user '$MYSQL_USER' created with all privileges."
 
