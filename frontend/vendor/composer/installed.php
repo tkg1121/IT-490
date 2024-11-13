@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ashleys/frontend',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '23459fa2fded94886e8b0f8fe13b6ee47de27aaf',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'ashleys/frontend' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '23459fa2fded94886e8b0f8fe13b6ee47de27aaf',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

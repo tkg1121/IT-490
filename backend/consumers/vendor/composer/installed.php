@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'stanley/consumers',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '23459fa2fded94886e8b0f8fe13b6ee47de27aaf',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -65,9 +65,9 @@
             'dev_requirement' => false,
         ),
         'stanley/consumers' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '23459fa2fded94886e8b0f8fe13b6ee47de27aaf',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

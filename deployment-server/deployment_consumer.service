@@ -1,0 +1,16 @@
+[Unit]
+Description=Deployment Server Package Receiver
+After=network.target
+
+[Service]
+Type=simple
+User=dev
+Group=dev
+WorkingDirectory=/home/dev/Documents/GitHub/IT-490/deployment-server/
+ExecStart=/usr/bin/php /home/dev/Documents/GitHub/IT-490/deployment-server/receive_package.php
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+
