@@ -33,15 +33,19 @@ Personal deliverables:
 ##Final deliverables:
 
 - [ ] deployment (systemd, clusters)
+      
 - [x] hashing password
+      
 - [ ] responsive website
+      
 - [ ] hot stand-by
+      
 - [ ] SSL
-- [ ] bundles
-- [ ] database replication
-- [ ] Rsync for file sharing
+      
 - [ ] log system
+      
 - [ ] load balancer
+      
 - [ ] 2fa with no third party app
 - [ ] Nagios (monitoring tool)
 - [ ] OSSIM (show a before and after reports)
