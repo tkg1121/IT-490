@@ -5,7 +5,7 @@ set -e
 
 # Variables
 USER_HOME="/home/ashleys"
-PROJECT_DIR="$USER_HOME/IT-490/frontend"
+PROJECT_DIR="$USER_HOME/IT-490"
 
 # Determine the directory where the script is located
 PACKAGE_DIR="$(dirname "$(realpath "$0")")"
