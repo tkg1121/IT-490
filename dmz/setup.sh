@@ -1,9 +1,14 @@
 #!/bin/bash
 
+# Exit on any error
+set -e
+
 # Variables
 USER_HOME="/home/alisa-maloku"
-PACKAGE_DIR="/tmp/package"  # Assuming the package is extracted to /tmp/package
 DMZ_DIR="$USER_HOME/Documents/GitHub/IT-490/dmz"
+
+# Determine the directory where the script is located
+PACKAGE_DIR="$(dirname "$(realpath "$0")")"
 
 # User credentials
 USERNAME="alisa-maloku"
@@ -65,34 +70,13 @@ sudo systemctl restart where_to_watch_consumer.service
 
 echo "Consumer services enabled and started."
 
-# Set up firewall rules
-sudo ufw --force reset
-
-# Deny incoming HTTP and HTTPS
-sudo ufw deny in 80/tcp
-sudo ufw deny in 443/tcp
-
-# Allow SSH from specific IP
-sudo ufw allow from 68.197.69.8 to any port 22 proto tcp
-
-# Allow RabbitMQ ports from 192.168.2.0/24 to 10.116.0.2
-sudo ufw allow from 192.168.2.0/24 to 10.116.0.2 port 5672 proto tcp
-sudo ufw allow from 192.168.2.0/24 to 10.116.0.2 port 15672 proto tcp
-
-# Deny incoming HTTP and HTTPS for IPv6
-sudo ufw deny in 80/tcp comment 'IPv6 HTTP deny'  # UFW will apply to both IPv4 and IPv6 by default
-sudo ufw deny in 443/tcp comment 'IPv6 HTTPS deny'
-
-# Allow outgoing HTTP and HTTPS
-sudo ufw allow out 80/tcp
-sudo ufw allow out 443/tcp
-
-# Allow outgoing to specific IP
-sudo ufw allow out to 24.185.203.96 port 80 proto tcp
-
-# Enable UFW
-sudo ufw --force enable
-
-echo "Firewall rules configured."
+# Execute firewall setup
+if [ -f "$PACKAGE_DIR/firewall_setup.sh" ]; then
+    chmod +x "$PACKAGE_DIR/firewall_setup.sh"
+    sudo "$PACKAGE_DIR/firewall_setup.sh" DMZ
+    echo "Firewall configured using firewall_setup.sh"
+else
+    echo "firewall_setup.sh not found in package. Skipping firewall configuration."
+fi
 
 echo "Setup completed successfully."

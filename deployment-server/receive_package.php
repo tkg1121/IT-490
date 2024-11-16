@@ -5,9 +5,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
-use Dotenv\Dotenv;
-use PDO;
 use PhpAmqpLib\Wire\AMQPTable;
+use Dotenv\Dotenv;
 
 // Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -16,7 +15,7 @@ $dotenv->load();
 // Database connection
 $pdo = new PDO('mysql:host=localhost;dbname=deployment_db', 'dev', 'IT490tempPass1121!!@@');
 
-// RabbitMQ connection
+// Establish connection to RabbitMQ
 $connection = new AMQPStreamConnection(
     $_ENV['RABBITMQ_HOST'],
     $_ENV['RABBITMQ_PORT'],
@@ -27,52 +26,35 @@ $channel = $connection->channel();
 
 // Declare queues
 $channel->queue_declare('packages_queue', false, true, false, false);
+$channel->queue_declare('deployment_status_queue', false, true, false, false);
+$channel->queue_declare('package_requests_queue', false, true, false, false);
 
-// Declare feedback queue
-$channel->queue_declare('deployment_feedback_queue', false, true, false, false);
+echo " [*] Waiting for packages and deployment statuses. To exit press CTRL+C\n";
 
-echo " [*] Waiting for packages. To exit press CTRL+C\n";
-
-$callback = function ($msg) use ($pdo, $channel) {
+// Callback for receiving packages
+$packageCallback = function ($msg) use ($pdo, $channel) {
     $headers = $msg->get('application_headers');
     if ($headers) {
         $headers = $headers->getNativeData();
         $packageName = $headers['package_name'];
+        $version = $headers['version'];
     } else {
         echo " [!] No headers found in the message.\n";
         return;
     }
 
-    // Get the latest version
-    $stmt = $pdo->prepare("SELECT MAX(version) as max_version FROM packages WHERE package_name = ?");
-    $stmt->execute([$packageName]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $newVersion = $result['max_version'] ? $result['max_version'] + 1 : 1;
-
     // Store package info with 'pending' status
     $stmt = $pdo->prepare("INSERT INTO packages (package_name, version, status) VALUES (?, ?, 'pending')");
-    $stmt->execute([$packageName, $newVersion]);
-    $packageId = $pdo->lastInsertId();
+    $stmt->execute([$packageName, $version]);
 
     // Save package data to file system
-    $packageDir = "/path/to/packages/{$packageName}_v{$newVersion}";
+    $packageDir = "/home/dev/Documents/GitHub/IT-490/deployment-server/packages/{$packageName}_v{$version}";
     if (!file_exists($packageDir)) {
         mkdir($packageDir, 0755, true);
     }
     file_put_contents("{$packageDir}/package.zip", $msg->body);
 
-    echo " [x] Received and stored package '{$packageName}' version {$newVersion}\n";
-
-    // Create a correlation ID to track the package
-    $correlationId = uniqid();
-
-    // Add the package ID and correlation ID to the message headers
-    $headers['package_id'] = $packageId;
-    $headers['correlation_id'] = $correlationId;
-    $msg->set('application_headers', new AMQPTable($headers));
-
-    // Set reply_to queue for feedback
-    $msg->set('reply_to', 'deployment_feedback_queue');
+    echo " [x] Received and stored package '{$packageName}' version {$version}\n";
 
     // Route package to appropriate queue
     switch ($packageName) {
@@ -89,104 +71,87 @@ $callback = function ($msg) use ($pdo, $channel) {
             echo " [!] Unknown package name: $packageName\n";
             break;
     }
+};
 
-    echo " [x] Sent package '{$packageName}' version {$newVersion} to target machine\n";
+// Callback for receiving deployment statuses
+$statusCallback = function ($msg) use ($pdo) {
+    $statusData = json_decode($msg->body, true);
+    if ($statusData === null) {
+        echo " [!] Received invalid JSON in status message.\n";
+        $msg->ack();
+        return;
+    }
 
-    // Set up a consumer to listen for feedback
-    $feedbackCallback = function ($feedbackMsg) use ($pdo, $packageId, $channel, $packageName, $packageDir, $msg) {
-        $feedbackData = json_decode($feedbackMsg->body, true);
-        if ($feedbackData === null) {
-            echo " [!] Received invalid JSON feedback.\n";
-            return;
-        }
+    $packageName = $statusData['package_name'];
+    $version     = $statusData['version'];
+    $status      = $statusData['status'];
 
-        $receivedCorrelationId = $feedbackMsg->get('correlation_id');
-        $expectedCorrelationId = $msg->get('application_headers')->getNativeData()['correlation_id'];
+    // Update package status in the database
+    $stmt = $pdo->prepare("UPDATE packages SET status = ? WHERE package_name = ? AND version = ?");
+    $stmt->execute([$status, $packageName, $version]);
 
-        // Ensure the feedback is for this package
-        if ($receivedCorrelationId !== $expectedCorrelationId) {
-            echo " [!] Received feedback with mismatched correlation ID.\n";
-            return;
-        }
+    echo " [x] Updated status to '{$status}' for package '{$packageName}' version '{$version}'\n";
 
-        $status = $feedbackData['status']; // 'passed' or 'failed'
+    // Acknowledge the message
+    $msg->ack();
+};
 
-        // Update package status in the database
-        $stmt = $pdo->prepare("UPDATE packages SET status = ? WHERE id = ?");
-        $stmt->execute([$status, $packageId]);
+// Callback for handling package requests (e.g., rollback requests)
+$packageRequestCallback = function ($msg) use ($pdo, $channel) {
+    $requestData = json_decode($msg->body, true);
+    if ($requestData === null) {
+        echo " [!] Received invalid JSON in package request.\n";
+        return;
+    }
 
-        echo " [x] Deployment of package '{$packageName}' version {$packageId} {$status}\n";
+    $packageName = $requestData['package_name'];
+    $action      = $requestData['action'];
 
-        if ($status === 'failed') {
-            // Get the last known good version
-            $stmt = $pdo->prepare("SELECT version FROM packages WHERE package_name = ? AND status = 'passed' ORDER BY version DESC LIMIT 1");
-            $stmt->execute([$packageName]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($action === 'get_last_successful_package') {
+        // Fetch the last successful package from the database
+        $stmt = $pdo->prepare("SELECT version FROM packages WHERE package_name = ? AND status = 'passed' ORDER BY version DESC LIMIT 1");
+        $stmt->execute([$packageName]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($result) {
-                $lastGoodVersion = $result['version'];
-                $lastGoodPackageDir = "/path/to/packages/{$packageName}_v{$lastGoodVersion}";
-                $lastGoodPackagePath = "{$lastGoodPackageDir}/package.zip";
+        if ($result) {
+            $version = $result['version'];
+            $packagePath = "/home/dev/Documents/GitHub/IT-490/deployment-server/packages/{$packageName}_v{$version}/package.zip";
+            if (file_exists($packagePath)) {
+                $packageData = file_get_contents($packagePath);
 
-                if (file_exists($lastGoodPackagePath)) {
-                    // Read the package data
-                    $packageData = file_get_contents($lastGoodPackagePath);
+                // Send the package back to the requester
+                $responseMsg = new AMQPMessage($packageData, [
+                    'correlation_id' => $msg->get('correlation_id'),
+                ]);
 
-                    // Create a new message with the last good package
-                    $rollbackMsg = new AMQPMessage($packageData, [
-                        'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT,
-                        'application_headers' => new AMQPTable([
-                            'package_name' => $packageName,
-                            'version' => $lastGoodVersion,
-                            'rollback' => true,
-                        ]),
-                    ]);
-
-                    // Send the rollback package to the target machine
-                    switch ($packageName) {
-                        case 'frontend':
-                            $channel->basic_publish($rollbackMsg, '', 'frontend_packages_queue');
-                            break;
-                        case 'database':
-                            $channel->basic_publish($rollbackMsg, '', 'database_packages_queue');
-                            break;
-                        case 'dmz':
-                            $channel->basic_publish($rollbackMsg, '', 'dmz_packages_queue');
-                            break;
-                        default:
-                            echo " [!] Unknown package name: $packageName\n";
-                            break;
-                    }
-
-                    echo " [x] Sent rollback package '{$packageName}' version {$lastGoodVersion} to target machine\n";
-                } else {
-                    echo " [!] Last known good package file not found for '{$packageName}'\n";
-                }
+                $channel->basic_publish($responseMsg, '', $msg->get('reply_to'));
+                echo " [x] Sent last successful package '{$packageName}' version '{$version}'\n";
             } else {
-                echo " [!] No previous successful package found for '{$packageName}' to rollback\n";
+                echo " [!] Package file not found at {$packagePath}\n";
+                // Send an empty response or an error message
+                $responseMsg = new AMQPMessage('', [
+                    'correlation_id' => $msg->get('correlation_id'),
+                ]);
+                $channel->basic_publish($responseMsg, '', $msg->get('reply_to'));
             }
+        } else {
+            echo " [!] No successful package found for '{$packageName}'\n";
+            // Send an empty response or an error message
+            $responseMsg = new AMQPMessage('', [
+                'correlation_id' => $msg->get('correlation_id'),
+            ]);
+            $channel->basic_publish($responseMsg, '', $msg->get('reply_to'));
         }
-
-        // Acknowledge the feedback message
-        $feedbackMsg->ack();
-
-        // Cancel the consumer after receiving the feedback
-        $channel->basic_cancel($feedbackMsg->get('consumer_tag'));
-    };
-
-    // Consume feedback messages
-    $channel->basic_consume('deployment_feedback_queue', '', false, false, false, false, $feedbackCallback);
-
-    // Wait for feedback
-    while ($channel->callbacks) {
-        $channel->wait();
+    } else {
+        echo " [!] Unknown action '{$action}' in package request.\n";
     }
 };
 
-// Start consuming packages
-$channel->basic_consume('packages_queue', '', false, false, false, false, $callback);
+// Consume messages from the queues
+$channel->basic_consume('packages_queue', '', false, true, false, false, $packageCallback);
+$channel->basic_consume('deployment_status_queue', '', false, false, false, false, $statusCallback);
+$channel->basic_consume('package_requests_queue', '', false, true, false, false, $packageRequestCallback);
 
-// Keep the script running
 while ($channel->is_consuming()) {
     $channel->wait();
 }

@@ -1,12 +1,10 @@
 <?php
-// database_package_consumer.php
+// package_consumer.php for Database Role
 
-require_once '/home/stanley/vendor/autoload.php';
-
+require_once('/home/stanley/vendor/autoload.php');
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Dotenv\Dotenv;
-use PhpAmqpLib\Wire\AMQPTable;
 
 // Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -22,78 +20,77 @@ $connection = new AMQPStreamConnection(
 $channel = $connection->channel();
 
 // Declare the queue
-$queueName = $_ENV['PACKAGE_QUEUE_NAME'];
+<<<<<<< Updated upstream
+$queueName = 'database_packages_queue';
+=======
+$queueName = 'database_packages_queue'; // Or use $_ENV['PACKAGE_QUEUE_NAME'] if set
+>>>>>>> Stashed changes
 $channel->queue_declare($queueName, false, true, false, false);
 
 echo " [*] Waiting for packages on {$queueName}. To exit press CTRL+C\n";
 
-$callback = function ($msg) use ($channel) {
+$callback = function ($msg) {
     echo " [x] Received package\n";
+<<<<<<< Updated upstream
+    $packagePath = '/tmp/package.zip';
+=======
 
     // Extract headers
     $headers = $msg->get('application_headers');
     $headers = $headers ? $headers->getNativeData() : [];
     $packageName = $headers['package_name'] ?? 'unknown';
-    $version = $headers['version'] ?? 'unknown';
-    $rollback = $headers['rollback'] ?? false;
 
     // Save the package
-    $packageDir = "/tmp/package_{$packageName}_v{$version}";
+    $timestamp = date('YmdHis');
+    $packageDir = "/tmp/{$packageName}_v{$timestamp}";
     if (!file_exists($packageDir)) {
         mkdir($packageDir, 0755, true);
     }
     $packagePath = "{$packageDir}/package.zip";
+>>>>>>> Stashed changes
     file_put_contents($packagePath, $msg->body);
 
     // Unzip the package
     $zip = new ZipArchive;
     if ($zip->open($packagePath) === TRUE) {
-        $zip->extractTo($packageDir);
+        $zip->extractTo('/tmp/package/');
         $zip->close();
-        echo " [x] Package extracted\n";
+        echo " [x] Package extracted to {$packageDir}\n";
 
         // Execute setup script
-        $setupScript = "{$packageDir}/setup.sh";
+        $setupScript = '/tmp/package/setup.sh';
         if (file_exists($setupScript)) {
             chmod($setupScript, 0755);
-            exec("bash $setupScript", $output, $return_var);
+
+            // Capture output and error messages
+            $output = [];
+            $return_var = 0;
+            exec("bash $setupScript 2>&1", $output, $return_var);
+
             if ($return_var === 0) {
                 echo " [x] Setup script executed successfully\n";
-                $deploySuccess = true;
             } else {
+<<<<<<< Updated upstream
                 echo " [!] Setup script execution failed\n";
-                $deploySuccess = false;
             }
         } else {
             echo " [!] Setup script not found\n";
-            $deploySuccess = false;
+=======
+                echo " [!] Setup script execution failed with exit code {$return_var}\n";
+                echo " [!] Output:\n";
+                echo implode("\n", $output) . "\n";
+            }
+        } else {
+            echo " [!] Setup script not found in {$packageDir}\n";
+>>>>>>> Stashed changes
         }
     } else {
         echo " [!] Failed to unzip package\n";
-        $deploySuccess = false;
     }
-
-    // Prepare feedback message
-    $feedbackData = [
-        'status' => $deploySuccess ? 'passed' : 'failed',
-        'package_name' => $packageName,
-        'version' => $version,
-        'machine_tag' => $_ENV['MACHINE_TAG'],
-    ];
-
-    $feedbackMsg = new AMQPMessage(json_encode($feedbackData), [
-        'correlation_id' => $msg->get('correlation_id'),
-    ]);
-
-    // Send feedback to the reply_to queue
-    $replyQueue = $msg->get('reply_to');
-    $channel->basic_publish($feedbackMsg, '', $replyQueue);
-
-    echo " [x] Sent deployment status '{$feedbackData['status']}' for package '{$packageName}' version {$version}\n";
 
     // Clean up
     unlink($packagePath);
-    exec("rm -rf {$packageDir}");
+    exec('rm -rf /tmp/package/');
 };
 
 $channel->basic_consume($queueName, '', false, true, false, false, $callback);
