@@ -32,7 +32,7 @@ Personal deliverables:
 
 ##Final deliverables:
 
-- [ ] deployment (systemd, clusters)
+- [x] deployment (systemd, clusters)
       
 - [x] hashing password
       
