@@ -23,7 +23,8 @@ $pathToFiles = rtrim($argv[2], '/');
 
 // Generate timestamp for versioning
 $timestamp = date('YmdHis');
-$packageDir = "/tmp/{$packageName}_v{$timestamp}";
+$version = $timestamp; // Use timestamp as version
+$packageDir = "/tmp/{$packageName}_v{$version}";
 $zipFilePath = "{$packageDir}/package.zip";
 
 // Create package directory
@@ -110,6 +111,7 @@ $channel->queue_declare('packages_queue', false, true, false, false);
 // Create AMQPTable for headers
 $headers = new AMQPTable([
     'package_name' => $packageName,
+    'version'      => $version, // Include version in headers
     'content_type' => 'application/zip'
 ]);
 
@@ -122,7 +124,36 @@ $msg = new AMQPMessage($packageData, [
 // Publish the message to the queue
 $channel->basic_publish($msg, '', 'packages_queue');
 
-echo " [x] Sent package '{$packageName}'\n";
+echo " [x] Sent package '{$packageName}' version '{$version}'\n";
+
+// Wait for user input to confirm deployment status
+echo "Enter deployment status ('passed' or 'failed'): ";
+$status = trim(fgets(STDIN));
+
+// Validate input
+while (!in_array(strtolower($status), ['passed', 'failed'])) {
+    echo "Invalid input. Please enter 'passed' or 'failed': ";
+    $status = trim(fgets(STDIN));
+}
+$status = strtolower($status);
+
+// Send the status message to the deployment server
+$channel->queue_declare('deployment_status_queue', false, true, false, false);
+
+$statusData = [
+    'package_name' => $packageName,
+    'version'      => $version,
+    'status'       => $status,
+    'timestamp'    => date('Y-m-d H:i:s')
+];
+
+$statusMsg = new AMQPMessage(json_encode($statusData), [
+    'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
+]);
+
+$channel->basic_publish($statusMsg, '', 'deployment_status_queue');
+
+echo " [x] Sent deployment status '{$status}' for package '{$packageName}' version '{$version}'\n";
 
 // Close the channel and connection
 $channel->close();
