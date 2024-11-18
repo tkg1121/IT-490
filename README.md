@@ -42,7 +42,7 @@ Personal deliverables:
       
 - [ ] SSL
       
-- [ ] log system
+- [x] log system
       
 - [ ] load balancer
       
