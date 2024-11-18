@@ -47,7 +47,9 @@ Personal deliverables:
 - [ ] load balancer
       
 - [ ] 2fa with no third party app
+      
 - [ ] Nagios (monitoring tool)
+      
 - [ ] OSSIM (show a before and after reports)
 
 Final personal deliverables:
