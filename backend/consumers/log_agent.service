@@ -1,0 +1,14 @@
+[Unit]
+Description=Log Agent Service for stanley-database
+After=network.target
+
+[Service]
+Type=simple
+User=stanley
+Group=stanley
+WorkingDirectory=/home/stanley/consumer
+ExecStart=/usr/bin/php /home/stanley/consumer/log_agent.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

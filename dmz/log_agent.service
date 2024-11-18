@@ -1,0 +1,14 @@
+[Unit]
+Description=Log Agent Service for alisa-maloku-dmz
+After=network.target
+
+[Service]
+Type=simple
+User=alisa-maloku
+Group=alisa-maloku
+WorkingDirectory=/home/alisa-maloku/consumer
+ExecStart=/usr/bin/php /home/alisa-maloku/consumer/log_agent.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

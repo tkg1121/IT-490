@@ -1,0 +1,14 @@
+[Unit]
+Description=Log Agent Service for ashleys-frontend
+After=network.target
+
+[Service]
+Type=simple
+User=ashleys
+Group=ashleys
+WorkingDirectory=/home/ashleys/consumer
+ExecStart=/usr/bin/php /home/ashleys/consumer/log_agent.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

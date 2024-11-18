@@ -1,0 +1,17 @@
+[Unit]
+Description=Log Consumer Service for Deployment Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dev
+Group=dev
+WorkingDirectory=/home/dev
+ExecStart=/usr/bin/php /home/dev/receive_log_deploy.php
+Restart=always
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
