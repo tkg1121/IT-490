@@ -38,7 +38,7 @@ Personal deliverables:
       
 - [ ] responsive website
       
-- [ ] hot stand-by
+- [x] hot stand-by
       
 - [ ] SSL
       
