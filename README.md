@@ -32,19 +32,26 @@ Personal deliverables:
 
 ##Final deliverables:
 
-- [x] deployment (systemd, clusters)
-      
+- [ ] Responsive website
+
+- [ ] Clusters
+
+- [x] Deployment
+
+- [ ] Systemd
+
+- [x] Distributed Logging
+
+- [x] Hot stand-by
+  
 - [x] hashing password
-      
-- [ ] responsive website
-      
-- [x] hot stand-by
-      
+                  
 - [x] SSL
-      
-- [x] log system
-      
-- [ ] load balancer
+            
+- [ ] Database Replication
+
+##Extra Credit:
+
       
 - [ ] 2fa with no third party app
       
