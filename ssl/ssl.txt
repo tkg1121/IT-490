@@ -1,0 +1,94 @@
+1.Remove all failed attempts or preexisting certs
+sudo rm /etc/apache2/ssl/apache.crt
+sudo rm /etc/apache2/ssl/apache.key
+sudo rm /etc/apache2/ssl/openssl.cnf
+2.Set permissions to access ssl directory
+sudo mkdir -p /etc/apache2/ssl
+sudo chmod 700 /etc/apache2/ssl
+3.Configure SSL on the server, cert authority
+sudo vim /etc/apache2/ssl/ca-openssl.cnf
+[ req ]
+default_bits = 4096
+default_md = sha256
+prompt = no
+distinguished_name = dn
+x509_extensions = v3_ca
+[ dn ]
+C = US
+ST = California
+L = San Francisco
+O = MyCompany
+OU = IT Department
+CN = MyCompany CA
+[ v3_ca ]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints = CA:true
+keyUsage = keyCertSign, cRLSign
+4.Create public and private keys for certificate
+sudo openssl req -x509 -new -nodes -days 3650 -keyout /etc/apache2/ssl/ca.key -out
+/etc/apache2/ssl/ca.crt -config /etc/apache2/ssl/ca-openssl.cnf
+5.Assign appropriate permissions for server access
+sudo chmod 600 /etc/apache2/ssl/ca.key
+sudo chmod 644 /etc/apache2/ssl/ca.crt
+6.Configure server ssl
+sudo vim /etc/apache2/ssl/server-openssl.cnf
+[ req ]
+default_bits = 2048
+default_md = sha256
+prompt = no
+distinguished_name = dn
+req_extensions = req_ext
+[ dn ]
+C = US
+ST = California
+L = San Francisco
+O = MyCompany
+OU = IT Department
+CN = your_domain.com
+[ req_ext ]
+subjectAltName = @alt_names
+[ alt_names ]
+DNS.1 = your_domain.com
+DNS.2 = www.your_domain.com
+IP.1 = 134.122.6.131
+NOTE: The IP address will change depending on the machine for IP.1, may conflict may
+not
+7. Generate SSL keys and nodes
+sudo openssl req -new -nodes -out /etc/apache2/ssl/server.csr -newkey rsa:2048 -keyout
+/etc/apache2/ssl/server.key -config /etc/apache2/ssl/server-openssl.cnf
+sudo openssl x509 -req -in /etc/apache2/ssl/server.csr -CA /etc/apache2/ssl/ca.crt -CAkey
+/etc/apache2/ssl/ca.key -CAcreateserial -out /etc/apache2/ssl/server.crt -days 365 -sha256
+-extensions req_ext -extfile /etc/apache2/ssl/server-openssl.cnf
+sudo chmod 600 /etc/apache2/ssl/server.key
+sudo chmod 644 /etc/apache2/ssl/server.crt
+8.Modify apache2 config file for SSL navigation
+sudo vim sudo nano /etc/apache2/sites-available/default-ssl.conf
+<VirtualHost *:443>
+ServerAdmin webmaster@localhost
+DocumentRoot /home/ashleys/IT-490/frontend
+<Directory /home/ashleys/IT-490/frontend>
+Options Indexes FollowSymLinks
+AllowOverride All
+Require all granted
+</Directory>
+SSLEngine on
+SSLCertificateFile /etc/apache2/ssl/server.crt
+SSLCertificateKeyFile /etc/apache2/ssl/server.key
+SSLCertificateChainFile /etc/apache2/ssl/ca.crt
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains;
+preload"
+<FilesMatch "\.(?:cgi|shtml|phtml|php)$">
+SSLOptions +StdEnvVars
+</FilesMatch>
+<Directory /usr/lib/cgi-bin>
+SSLOptions +StdEnvVars
+</Directory>
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+9.Start apache2 with SSL
+sudo a2enmod ssl
+sudo a2ensite default-ssl.conf
+sudo apache2ctl configtest
+sudo systemctl restart apache2
