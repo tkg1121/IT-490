@@ -40,7 +40,7 @@ Personal deliverables:
       
 - [x] hot stand-by
       
-- [ ] SSL
+- [x] SSL
       
 - [x] log system
       
