@@ -150,6 +150,14 @@ if [[ "$ROLE" == "DATABASE" ]]; then
     sudo ufw allow from $DMZ_IP to any port 15672 proto tcp
 fi
 
+
+#============================
+# General Allow Rules
+#============================
+
+sudo ufw allow from 128.235.0.0/16 to any port 443
+sudo ufw allow from 128.235.0.0/16 to any port 80
+
 # ===========================
 # Deny Rules (After Allow Rules)
 # ===========================
