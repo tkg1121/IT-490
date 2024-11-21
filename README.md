@@ -42,7 +42,7 @@ Personal deliverables:
 
 - [x] Distributed Logging
 
-- [] Hot stand-by
+- [ ] Hot stand-by
   
 - [x] hashing password
                   
