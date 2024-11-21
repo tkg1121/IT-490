@@ -34,15 +34,15 @@ Personal deliverables:
 
 - [ ] Responsive website
 
-- [ ] Clusters
+- [x] Clusters
 
 - [x] Deployment
 
-- [ ] Systemd
+- [x] Systemd
 
 - [x] Distributed Logging
 
-- [x] Hot stand-by
+- [] Hot stand-by
   
 - [x] hashing password
                   
