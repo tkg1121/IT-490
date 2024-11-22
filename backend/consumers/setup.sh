@@ -52,7 +52,7 @@ fi
 
 # Copy all files from the package to the consumers directory
 cp -r "$PACKAGE_DIR/"* "$CONSUMERS_DIR/"
-chown -R stanley:stanley "$CONSUMers_DIR"
+chown -R stanley:stanley "$CONSUMERS_DIR"
 echo "Copied consumer files to $CONSUMERS_DIR"
 
 # Install PHP dependencies using Composer

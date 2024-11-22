@@ -20,11 +20,8 @@ $connection = new AMQPStreamConnection(
 $channel = $connection->channel();
 
 // Declare the queue
-<<<<<<< Updated upstream
 $queueName = 'database_packages_queue';
-=======
 $queueName = 'database_packages_queue'; // Or use $_ENV['PACKAGE_QUEUE_NAME'] if set
->>>>>>> Stashed changes
 $channel->queue_declare($queueName, false, true, false, false);
 
 echo " [*] Waiting for packages on {$queueName}. To exit press CTRL+C\n";

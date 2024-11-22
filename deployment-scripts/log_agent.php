@@ -1,7 +1,7 @@
 <?php
 // agent_receiver.php
 
-require_once('/home/ashleys/vendor/autoload.php'); // Adjust the path as needed
+require_once('../vendor/autoload.php'); // Adjust the path as needed
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Dotenv\Dotenv;
