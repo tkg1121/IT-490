@@ -23,9 +23,6 @@ $DB_NAME = $_ENV['DB_NAME'] ?? 'movie_db';
 $DB_NAME_MOVIE_REVIEWS = $_ENV['DB_NAME_MOVIE_REVIEWS'] ?? 'movie_reviews_db';
 $DB_NAME_USER_AUTH = $_ENV['DB_NAME_USER_AUTH'] ?? 'user_auth';
 
-$OMDB_API_KEY = $_ENV['OMDB_API_KEY'] ?? '';
-$OMDB_URL = $_ENV['OMDB_URL'] ?? 'http://www.omdbapi.com';
-
 // Establish RabbitMQ connection
 $connection = new AMQPStreamConnection(
     $RABBITMQ_HOST,
@@ -50,9 +47,7 @@ $movieCallback = function ($msg) use (
     $DB_HOST,
     $DB_USER,
     $DB_PASS,
-    $DB_NAME,
-    $OMDB_API_KEY,
-    $OMDB_URL
+    $DB_NAME_MOVIE_REVIEWS
 ) {
     error_log("Movie Consumer: Received message: " . $msg->body);
 
@@ -64,8 +59,8 @@ $movieCallback = function ($msg) use (
         $response = ['status' => 'error', 'message' => 'Invalid request.'];
         error_log("Movie Consumer: Invalid action or missing movie_id.");
     } else {
-        // Connect to internal database
-        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+        // Connect to the correct database
+        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
 
         if ($mysqli->connect_error) {
             $response = ['status' => 'error', 'message' => 'Database connection failed.'];
@@ -99,18 +94,12 @@ $movieCallback = function ($msg) use (
                     ];
                     error_log("Movie Consumer: Movie details fetched from database for IMDb ID: $movie_id");
                 } else {
-                    // Movie not found in the database, fetch from OMDb API
-                    $omdb_url = $OMDB_URL . '?i=' . urlencode($movie_id) . '&apikey=' . $OMDB_API_KEY;
-                    $omdb_response = file_get_contents($omdb_url);
-                    $omdb_data = json_decode($omdb_response, true);
+                    // Movie not found in the database, fetch from favorites_consumer via RabbitMQ
+                    $omdb_data = fetchOmdbDataById($movie_id);
 
-                    if ($omdb_response === false || json_last_error() !== JSON_ERROR_NONE) {
-                        $response = ['status' => 'error', 'message' => 'Failed to fetch movie data from OMDb API.'];
-                        error_log("Movie Consumer: Failed to fetch data from OMDb API for IMDb ID: $movie_id");
-                    } elseif (isset($omdb_data['Response']) && $omdb_data['Response'] === 'False') {
-                        $error_message = $omdb_data['Error'] ?? 'Movie not found.';
-                        $response = ['status' => 'error', 'message' => $error_message];
-                        error_log("Movie Consumer: OMDb API Error for IMDb ID $movie_id: $error_message");
+                    if (isset($omdb_data['error'])) {
+                        $response = ['status' => 'error', 'message' => $omdb_data['error']];
+                        error_log("Movie Consumer: " . $omdb_data['error'] . " for IMDb ID: $movie_id");
                     } else {
                         // Insert the movie into the local database
                         $insert_stmt = $mysqli->prepare("
@@ -154,7 +143,7 @@ $movieCallback = function ($msg) use (
                                         'imdbRating' => $imdbRating
                                     ]
                                 ];
-                                error_log("Movie Consumer: Movie details fetched from OMDb API and inserted into database for IMDb ID: $movie_id");
+                                error_log("Movie Consumer: Movie details fetched via favorites_queue and inserted into database for IMDb ID: $movie_id");
                             } else {
                                 $response = ['status' => 'error', 'message' => 'Failed to insert movie into database.'];
                                 error_log("Movie Consumer: Failed to insert movie into database for IMDb ID $movie_id: " . $insert_stmt->error);
@@ -186,9 +175,7 @@ $recommendationCallback = function ($msg) use (
     $DB_USER,
     $DB_PASS,
     $DB_NAME_MOVIE_REVIEWS,
-    $DB_NAME_USER_AUTH,
-    $OMDB_API_KEY,
-    $OMDB_URL
+    $DB_NAME_USER_AUTH
 ) {
     error_log("Recommendation Consumer: Received message: " . $msg->body);
 
@@ -280,18 +267,14 @@ $recommendationCallback = function ($msg) use (
 
                     // Get movies in preferred genres that the user hasn't seen or added to watchlist
                     // Prepare placeholders for genres
-                    $genre_placeholders = implode(',', array_fill(0, count($preferred_genres), '?'));
-                    $sql = "
-                        SELECT DISTINCT m.imdb_id, m.title, m.year, m.genre, m.poster, m.rating 
-                        FROM movies m
-                        WHERE (";
-
                     $genre_conditions = [];
                     foreach ($preferred_genres as $genre) {
                         $genre_conditions[] = "m.genre LIKE CONCAT('%', ?, '%')";
                     }
-                    $sql .= implode(' OR ', $genre_conditions);
-                    $sql .= ")
+                    $sql = "
+                        SELECT DISTINCT m.imdb_id, m.title, m.year, m.genre, m.poster, m.rating 
+                        FROM movies m
+                        WHERE (" . implode(' OR ', $genre_conditions) . ")
                         AND m.imdb_id NOT IN (
                             SELECT imdb_id FROM watchlist WHERE user_id = ?
                         )
@@ -305,20 +288,12 @@ $recommendationCallback = function ($msg) use (
                     $stmt = $mysqli_reviews->prepare($sql);
                     if ($stmt) {
                         // Correct the type string to match the number of bind parameters
-                        // 3 's' for genres, 2 'i' for user_id, 2 'i' for offset and limit
-                        $types = str_repeat('s', count($preferred_genres)) . 'iiii'; // e.g., 'sssiiii'
+                        $types = str_repeat('s', count($preferred_genres)) . 'iiii';
                         $offset = ($page - 1) * $movies_per_page;
                         $limit = $movies_per_page;
 
                         // Merge genres and other parameters
                         $bind_params = array_merge($preferred_genres, [$user_id, $user_id, $offset, $limit]);
-
-                        // Verify counts for debugging
-                        $expected_types = strlen($types);
-                        $actual_params = count($bind_params);
-                        if ($expected_types !== $actual_params) {
-                            error_log("Recommendation Consumer: Mismatch in bind_param counts. Types: $expected_types, Params: $actual_params");
-                        }
 
                         // Bind parameters dynamically
                         $stmt->bind_param($types, ...$bind_params);
@@ -342,10 +317,7 @@ $recommendationCallback = function ($msg) use (
                         $count_sql = "
                             SELECT COUNT(DISTINCT m.imdb_id) AS total 
                             FROM movies m
-                            WHERE (";
-
-                        $count_sql .= implode(' OR ', $genre_conditions);
-                        $count_sql .= ")
+                            WHERE (" . implode(' OR ', $genre_conditions) . ")
                             AND m.imdb_id NOT IN (
                                 SELECT imdb_id FROM watchlist WHERE user_id = ?
                             )
@@ -356,15 +328,8 @@ $recommendationCallback = function ($msg) use (
 
                         $count_stmt = $mysqli_reviews->prepare($count_sql);
                         if ($count_stmt) {
-                            $count_types = str_repeat('s', count($preferred_genres)) . 'ii'; // e.g., 'sssii'
+                            $count_types = str_repeat('s', count($preferred_genres)) . 'ii';
                             $count_bind_params = array_merge($preferred_genres, [$user_id, $user_id]);
-
-                            // Verify counts for debugging
-                            $expected_count_types = strlen($count_types);
-                            $actual_count_params = count($count_bind_params);
-                            if ($expected_count_types !== $actual_count_params) {
-                                error_log("Recommendation Consumer: Mismatch in count bind_param counts. Types: $expected_count_types, Params: $actual_count_params");
-                            }
 
                             $count_stmt->bind_param($count_types, ...$count_bind_params);
                             $count_stmt->execute();
@@ -382,93 +347,7 @@ $recommendationCallback = function ($msg) use (
                             error_log("Recommendation Consumer: Failed to prepare count statement: " . $mysqli_reviews->error);
                         }
 
-                        // If not enough movies in the local database, fetch from OMDb API
-                        if (count($movies) < $movies_per_page) {
-                            $remaining = $movies_per_page - count($movies);
-                            error_log("Recommendation Consumer: Not enough movies in database, fetching $remaining more from OMDb API.");
-
-                            foreach ($preferred_genres as $genre) {
-                                // OMDb API does not support genre-based search directly.
-                                // We'll perform a general search and filter by genre.
-
-                                // Example: Search for popular movies by genre keyword
-                                $omdb_search_url = $OMDB_URL . '?apikey=' . $OMDB_API_KEY . '&type=movie&s=' . urlencode($genre) . '&page=1';
-                                $omdb_search_response = file_get_contents($omdb_search_url);
-                                $omdb_search_data = json_decode($omdb_search_response, true);
-
-                                if (isset($omdb_search_data['Search'])) {
-                                    foreach ($omdb_search_data['Search'] as $movie) {
-                                        $imdb_id = $movie['imdbID'];
-
-                                        // Fetch detailed movie data
-                                        $omdb_details_url = $OMDB_URL . '?apikey=' . $OMDB_API_KEY . '&i=' . urlencode($imdb_id);
-                                        $omdb_details_response = file_get_contents($omdb_details_url);
-                                        $omdb_details = json_decode($omdb_details_response, true);
-
-                                        if (isset($omdb_details['Genre'])) {
-                                            $movie_genres = explode(', ', $omdb_details['Genre']);
-                                            // Check if any of the movie's genres match the preferred genres
-                                            $genre_match = false;
-                                            foreach ($preferred_genres as $preferred_genre) {
-                                                if (in_array($preferred_genre, $movie_genres)) {
-                                                    $genre_match = true;
-                                                    break;
-                                                }
-                                            }
-
-                                            if ($genre_match) {
-                                                // Check if the user hasn't already seen or added this movie
-                                                $check_sql = "
-                                                    SELECT 1 FROM watchlist WHERE user_id = ? AND imdb_id = ?
-                                                    UNION
-                                                    SELECT 1 FROM reviews WHERE user_id = ? AND imdb_id = ?
-                                                ";
-                                                $check_stmt = $mysqli_reviews->prepare($check_sql);
-                                                if ($check_stmt) {
-                                                    $check_stmt->bind_param('isis', $user_id, $imdb_id, $user_id, $imdb_id);
-                                                    $check_stmt->execute();
-                                                    $check_stmt->store_result();
-
-                                                    if ($check_stmt->num_rows == 0) {
-                                                        // Add to movies array
-                                                        $movies[] = [
-                                                            'imdbID' => $omdb_details['imdbID'] ?? '',
-                                                            'Title' => $omdb_details['Title'] ?? 'Unknown Title',
-                                                            'Year' => $omdb_details['Year'] ?? 'Unknown Year',
-                                                            'Genre' => $omdb_details['Genre'] ?? 'Unknown Genre',
-                                                            'Poster' => $omdb_details['Poster'] ?? 'default_poster.jpg',
-                                                            'imdbRating' => $omdb_details['imdbRating'] ?? 'N/A'
-                                                        ];
-
-                                                        error_log("Recommendation Consumer: Fetched movie from OMDb: " . $omdb_details['Title']);
-
-                                                        if (count($movies) >= $movies_per_page) {
-                                                            break 2; // Exit both loops
-                                                        }
-                                                    }
-                                                    $check_stmt->close();
-                                                } else {
-                                                    error_log("Recommendation Consumer: Failed to prepare check statement: " . $mysqli_reviews->error);
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    error_log("Recommendation Consumer: No search results from OMDb API for genre: $genre");
-                                }
-
-                                // If we've fetched enough movies, stop
-                                if (count($movies) >= $movies_per_page) {
-                                    break;
-                                }
-                            }
-                        }
-
-                        // Calculate total_pages (if not set by count query)
-                        if (!isset($total_pages)) {
-                            $total_pages = 10; // Default value
-                        }
-
+                        // Since we cannot fetch additional movies from OMDb API, we will proceed with the movies we have
                         $response = [
                             'status' => 'success',
                             'movies' => $movies,
@@ -507,9 +386,7 @@ $reviewCallback = function ($msg) use (
     $DB_USER,
     $DB_PASS,
     $DB_NAME_MOVIE_REVIEWS,
-    $DB_NAME_USER_AUTH,
-    $OMDB_API_KEY,
-    $OMDB_URL
+    $DB_NAME_USER_AUTH
 ) {
     error_log("Review Consumer: Received message: " . $msg->body);
 
@@ -553,7 +430,7 @@ $reviewCallback = function ($msg) use (
                             $stmt->store_result();
 
                             if ($stmt->num_rows == 0) {
-                                if (!addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL)) {
+                                if (!addMovieIfMissing($movie_id, $mysqli_reviews)) {
                                     $response = json_encode(['status' => 'error', 'message' => 'Failed to add movie.']);
                                     error_log("Review Consumer: Failed to add movie with ID: $movie_id");
                                 }
@@ -789,9 +666,7 @@ $watchlistCallback = function ($msg) use (
     $DB_USER,
     $DB_PASS,
     $DB_NAME_MOVIE_REVIEWS,
-    $DB_NAME_USER_AUTH,
-    $OMDB_API_KEY,
-    $OMDB_URL
+    $DB_NAME_USER_AUTH
 ) {
     error_log("Watchlist Consumer: Received message: " . $msg->body);
 
@@ -829,10 +704,16 @@ $watchlistCallback = function ($msg) use (
                     $check_movie_stmt->store_result();
 
                     if ($check_movie_stmt->num_rows === 0) {
-                        // Movie does not exist in the movies table, fetch from OMDb API
-                        $movie_info = fetchOmdbDataById($imdb_id, $OMDB_API_KEY, $OMDB_URL);
+                        // Movie does not exist in the movies table, fetch from favorites_consumer via RabbitMQ
+                        $movie_info = fetchOmdbDataById($imdb_id);
 
-                        if (isset($movie_info['Title'])) {
+                        if (isset($movie_info['error'])) {
+                            // Failed to fetch movie data
+                            $response = ['status' => 'error', 'message' => $movie_info['error']];
+                            $check_movie_stmt->close();
+                            $mysqli->close();
+                            goto send_watchlist_response;
+                        } else {
                             // Prepare movie data
                             $imdbID = $movie_info['imdbID'] ?? '';
                             $title = $movie_info['Title'] ?? '';
@@ -869,12 +750,6 @@ $watchlistCallback = function ($msg) use (
                             }
 
                             $insert_movie_stmt->close();
-                        } else {
-                            // Failed to fetch movie data
-                            $response = ['status' => 'error', 'message' => 'Failed to fetch movie data from OMDb API.'];
-                            $check_movie_stmt->close();
-                            $mysqli->close();
-                            goto send_watchlist_response;
                         }
                     }
                     $check_movie_stmt->close();
@@ -976,21 +851,18 @@ function fetchUserIdByToken($session_token, $mysqli_auth) {
 /**
  * Add Movie If Missing in Database
  */
-function addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL) {
+function addMovieIfMissing($movie_id, $mysqli_reviews) {
     if (!$movie_id) {
         error_log("Review Consumer: Invalid or missing movie ID.");
         return false;
     }
 
-    $omdb_url = $OMDB_URL . '?i=' . urlencode($movie_id) . '&apikey=' . $OMDB_API_KEY;
-    $omdb_response = file_get_contents($omdb_url);
+    $omdb_data = fetchOmdbDataById($movie_id);
 
-    if ($omdb_response === false) {
-        error_log("Review Consumer: Failed to fetch movie details from OMDb API for ID: $movie_id");
+    if (isset($omdb_data['error'])) {
+        error_log("Review Consumer: " . $omdb_data['error'] . " for ID: $movie_id");
         return false;
     }
-
-    $omdb_data = json_decode($omdb_response, true);
 
     if (isset($omdb_data['Title'])) {
         $stmt = $mysqli_reviews->prepare("INSERT INTO movies (imdb_id, title, year, genre, plot, poster) VALUES (?, ?, ?, ?, ?, ?)");
@@ -1016,26 +888,60 @@ function addMovieIfMissing($movie_id, $mysqli_reviews, $OMDB_API_KEY, $OMDB_URL)
             error_log("Review Consumer: SQL preparation error during movie insert: " . $mysqli_reviews->error);
         }
     } else {
-        error_log("Review Consumer: Movie not found on OMDb API for ID: $movie_id");
+        error_log("Review Consumer: Movie not found via favorites_queue for ID: $movie_id");
     }
 
     return false;
 }
 
 /**
- * Fetch OMDb Data by IMDb ID
+ * Fetch OMDb Data by IMDb ID via RabbitMQ
  */
-function fetchOmdbDataById($imdb_id, $OMDB_API_KEY, $OMDB_URL) {
-    $apiUrl = $OMDB_URL . '?i=' . urlencode($imdb_id) . '&apikey=' . $OMDB_API_KEY;
+function fetchOmdbDataById($imdb_id) {
+    global $RABBITMQ_HOST, $RABBITMQ_PORT, $RABBITMQ_USER, $RABBITMQ_PASS;
 
-    $response = file_get_contents($apiUrl);
+    $connection = new AMQPStreamConnection(
+        $RABBITMQ_HOST,
+        $RABBITMQ_PORT,
+        $RABBITMQ_USER,
+        $RABBITMQ_PASS
+    );
 
-    if ($response === false) {
-        error_log("Watchlist Consumer: Failed to fetch movie data from OMDb API for ID: $imdb_id");
-        return ['error' => 'Movie not found or API error'];
+    $channel = $connection->channel();
+
+    list($callback_queue, ,) = $channel->queue_declare("", false, false, true, false);
+
+    $corr_id = uniqid();
+    $response = null;
+
+    $callback = function ($msg) use (&$response, $corr_id) {
+        if ($msg->get('correlation_id') == $corr_id) {
+            $response = json_decode($msg->body, true);
+        }
+    };
+
+    $channel->basic_consume($callback_queue, '', false, true, false, false, $callback);
+
+    $request = ['id' => $imdb_id];
+
+    $msg = new AMQPMessage(
+        json_encode($request),
+        [
+            'correlation_id' => $corr_id,
+            'reply_to' => $callback_queue
+        ]
+    );
+
+    $channel->basic_publish($msg, '', 'favorites_queue');
+
+    while (!$response) {
+        $channel->wait();
     }
 
-    return json_decode($response, true);
+    $channel->close();
+    $connection->close();
+
+    return $response;
 }
 
 // Register consumers for each queue with their respective callbacks

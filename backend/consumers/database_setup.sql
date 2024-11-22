@@ -1,9 +1,21 @@
-CREATE USER 'dbadmin'@'%' IDENTIFIED BY 'dbadmin';
+-- Create the user_auth database if it doesn't exist (reference database)
+CREATE DATABASE IF NOT EXISTS user_auth;
 
+-- Use the user_auth database
+USE user_auth;
 
-GRANT ALL PRIVILEGES ON *.* TO 'dbadmin'@'%' WITH GRANT OPTION;
-
-FLUSH PRIVILEGES;
+-- Table for storing user information
+CREATE TABLE IF NOT EXISTS users (
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    session_token VARCHAR(255),
+    last_activity DATETIME,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
 
 CREATE DATABASE IF NOT EXISTS movie_reviews_db;
 -- Switch to the movie_reviews_db database
@@ -103,23 +115,4 @@ CREATE TABLE IF NOT EXISTS comment_likes_dislikes (
     PRIMARY KEY (id),
     FOREIGN KEY (comment_id) REFERENCES comments(comment_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user_auth.users(id) ON DELETE CASCADE
-);
-
--- Create the user_auth database if it doesn't exist (reference database)
-CREATE DATABASE IF NOT EXISTS user_auth;
-
--- Use the user_auth database
-USE user_auth;
-
--- Table for storing user information
-CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(100) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    session_token VARCHAR(255),
-    last_activity DATETIME,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
 );
