@@ -42,13 +42,13 @@ Personal deliverables:
 
 - [x] Distributed Logging
 
-- [ ] Hot stand-by
+- [x] Hot stand-by
   
 - [x] hashing password
                   
 - [x] SSL
             
-- [ ] Database Replication
+- [x] Database Replication
 
 ##Extra Credit:
 
