@@ -7,9 +7,9 @@
 # Description:
 # This script configures UFW firewall rules based on the machine's role.
 # Roles:
-#   - DATABASE: For Database and RabbitMQ server (IP: 10.108.0.4)
-#   - FRONTEND: For Frontend/Webserver (IP: 10.108.0.2)
-#   - DMZ:      For DMZ server (IP: 10.108.0.3)
+#   - DATABASE: For Database and RabbitMQ server (IP: 10.116.0.3)
+#   - FRONTEND: For Frontend/Webserver (IP: 10.116.0.4)
+#   - DMZ:      For DMZ server (IP: 10.116.0.2)
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -21,9 +21,9 @@ set -e
 usage() {
     echo "Usage: sudo ./firewall_setup.sh [ROLE]"
     echo "Roles:"
-    echo "  DATABASE - for Database and RabbitMQ server (IP: 10.108.0.4)"
-    echo "  FRONTEND - for Frontend/Webserver (IP: 10.108.0.2)"
-    echo "  DMZ      - for DMZ server (IP: 10.108.0.3)"
+    echo "  DATABASE - for Database and RabbitMQ server (IP: 10.116.0.3)"
+    echo "  FRONTEND - for Frontend/Webserver (IP: 10.116.0.4)"
+    echo "  DMZ      - for DMZ server (IP: 10.116.0.2)"
     exit 1
 }
 
@@ -49,10 +49,10 @@ ROLE="$ROLE_INPUT"
 # Variables
 # ===========================
 
-# Define the roles and their corresponding IP addresses in 10.108.0.0/20
-DATABASE_IP="10.108.0.4"
-FRONTEND_IP="10.108.0.2"
-DMZ_IP="10.108.0.3"
+# Define the roles and their corresponding IP addresses in 10.116.0.0/20
+DATABASE_IP="10.116.0.3"
+FRONTEND_IP="10.116.0.4"
+DMZ_IP="10.116.0.2"
 
 # Assign Internal IP based on Role
 case "$ROLE" in
@@ -149,7 +149,6 @@ if [[ "$ROLE" == "DATABASE" ]]; then
     sudo ufw allow from $DMZ_IP to any port 5672 proto tcp
     sudo ufw allow from $DMZ_IP to any port 15672 proto tcp
 fi
-
 
 #============================
 # General Allow Rules

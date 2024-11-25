@@ -6,7 +6,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Dotenv\Dotenv;
-use PhpAmqpLib\Wire\AMQPTable;
 
 // Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
@@ -21,63 +20,85 @@ if ($argc !== 3) {
 $packageName = $argv[1];
 $pathToFiles = rtrim($argv[2], '/');
 
-// Generate timestamp for versioning
-$timestamp = date('YmdHis');
-$version = $timestamp; // Use timestamp as version
-$packageDir = "/tmp/{$packageName}_v{$version}";
-$zipFilePath = "{$packageDir}/package.zip";
+// Generate unique identifier for the package
+$packageUUID = uniqid('pkg_', true);
 
-// Create package directory
-if (!file_exists($packageDir)) {
-    mkdir($packageDir, 0755, true);
+// Generate timestamp for temporary directory (client-side)
+$timestamp = date('YmdHis');
+$tempPackageDir = "/tmp/{$packageName}_temp_{$timestamp}";
+$zipFilePath = "{$tempPackageDir}/package.zip";
+
+// Create temporary package directory
+if (!file_exists($tempPackageDir)) {
+    mkdir($tempPackageDir, 0755, true);
 }
 
 // Determine if the package should include a subdirectory
-$includeSubdirectory = !in_array($packageName, ['database', 'dmz']);
+$includeSubdirectory = !in_array(strtolower($packageName), ['database', 'dmz']);
 
-// Copy files to the package directory
+// Copy files to the temporary package directory
 if ($includeSubdirectory) {
     // For packages like 'frontend', include a subdirectory
-    $destinationDir = "{$packageDir}/{$packageName}";
-    exec("cp -r {$pathToFiles} {$destinationDir}");
+    $destinationDir = "{$tempPackageDir}/{$packageName}";
+    exec("cp -r {$pathToFiles} {$destinationDir}", $output, $return_var);
+    if ($return_var !== 0) {
+        echo "Error: Failed to copy files to {$destinationDir}\n";
+        exit(1);
+    }
 } else {
-    // For 'database' and 'dmz', copy files directly into the package directory
-    exec("cp -r {$pathToFiles}/* {$packageDir}/");
+    // For 'database' and 'dmz', copy files directly into the temporary package directory
+    exec("cp -r {$pathToFiles}/* {$tempPackageDir}/", $output, $return_var);
+    if ($return_var !== 0) {
+        echo "Error: Failed to copy files to {$tempPackageDir}\n";
+        exit(1);
+    }
 }
 
-// Copy setup.sh to package directory
+// Copy setup.sh to temporary package directory
 if (file_exists("{$pathToFiles}/setup.sh")) {
-    exec("cp {$pathToFiles}/setup.sh {$packageDir}/");
+    exec("cp {$pathToFiles}/setup.sh {$tempPackageDir}/", $output, $return_var);
+    if ($return_var !== 0) {
+        echo "Error: Failed to copy setup.sh to {$tempPackageDir}\n";
+        exit(1);
+    }
 } else {
     echo "Error: setup.sh not found in {$pathToFiles}\n";
     exit(1);
 }
 
-// Copy Apache configuration file to package directory (optional)
+// Copy Apache configuration file to temporary package directory (optional)
 if (file_exists("{$pathToFiles}/000-default.conf")) {
-    exec("cp {$pathToFiles}/000-default.conf {$packageDir}/");
-    echo "Included Apache configuration file '000-default.conf' in the package.\n";
+    exec("cp {$pathToFiles}/000-default.conf {$tempPackageDir}/", $output, $return_var);
+    if ($return_var === 0) {
+        echo "Included Apache configuration file '000-default.conf' in the package.\n";
+    } else {
+        echo "Warning: Failed to copy 000-default.conf to {$tempPackageDir}\n";
+    }
 } else {
     echo "Apache configuration file '000-default.conf' not found in {$pathToFiles}. Continuing without it.\n";
 }
 
-// Copy firewall_setup.sh to package directory (if exists)
+// Copy firewall_setup.sh to temporary package directory (if exists)
 if (file_exists("{$pathToFiles}/firewall_setup.sh")) {
-    exec("cp {$pathToFiles}/firewall_setup.sh {$packageDir}/");
-    echo "Included firewall_setup.sh in the package.\n";
+    exec("cp {$pathToFiles}/firewall_setup.sh {$tempPackageDir}/", $output, $return_var);
+    if ($return_var === 0) {
+        echo "Included firewall_setup.sh in the package.\n";
+    } else {
+        echo "Warning: Failed to copy firewall_setup.sh to {$tempPackageDir}\n";
+    }
 }
 
 // Create zip archive
 $zip = new ZipArchive;
 if ($zip->open($zipFilePath, ZipArchive::CREATE) === TRUE) {
     $files = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($packageDir),
+        new RecursiveDirectoryIterator($tempPackageDir),
         RecursiveIteratorIterator::LEAVES_ONLY
     );
     foreach ($files as $file) {
         if (!$file->isDir()) {
             $filePath     = $file->getRealPath();
-            $relativePath = substr($filePath, strlen($packageDir) + 1);
+            $relativePath = substr($filePath, strlen($tempPackageDir) + 1);
             if ($relativePath !== 'package.zip') {
                 $zip->addFile($filePath, $relativePath);
             }
@@ -115,9 +136,9 @@ try {
 $channel->queue_declare('packages_queue', false, true, false, false);
 
 // Create AMQPTable for headers
-$headers = new AMQPTable([
+$headers = new \PhpAmqpLib\Wire\AMQPTable([
     'package_name' => $packageName,
-    'version'      => $version, // Include version in headers
+    'package_uuid' => $packageUUID,
     'content_type' => 'application/zip'
 ]);
 
@@ -130,7 +151,7 @@ $msg = new AMQPMessage($packageData, [
 // Publish the message to the queue
 $channel->basic_publish($msg, '', 'packages_queue');
 
-echo " [x] Sent package '{$packageName}' version '{$version}'\n";
+echo " [x] Sent package '{$packageName}' with UUID '{$packageUUID}' to 'packages_queue'\n";
 
 // Wait for user input to confirm deployment status
 echo "Enter deployment status ('passed' or 'failed'): ";
@@ -147,8 +168,7 @@ $status = strtolower($status);
 $channel->queue_declare('deployment_status_queue', false, true, false, false);
 
 $statusData = [
-    'package_name' => $packageName,
-    'version'      => $version,
+    'package_uuid' => $packageUUID,
     'status'       => $status,
     'timestamp'    => date('Y-m-d H:i:s')
 ];
@@ -159,18 +179,18 @@ $statusMsg = new AMQPMessage(json_encode($statusData), [
 
 $channel->basic_publish($statusMsg, '', 'deployment_status_queue');
 
-echo " [x] Sent deployment status '{$status}' for package '{$packageName}' version '{$version}'\n";
+echo " [x] Sent deployment status '{$status}' for package UUID '{$packageUUID}'\n";
 
-// Check if status is 'failed' and prompt for rollback
+// Clean up temporary package directory
+exec("rm -rf {$tempPackageDir}");
+
+// Handle Rollback if Deployment Failed
 if ($status === 'failed') {
     echo "Would you like to rollback to the last successful version? (yes/no): ";
     $rollback = trim(fgets(STDIN));
     if (strtolower($rollback) === 'yes') {
         // Fetch the last successful package from the deployment server
         echo "Fetching the last successful package...\n";
-
-        // Send a request to the deployment server to get the last successful package
-        // We'll use RabbitMQ to request the package and receive it via a temporary queue
 
         // Declare a temporary queue for the response
         list($callbackQueue, ,) = $channel->queue_declare("", false, false, true, false);
@@ -187,7 +207,7 @@ if ($status === 'failed') {
             'reply_to'       => $callbackQueue
         ]);
 
-        // Publish the request to a specific queue (e.g., 'package_requests_queue')
+        // Publish the request to 'package_requests_queue'
         $channel->queue_declare('package_requests_queue', false, true, false, false);
         $channel->basic_publish($requestMsg, '', 'package_requests_queue');
 
@@ -212,7 +232,7 @@ if ($status === 'failed') {
             $channel->wait();
         }
 
-        // Now, handle the received package
+        // Handle the received package
         $packageData = $response;
 
         if (!$packageData) {
@@ -235,27 +255,34 @@ if ($status === 'failed') {
             $zip->close();
             echo " [x] Package extracted to {$rollbackPackageDir}\n";
 
-            // Replace local files with the ones from the package
-            // WARNING: This will overwrite local changes
-            if ($includeSubdirectory) {
-                // For packages like 'frontend', replace the entire directory
-                $sourceDir = "{$rollbackPackageDir}/{$packageName}";
-                $destDir = $pathToFiles;
-                exec("rm -rf {$destDir}");
-                exec("cp -r {$sourceDir} {$destDir}");
+            // Execute setup script
+            $setupScript = "{$rollbackPackageDir}/setup.sh";
+            if (file_exists($setupScript)) {
+                chmod($setupScript, 0755);
+
+                // Capture output and error messages
+                $output = [];
+                $return_var = 0;
+                exec("bash {$setupScript} 2>&1", $output, $return_var);
+
+                if ($return_var === 0) {
+                    echo " [x] Setup script executed successfully\n";
+                } else {
+                    echo " [!] Setup script execution failed with exit code {$return_var}\n";
+                    echo " [!] Output:\n";
+                    echo implode("\n", $output) . "\n";
+                }
             } else {
-                // For 'database' and 'dmz', copy files directly
-                exec("cp -r {$rollbackPackageDir}/* {$pathToFiles}/");
+                echo " [!] Setup script not found in {$rollbackPackageDir}\n";
             }
-
-            echo " [x] Rolled back to the last successful version.\n";
-
-            // Clean up
-            exec("rm -rf {$rollbackPackageDir}");
         } else {
             echo " [!] Failed to unzip the package.\n";
             exit(1);
         }
+
+        // Clean up
+        unlink($rollbackZipFilePath);
+        exec("rm -rf {$rollbackPackageDir}");
     } else {
         echo "Rollback declined. Exiting.\n";
     }

@@ -22,16 +22,10 @@ sudo apt update && sudo apt upgrade -y
 # Install required software
 sudo apt install -y mysql-server rabbitmq-server php php-cli php-mbstring php-curl php-xml composer unzip ufw
 
-# Create MySQL user 'dbadmin' accessible from any host with password 'dbadmin'
-sudo mysql -u root -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-sudo mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;"
-sudo mysql -u root -e "FLUSH PRIVILEGES;"
-
-echo "MySQL user '$MYSQL_USER' created with all privileges."
 
 # Execute SQL script to create database structure
 if [ -f "$PACKAGE_DIR/database_setup.sql" ]; then
-    sudo mysql -u $MYSQL_USER -p$MYSQL_PASSWORD < "$PACKAGE_DIR/database_setup.sql"
+    sudo mysql -u "$MYSQL_USER" -p"$MYSQL_PASSWORD" < "$PACKAGE_DIR/database_setup.sql"
     echo "MySQL databases and tables created successfully."
 else
     echo "database_setup.sql not found in package. Skipping database setup."
@@ -41,9 +35,9 @@ fi
 if sudo rabbitmqctl list_users | grep -q "^$RABBITMQ_USER\s"; then
     echo "RabbitMQ user '$RABBITMQ_USER' already exists."
 else
-    sudo rabbitmqctl add_user $RABBITMQ_USER $RABBITMQ_PASSWORD
-    sudo rabbitmqctl set_user_tags $RABBITMQ_USER administrator
-    sudo rabbitmqctl set_permissions -p / $RABBITMQ_USER ".*" ".*" ".*"
+    sudo rabbitmqctl add_user "$RABBITMQ_USER" "$RABBITMQ_PASSWORD"
+    sudo rabbitmqctl set_user_tags "$RABBITMQ_USER" administrator
+    sudo rabbitmqctl set_permissions -p / "$RABBITMQ_USER" ".*" ".*" ".*"
     echo "RabbitMQ user '$RABBITMQ_USER' created and configured."
 fi
 

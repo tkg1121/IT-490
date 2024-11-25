@@ -1,5 +1,5 @@
 <?php
-// agent_receiver.php
+// log_agent.php
 
 require_once('../vendor/autoload.php'); // Adjust the path as needed
 use PhpAmqpLib\Connection\AMQPStreamConnection;
