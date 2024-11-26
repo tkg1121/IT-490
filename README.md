@@ -63,6 +63,6 @@ Final personal deliverables:
 
 - [ ] Friend's Page
 - [ ] Push Notifications
-- [ ] Movie Tickets
+- [x] Movie Tickets
 
 
