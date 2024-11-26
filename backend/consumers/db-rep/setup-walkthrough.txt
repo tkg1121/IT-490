@@ -1,0 +1,87 @@
+Open the MySQL configuration file(Master Server 206.189.198.22):
+
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+```
+[mysqld]
+server-id = 1
+log_bin = mysql-bin
+binlog_do_db = user_auth
+binlog_do_db = movie_reviews_db
+binlog_do_db = social_media
+bind-address = 206.189.198.22
+```
+
+sudo systemctl restart mysql
+
+
+Log into MySQL:
+
+mysql -u dbadmin -p
+
+Create the replicator user with appropriate privileges:
+
+DROP USER IF EXISTS 'replicator'@'159.223.115.151';
+CREATE USER 'replicator'@'159.223.115.151' IDENTIFIED BY 'replicator_password';
+GRANT REPLICATION SLAVE ON *.* TO 'replicator'@'159.223.115.151';
+FLUSH PRIVILEGES;
+
+If using MySQL 8.0 or higher, set the authentication plugin:
+
+ALTER USER 'replicator'@'159.223.115.151' IDENTIFIED WITH mysql_native_password BY 'replicator_password';
+FLUSH PRIVILEGES;
+
+FLUSH TABLES WITH READ LOCK;
+
+SHOW MASTER STATUS;
+
+Exit out of mysql, go into terminal
+
+mysqldump -u dbadmin -p --databases user_auth movie_reviews_db social_media --single-transaction --master-data=2 > databases.sql
+
+
+Go back into mysql
+
+UNLOCK TABLES;
+EXIT;
+
+Configure the Slave Server (159.223.115.151)
+
+scp -i .\id_ed25519 stanley@206.189.198.22:/home/stanley/consumer/databases.sql .
+
+ scp -i .\.ssh\id_ed25519 .\databases.sql stanley@159.223.115.151:/home/stanley
+
+Repeat similar steps above
+
+
+ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+```
+[mysqld]
+server-id = 2
+relay_log = relay-log-bin
+log_bin = mysql-bin
+bind-address = 159.223.115.151
+```
+sudo systemctl restart mysql
+
+mysql -u dbadmin -p < /home/stanley/databases.sql
+
+mysql -u dbadmin -p
+
+STOP SLAVE;
+RESET SLAVE ALL;
+
+```
+CHANGE MASTER TO
+    MASTER_HOST = '206.189.198.22',
+    MASTER_USER = 'replicator',
+    MASTER_PASSWORD = 'replicator_password',
+    MASTER_LOG_FILE = 'mysql-bin.000001',
+    MASTER_LOG_POS = ###;  -- Replace ### with the actual position
+```
+
+START SLAVE;
+SHOW SLAVE STATUS\G
+

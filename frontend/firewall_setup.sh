@@ -169,6 +169,8 @@ sudo ufw deny in 443/tcp
 # Deny incoming HTTP and HTTPS for IPv6
 sudo ufw deny in 80/tcp comment 'IPv6 HTTP deny'
 sudo ufw deny in 443/tcp comment 'IPv6 HTTPS deny'
+sudo ufw insert 1 allow from 128.235.0.0/16 to any port 22
+
 
 # ===========================
 # Enable UFW and Display Status
