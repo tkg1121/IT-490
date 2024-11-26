@@ -1,21 +1,16 @@
 <?php
-require_once('/home/stanley/Documents/GitHub/IT-490/backend/consumers/vendor/autoload.php');  // Path to php-amqplib autoload
+// auth_consumer.php
+
+require_once('/home/stanley/Documents/GitHub/IT-490/backend/consumers/vendor/autoload.php'); // Adjust the path as necessary
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-// Load environment variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// Load environment variables from .env file located at /home/stanley
+$dotenv = Dotenv\Dotenv::createImmutable('/home/stanley');
 $dotenv->load();
 
-// Function to log messages to the terminal
-function log_message($message) {
-    echo "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL;
-}
-
-log_message("Combined Consumer: Starting combined_consumer.php");
-
-// Pull credentials from .env file using $_ENV
+// Retrieve environment variables
 $RABBITMQ_HOST = $_ENV['RABBITMQ_HOST'];
 $RABBITMQ_PORT = $_ENV['RABBITMQ_PORT'];
 $RABBITMQ_USER = $_ENV['RABBITMQ_USER'];
@@ -23,108 +18,68 @@ $RABBITMQ_PASS = $_ENV['RABBITMQ_PASS'];
 $DB_HOST = $_ENV['DB_HOST'];
 $DB_USER = $_ENV['DB_USER'];
 $DB_PASS = $_ENV['DB_PASS'];
-$DB_NAME = $_ENV['DB_NAME'];
+$DB_NAME_USER_AUTH = $_ENV['DB_NAME_USER_AUTH'];
+$DB_NAME_MOVIE_REVIEWS = $_ENV['DB_NAME_MOVIE_REVIEWS'];
+$DB_NAME_SOCIAL_MEDIA = $_ENV['DB_NAME_SOCIAL_MEDIA'];
 
-// Establish RabbitMQ connection
-$connection = new AMQPStreamConnection(
-    $RABBITMQ_HOST,  // RabbitMQ server IP
-    $RABBITMQ_PORT,  // RabbitMQ port
-    $RABBITMQ_USER,  // RabbitMQ username
-    $RABBITMQ_PASS,  // RabbitMQ password
-    '/',             // Virtual host
-    false,           // Insist
-    'AMQPLAIN',      // Login method
-    null,            // Login response
-    'en_US',         // Locale
-    10.0,            // Connection timeout
-    10.0,            // Read/write timeout
-    null,            // Context (use null for default)
-    false,           // Keepalive
-    60               // Heartbeat interval
-);
+// Set default timezone
+date_default_timezone_set('UTC');
 
-log_message("Combined Consumer: Connected to RabbitMQ");
-
-$channel = $connection->channel();
-
-// Declare the queues
-$channel->queue_declare('signup_queue', false, true, false, false);
-$channel->queue_declare('login_queue', false, true, false, false);
-$channel->queue_declare('profile_queue', false, true, false, false);
+// Initialize $channel as null
+$channel = null;
 
 /**
  * Signup Callback
  */
-$signup_callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
-    log_message("Signup Consumer: Received message: " . $msg->body);
+$signup_callback = function ($msg) use (&$channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH) {
+    error_log("Processing signup message: " . $msg->body);
 
-    // Step 1: Parse the message
     $data = json_decode($msg->body, true);
-    log_message("Signup Consumer: Decoded message data: " . print_r($data, true));
-
-    // Step 2: Check for username, password, and email
     $username = $data['username'] ?? null;
     $password = $data['password'] ?? null;
     $email = $data['email'] ?? null;
 
-    // Debug the parsed values
-    log_message("Signup Consumer: Username: '$username'");
-    log_message("Signup Consumer: Password: '$password'");
-    log_message("Signup Consumer: Email: '$email'");
-
     if (!$username || !$password || !$email) {
-        $response = "Signup failed: Missing username, password, or email.";
-        log_message("Signup Consumer: Missing username, password, or email");
+        $response = json_encode(['status' => 'error', 'message' => 'Missing required fields']);
+        error_log("Signup error: Missing required fields");
     } else {
-        // Step 3: Hash the password and log the hashed value
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        log_message("Signup Consumer: Hashed password: '$hashed_password'");
-
-        // Step 4: Connect to MySQL
-        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-
+        // Connect to user_auth database
+        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
         if ($mysqli->connect_error) {
-            $response = "Signup failed: Database connection error - " . $mysqli->connect_error;
-            log_message("Signup Consumer: Database connection error: " . $mysqli->connect_error);
+            $response = json_encode(['status' => 'error', 'message' => 'Database connection failed: ' . $mysqli->connect_error]);
+            error_log("Signup error: Database connection failed - " . $mysqli->connect_error);
         } else {
-            log_message("Signup Consumer: Database connection successful");
-
-            // Step 5: Check if username or email already exists
-            $stmt = $mysqli->prepare("SELECT id FROM users WHERE username=? OR email=?");
-
+            // Check if username or email already exists
+            $stmt = $mysqli->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
             if (!$stmt) {
-                $response = "Signup failed: SQL preparation error - " . $mysqli->error;
-                log_message("Signup Consumer: SQL preparation error - " . $mysqli->error);
+                $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli->error]);
+                error_log("Signup error: Prepare statement failed - " . $mysqli->error);
             } else {
-                log_message("Signup Consumer: Checking if username or email already exists");
-
                 $stmt->bind_param('ss', $username, $email);
                 $stmt->execute();
                 $stmt->store_result();
-
                 if ($stmt->num_rows > 0) {
-                    $response = "Signup failed: Username or email already exists.";
-                    log_message("Signup Consumer: Username or email already exists");
+                    $response = json_encode(['status' => 'error', 'message' => 'Username or email already exists']);
+                    error_log("Signup error: Username or email already exists");
                 } else {
-                    log_message("Signup Consumer: Username and email are unique, proceeding with signup");
-
-                    // Step 6: Insert the new user into the database
                     $stmt->close();
+                    // Hash the password
+                    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+                    // Insert user into database
                     $stmt = $mysqli->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
-
                     if (!$stmt) {
-                        $response = "Signup failed: SQL preparation error for insertion - " . $mysqli->error;
-                        log_message("Signup Consumer: SQL preparation error for insertion - " . $mysqli->error);
+                        $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli->error]);
+                        error_log("Signup error: Prepare insert statement failed - " . $mysqli->error);
                     } else {
                         $stmt->bind_param('sss', $username, $hashed_password, $email);
-
                         if ($stmt->execute()) {
-                            $response = "Signup successful";
-                            log_message("Signup Consumer: User created successfully: " . $username);
+                            $response = json_encode(['status' => 'success', 'message' => 'User registered successfully']);
+                            error_log("Signup success: User '$username' registered successfully");
                         } else {
-                            $response = "Signup failed: SQL execution error - " . $stmt->error;
-                            log_message("Signup Consumer: SQL execution error - " . $stmt->error);
+                            $response = json_encode(['status' => 'error', 'message' => 'Failed to register user']);
+                            error_log("Signup error: Failed to execute insert statement - " . $stmt->error);
                         }
+                        $stmt->close();
                     }
                 }
                 $stmt->close();
@@ -133,210 +88,495 @@ $signup_callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, 
         }
     }
 
-    // Step 7: Send the response back via RabbitMQ
+    // Send the response back via RabbitMQ
     $reply_msg = new AMQPMessage(
         $response,
         ['correlation_id' => $msg->get('correlation_id')]
     );
 
     $channel->basic_publish($reply_msg, '', $msg->get('reply_to'));
-    log_message("Signup Consumer: Sent response: " . $response);
 
+    // Acknowledge the message
     $channel->basic_ack($msg->delivery_info['delivery_tag']);
 };
 
 /**
  * Login Callback
  */
-$login_callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
-    log_message("Login Consumer: Received message: " . $msg->body);
-    
-    // Step 1: Receive login data
+$login_callback = function ($msg) use (&$channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH) {
+    error_log("Processing login message: " . $msg->body);
+
     $data = json_decode($msg->body, true);
     $username = $data['username'] ?? null;
     $password = $data['password'] ?? null;
 
     if (!$username || !$password) {
-        $response = "Login failed: Missing username or password.";
-        log_message("Login Consumer: Missing username or password");
+        $response = json_encode(['status' => 'error', 'message' => 'Missing username or password']);
+        error_log("Login error: Missing username or password");
     } else {
-        // Step 2: Trim any whitespace from the plain-text password
-        $password = trim($password);
-        log_message("Login Consumer: Attempting login for username: $username");
-
-        // Step 3: Connect to the database
-        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-
+        // Connect to user_auth database
+        $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
         if ($mysqli->connect_error) {
-            $response = "Login failed: Database connection error - " . $mysqli->connect_error;
-            log_message("Login Consumer: Database connection error: " . $mysqli->connect_error);
+            $response = json_encode(['status' => 'error', 'message' => 'Database connection failed: ' . $mysqli->connect_error]);
+            error_log("Login error: Database connection failed - " . $mysqli->connect_error);
         } else {
-            log_message("Login Consumer: Database connection successful");
-
-            // Step 4: Fetch the hashed password from the database
-            $stmt = $mysqli->prepare("SELECT password FROM users WHERE username=?");
-
+            // Fetch user data
+            $stmt = $mysqli->prepare("SELECT id, password, email FROM users WHERE username = ?");
             if (!$stmt) {
-                $response = "Login failed: SQL preparation error - " . $mysqli->error;
-                log_message("Login Consumer: SQL preparation error - " . $mysqli->error);
+                $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli->error]);
+                error_log("Login error: Prepare statement failed - " . $mysqli->error);
             } else {
-                log_message("Login Consumer: Preparing SQL statement to fetch password for user: $username");
-
                 $stmt->bind_param('s', $username);
-                if (!$stmt->execute()) {
-                    $response = "Login failed: SQL execution error - " . $stmt->error;
-                    log_message("Login Consumer: SQL execution error - " . $stmt->error);
-                } else {
-                    log_message("Login Consumer: SQL query executed successfully");
+                $stmt->execute();
+                $stmt->bind_result($user_id, $hashed_password, $email);
+                if ($stmt->fetch()) {
+                    // Verify password
+                    if (password_verify($password, $hashed_password)) {
+                        // Generate session token
+                        $session_token = bin2hex(random_bytes(32));
 
-                    $stmt->bind_result($hash_password);
-                    if ($stmt->fetch()) {
-                        // Log both the plain-text password and the stored hashed password
-                        log_message("Login Consumer: Plain-text entered password: '$password'");
-                        log_message("Login Consumer: Hashed password stored in DB for user $username: $hash_password");
-
-                        // Step 5: Verify the password using password_verify()
-                        if (password_verify($password, $hash_password)) {
-                            log_message("Login Consumer: Password verification successful for user: $username");
-
-                            // Generate session token and update in the database
-                            $session_token = bin2hex(random_bytes(32));
-                            $last_activity = date('Y-m-d H:i:s');
-
-                            // Store the session token and last activity time
-                            $stmt->close();
-                            $stmt = $mysqli->prepare("UPDATE users SET session_token=?, last_activity=? WHERE username=?");
-
-                            if ($stmt) {
-                                $stmt->bind_param('sss', $session_token, $last_activity, $username);
-                                if ($stmt->execute()) {
-                                    $response = json_encode(['status' => 'success', 'session_token' => $session_token]);
-                                    log_message("Login Consumer: Session token updated for user: $username");
-                                } else {
-                                    $response = "Login failed: SQL execution error during session update - " . $stmt->error;
-                                    log_message("Login Consumer: SQL execution error during session update - " . $stmt->error);
-                                }
-                            } else {
-                                $response = "Login failed: SQL preparation error for session update - " . $mysqli->error;
-                                log_message("Login Consumer: SQL preparation error for session update - " . $mysqli->error);
-                            }
+                        // Store session token in the database
+                        $stmt->close();
+                        $stmt = $mysqli->prepare("UPDATE users SET session_token = ? WHERE id = ?");
+                        if (!$stmt) {
+                            $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli->error]);
+                            error_log("Login error: Prepare update statement failed - " . $mysqli->error);
                         } else {
-                            log_message("Login Consumer: Password verification failed for user: $username");
-                            log_message("Login Consumer: Entered password: '$password' | Stored hashed password: $hash_password");
-                            $response = "Login failed: Incorrect password.";
+                            $stmt->bind_param('si', $session_token, $user_id);
+                            if ($stmt->execute()) {
+                                // Respond indicating successful login and provide session token
+                                $response = json_encode(['status' => 'success', 'session_token' => $session_token]);
+                                error_log("Login success: User '$username' logged in successfully");
+                            } else {
+                                $response = json_encode(['status' => 'error', 'message' => 'Failed to set session token']);
+                                error_log("Login error: Failed to execute update statement - " . $stmt->error);
+                            }
+                            $stmt->close();
                         }
                     } else {
-                        log_message("Login Consumer: Username not found in the database.");
-                        $response = "Login failed: Username not found.";
+                        // Invalid password
+                        $response = json_encode(['status' => 'error', 'message' => 'Incorrect password']);
+                        error_log("Login error: Incorrect password for user '$username'");
+                        $stmt->close();
                     }
+                } else {
+                    // Username not found
+                    $response = json_encode(['status' => 'error', 'message' => 'Username not found']);
+                    error_log("Login error: Username '$username' not found");
+                    $stmt->close();
                 }
-                $stmt->close();
             }
             $mysqli->close();
         }
     }
 
-    // Step 7: Send the response back via RabbitMQ
+    // Send the response back via RabbitMQ
     $reply_msg = new AMQPMessage(
         $response,
         ['correlation_id' => $msg->get('correlation_id')]
     );
 
     $channel->basic_publish($reply_msg, '', $msg->get('reply_to'));
-    log_message("Login Consumer: Sent response: " . $response);
 
+    // Acknowledge the message
     $channel->basic_ack($msg->delivery_info['delivery_tag']);
 };
 
 /**
  * Profile Callback
  */
-$profile_callback = function ($msg) use ($channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
-    log_message("Profile Consumer: Received message: " . $msg->body);
+$profile_callback = function ($msg) use (&$channel, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH, $DB_NAME_MOVIE_REVIEWS, $DB_NAME_SOCIAL_MEDIA) {
     $data = json_decode($msg->body, true);
 
-    if ($data['action'] === 'fetch_profile') {
-        $session_token = $data['session_token'] ?? null;
+    if (!isset($data['action'])) {
+        $response = json_encode(['status' => 'error', 'message' => 'No action specified']);
+        error_log("Profile error: No action specified in message");
+    } else {
+        $action = $data['action'];
 
-        if (!$session_token) {
-            $response = json_encode(['status' => 'error', 'message' => 'Missing session token']);
-            log_message("Profile Consumer: Missing session token");
-        } else {
-            // Log session token
-            log_message("Profile Consumer: Session token: " . $session_token);
+        if ($action === 'fetch_profile') {
+            $session_token = $data['session_token'] ?? null;
 
-            // Connect to the database
-            $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-
-            if ($mysqli->connect_error) {
-                $response = json_encode(['status' => 'error', 'message' => 'Database connection failed']);
-                log_message("Profile Consumer: Database connection failed: " . $mysqli->connect_error);
+            if (!$session_token) {
+                $response = json_encode(['status' => 'error', 'message' => 'Missing session token']);
+                error_log("Profile error: Missing session token");
             } else {
-                log_message("Profile Consumer: Database connection successful");
+                // Connect to user_auth database
+                $mysqli_user_auth = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
 
-                // Fetch the profile information based on the session token
-                $stmt = $mysqli->prepare("SELECT username, email FROM users WHERE session_token=?");
-
-                if (!$stmt) {
-                    $response = json_encode(['status' => 'error', 'message' => 'SQL preparation error - ' . $mysqli->error]);
-                    log_message("Profile Consumer: SQL preparation error - " . $mysqli->error);
+                if ($mysqli_user_auth->connect_error) {
+                    $response = json_encode(['status' => 'error', 'message' => 'Database connection failed: ' . $mysqli_user_auth->connect_error]);
+                    error_log("Profile error: Database connection failed - " . $mysqli_user_auth->connect_error);
                 } else {
-                    log_message("Profile Consumer: Preparing SQL statement to fetch profile for session token: $session_token");
-
-                    $stmt->bind_param('s', $session_token);
-                    if (!$stmt->execute()) {
-                        $response = json_encode(['status' => 'error', 'message' => 'SQL execution error - ' . $stmt->error]);
-                        log_message("Profile Consumer: SQL execution error - " . $stmt->error);
+                    // Fetch user ID and username based on session token
+                    $stmt = $mysqli_user_auth->prepare("SELECT id, username FROM users WHERE session_token = ?");
+                    if (!$stmt) {
+                        $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli_user_auth->error]);
+                        error_log("Profile error: Prepare statement failed - " . $mysqli_user_auth->error);
                     } else {
-                        log_message("Profile Consumer: SQL query executed successfully");
-
-                        $stmt->bind_result($username, $email);
+                        $stmt->bind_param('s', $session_token);
+                        $stmt->execute();
+                        $stmt->bind_result($user_id, $username);
                         if ($stmt->fetch()) {
-                            log_message("Profile Consumer: Profile data fetched for user: " . $username);
+                            $stmt->close();
 
-                            $response = json_encode([
-                                'status' => 'success',
-                                'username' => $username,
-                                'email' => $email
-                            ]);
+                            $profile_data = ['status' => 'success', 'username' => $username];
+
+                            // Fetch watchlist from movie_reviews_db
+                            $mysqli_movie_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
+                            if ($mysqli_movie_reviews->connect_error) {
+                                $profile_data['watchlist'] = [];
+                                error_log("Profile warning: movie_reviews_db connection failed - " . $mysqli_movie_reviews->connect_error);
+                            } else {
+                                $stmt_watchlist = $mysqli_movie_reviews->prepare("SELECT imdb_id FROM watchlist WHERE user_id=?");
+                                if ($stmt_watchlist) {
+                                    $stmt_watchlist->bind_param('i', $user_id);
+                                    $stmt_watchlist->execute();
+                                    $stmt_watchlist->bind_result($imdb_id);
+                                    $watchlist = [];
+                                    while ($stmt_watchlist->fetch()) {
+                                        $watchlist[] = $imdb_id;
+                                    }
+                                    $stmt_watchlist->close();
+                                    $profile_data['watchlist'] = $watchlist;
+                                } else {
+                                    $profile_data['watchlist'] = [];
+                                    error_log("Profile warning: Prepare watchlist statement failed - " . $mysqli_movie_reviews->error);
+                                }
+                                $mysqli_movie_reviews->close();
+                            }
+
+                            // Fetch reviews from movie_reviews_db
+                            $mysqli_movie_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
+                            if ($mysqli_movie_reviews->connect_error) {
+                                $profile_data['reviews'] = [];
+                                error_log("Profile warning: movie_reviews_db connection failed - " . $mysqli_movie_reviews->connect_error);
+                            } else {
+                                $stmt_reviews = $mysqli_movie_reviews->prepare("SELECT imdb_id, review_text, rating FROM reviews WHERE user_id=?");
+                                if ($stmt_reviews) {
+                                    $stmt_reviews->bind_param('i', $user_id);
+                                    $stmt_reviews->execute();
+                                    $stmt_reviews->bind_result($imdb_id, $review_text, $rating);
+                                    $reviews = [];
+                                    while ($stmt_reviews->fetch()) {
+                                        $reviews[] = [
+                                            'imdb_id' => $imdb_id,
+                                            'review_text' => $review_text,
+                                            'rating' => $rating
+                                        ];
+                                    }
+                                    $stmt_reviews->close();
+                                    $profile_data['reviews'] = $reviews;
+                                } else {
+                                    $profile_data['reviews'] = [];
+                                    error_log("Profile warning: Prepare reviews statement failed - " . $mysqli_movie_reviews->error);
+                                }
+                                $mysqli_movie_reviews->close();
+                            }
+
+                            // Fetch social posts from social_media database
+                            $mysqli_social_media = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_SOCIAL_MEDIA);
+                            if ($mysqli_social_media->connect_error) {
+                                $profile_data['social_posts'] = [];
+                                error_log("Profile warning: social_media connection failed - " . $mysqli_social_media->connect_error);
+                            } else {
+                                $stmt_posts = $mysqli_social_media->prepare("SELECT post_text, created_at FROM posts WHERE user_id=?");
+                                if ($stmt_posts) {
+                                    $stmt_posts->bind_param('i', $user_id);
+                                    $stmt_posts->execute();
+                                    $stmt_posts->bind_result($post_text, $created_at);
+                                    $social_posts = [];
+                                    while ($stmt_posts->fetch()) {
+                                        $social_posts[] = [
+                                            'post_text' => $post_text,
+                                            'created_at' => $created_at
+                                        ];
+                                    }
+                                    $stmt_posts->close();
+                                    $profile_data['social_posts'] = $social_posts;
+                                } else {
+                                    $profile_data['social_posts'] = [];
+                                    error_log("Profile warning: Prepare social_posts statement failed - " . $mysqli_social_media->error);
+                                }
+                                $mysqli_social_media->close();
+                            }
+
+                            $response = json_encode($profile_data);
+                            error_log("Profile success: Fetched profile for '$username'");
                         } else {
-                            log_message("Profile Consumer: Invalid session token");
                             $response = json_encode(['status' => 'error', 'message' => 'Invalid session token']);
+                            error_log("Profile error: Invalid session token '$session_token'");
+                            $stmt->close();
                         }
                     }
-                    $stmt->close();
+                    $mysqli_user_auth->close();
                 }
-                $mysqli->close();
             }
+
+            // Send the response back via RabbitMQ
+            $reply_msg = new AMQPMessage(
+                $response,
+                ['correlation_id' => $msg->get('correlation_id')]
+            );
+
+            $channel->basic_publish($reply_msg, '', $msg->get('reply_to'));
+
+            // Acknowledge the message
+            $channel->basic_ack($msg->delivery_info['delivery_tag']);
+
+        } elseif ($action === 'fetch_friend_profile') {
+            $session_token = $data['session_token'] ?? null;
+            $friend_username = $data['friend_username'] ?? null;
+
+            error_log("Received fetch_friend_profile action with session_token: $session_token, friend_username: $friend_username");
+
+            if (!$session_token || !$friend_username) {
+                $response = json_encode(['status' => 'error', 'message' => 'Missing session token or friend username']);
+                error_log("Profile error: Missing session token or friend username");
+            } else {
+                // Connect to user_auth database
+                $mysqli_user_auth = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_USER_AUTH);
+
+                if ($mysqli_user_auth->connect_error) {
+                    $response = json_encode(['status' => 'error', 'message' => 'Database connection failed: ' . $mysqli_user_auth->connect_error]);
+                    error_log("Profile error: Database connection failed - " . $mysqli_user_auth->connect_error);
+                } else {
+                    // Fetch user ID based on session token
+                    $stmt = $mysqli_user_auth->prepare("SELECT id FROM users WHERE session_token = ?");
+                    if (!$stmt) {
+                        $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli_user_auth->error]);
+                        error_log("Profile error: Prepare statement failed - " . $mysqli_user_auth->error);
+                    } else {
+                        $stmt->bind_param('s', $session_token);
+                        $stmt->execute();
+                        $stmt->bind_result($user_id);
+                        if ($stmt->fetch()) {
+                            $stmt->close();
+
+                            // Fetch friend ID
+                            $stmt = $mysqli_user_auth->prepare("SELECT id FROM users WHERE username = ?");
+                            if (!$stmt) {
+                                $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli_user_auth->error]);
+                                error_log("Profile error: Prepare friend ID statement failed - " . $mysqli_user_auth->error);
+                            } else {
+                                $stmt->bind_param('s', $friend_username);
+                                $stmt->execute();
+                                $stmt->bind_result($friend_id);
+                                if ($stmt->fetch()) {
+                                    $stmt->close();
+
+                                    // Check if they are friends
+                                    $stmt = $mysqli_user_auth->prepare("
+                                        SELECT id FROM friends WHERE
+                                        ((user_id=? AND friend_id=?) OR (user_id=? AND friend_id=?))
+                                        AND status='accepted'
+                                    ");
+                                    if (!$stmt) {
+                                        $response = json_encode(['status' => 'error', 'message' => 'Database error: ' . $mysqli_user_auth->error]);
+                                        error_log("Profile error: Prepare friends check statement failed - " . $mysqli_user_auth->error);
+                                    } else {
+                                        $stmt->bind_param('iiii', $user_id, $friend_id, $friend_id, $user_id);
+                                        $stmt->execute();
+                                        $stmt->store_result();
+                                        if ($stmt->num_rows > 0) {
+                                            $stmt->close();
+
+                                            $profile_data = ['status' => 'success', 'username' => $friend_username];
+
+                                            // Fetch friend's watchlist from movie_reviews_db
+                                            $mysqli_movie_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
+                                            if ($mysqli_movie_reviews->connect_error) {
+                                                $profile_data['watchlist'] = [];
+                                                error_log("Profile warning: movie_reviews_db connection failed - " . $mysqli_movie_reviews->connect_error);
+                                            } else {
+                                                $stmt_watchlist = $mysqli_movie_reviews->prepare("SELECT imdb_id FROM watchlist WHERE user_id=?");
+                                                if ($stmt_watchlist) {
+                                                    $stmt_watchlist->bind_param('i', $friend_id);
+                                                    $stmt_watchlist->execute();
+                                                    $stmt_watchlist->bind_result($imdb_id);
+                                                    $watchlist = [];
+                                                    while ($stmt_watchlist->fetch()) {
+                                                        $watchlist[] = $imdb_id;
+                                                    }
+                                                    $stmt_watchlist->close();
+                                                    $profile_data['watchlist'] = $watchlist;
+                                                } else {
+                                                    $profile_data['watchlist'] = [];
+                                                    error_log("Profile warning: Prepare watchlist statement failed - " . $mysqli_movie_reviews->error);
+                                                }
+                                                $mysqli_movie_reviews->close();
+                                            }
+
+                                            // Fetch friend's reviews from movie_reviews_db
+                                            $mysqli_movie_reviews = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_MOVIE_REVIEWS);
+                                            if ($mysqli_movie_reviews->connect_error) {
+                                                $profile_data['reviews'] = [];
+                                                error_log("Profile warning: movie_reviews_db connection failed - " . $mysqli_movie_reviews->connect_error);
+                                            } else {
+                                                $stmt_reviews = $mysqli_movie_reviews->prepare("SELECT imdb_id, review_text, rating FROM reviews WHERE user_id=?");
+                                                if ($stmt_reviews) {
+                                                    $stmt_reviews->bind_param('i', $friend_id);
+                                                    $stmt_reviews->execute();
+                                                    $stmt_reviews->bind_result($imdb_id, $review_text, $rating);
+                                                    $reviews = [];
+                                                    while ($stmt_reviews->fetch()) {
+                                                        $reviews[] = [
+                                                            'imdb_id' => $imdb_id,
+                                                            'review_text' => $review_text,
+                                                            'rating' => $rating
+                                                        ];
+                                                    }
+                                                    $stmt_reviews->close();
+                                                    $profile_data['reviews'] = $reviews;
+                                                } else {
+                                                    $profile_data['reviews'] = [];
+                                                    error_log("Profile warning: Prepare reviews statement failed - " . $mysqli_movie_reviews->error);
+                                                }
+                                                $mysqli_movie_reviews->close();
+                                            }
+
+                                            // Fetch friend's social posts from social_media database
+                                            $mysqli_social_media = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME_SOCIAL_MEDIA);
+                                            if ($mysqli_social_media->connect_error) {
+                                                $profile_data['social_posts'] = [];
+                                                error_log("Profile warning: social_media connection failed - " . $mysqli_social_media->connect_error);
+                                            } else {
+                                                $stmt_posts = $mysqli_social_media->prepare("SELECT post_text, created_at FROM posts WHERE user_id=?");
+                                                if ($stmt_posts) {
+                                                    $stmt_posts->bind_param('i', $friend_id);
+                                                    $stmt_posts->execute();
+                                                    $stmt_posts->bind_result($post_text, $created_at);
+                                                    $social_posts = [];
+                                                    while ($stmt_posts->fetch()) {
+                                                        $social_posts[] = [
+                                                            'post_text' => $post_text,
+                                                            'created_at' => $created_at
+                                                        ];
+                                                    }
+                                                    $stmt_posts->close();
+                                                    $profile_data['social_posts'] = $social_posts;
+                                                } else {
+                                                    $profile_data['social_posts'] = [];
+                                                    error_log("Profile warning: Prepare social_posts statement failed - " . $mysqli_social_media->error);
+                                                }
+                                                $mysqli_social_media->close();
+                                            }
+
+                                            $response = json_encode($profile_data);
+                                            error_log("Profile success: Fetched friend profile for '$friend_username'");
+
+                                        } else {
+                                            $stmt->close();
+                                            $response = json_encode(['status' => 'error', 'message' => 'You are not friends with this user']);
+                                            error_log("Profile error: User '$user_id' is not friends with '$friend_id'");
+                                        }
+                                    }
+                                } else {
+                                    $stmt->close();
+                                    $response = json_encode(['status' => 'error', 'message' => 'Friend username not found']);
+                                    error_log("Profile error: Friend username '$friend_username' not found");
+                                }
+                            }
+                        } else {
+                            $stmt->close();
+                            $response = json_encode(['status' => 'error', 'message' => 'Invalid session token']);
+                            error_log("Profile error: Invalid session token '$session_token'");
+                        }
+                    }
+                    $mysqli_user_auth->close();
+                }
+            }
+
+            // Send the response back via RabbitMQ
+            $reply_msg = new AMQPMessage(
+                $response,
+                ['correlation_id' => $msg->get('correlation_id')]
+            );
+
+            $channel->basic_publish($reply_msg, '', $msg->get('reply_to'));
+
+            // Acknowledge the message
+            $channel->basic_ack($msg->delivery_info['delivery_tag']);
+
+        } else {
+            $response = json_encode(['status' => 'error', 'message' => 'Unknown action']);
+            error_log("Profile error: Unknown action '$action'");
+
+            // Send the response back via RabbitMQ
+            $reply_msg = new AMQPMessage(
+                $response,
+                ['correlation_id' => $msg->get('correlation_id')]
+            );
+
+            $channel->basic_publish($reply_msg, '', $msg->get('reply_to'));
+
+            // Acknowledge the message
+            $channel->basic_ack($msg->delivery_info['delivery_tag']);
         }
-
-        // Send the response back via RabbitMQ
-        $reply_msg = new AMQPMessage(
-            $response,
-            ['correlation_id' => $msg->get('correlation_id')]
-        );
-
-        $channel->basic_publish($reply_msg, '', $msg->get('reply_to'));
-        log_message("Profile Consumer: Sent response: " . $response);
     }
-
-    // Acknowledge the message (mark it as processed)
-    $channel->basic_ack($msg->delivery_info['delivery_tag']);
 };
 
-// Assign consumers to their respective queues
-$channel->basic_consume('signup_queue', '', false, false, false, false, $signup_callback);
-$channel->basic_consume('login_queue', '', false, false, false, false, $login_callback);
-$channel->basic_consume('profile_queue', '', false, false, false, false, $profile_callback);
+/**
+ * Function to send notification via RabbitMQ
+ */
+function sendNotification($notificationData) {
+    global $RABBITMQ_HOST, $RABBITMQ_PORT, $RABBITMQ_USER, $RABBITMQ_PASS;
 
-log_message("Combined Consumer: Waiting for messages. To exit press CTRL+C");
+    try {
+        $connection = new AMQPStreamConnection(
+            $RABBITMQ_HOST,
+            $RABBITMQ_PORT,
+            $RABBITMQ_USER,
+            $RABBITMQ_PASS
+        );
+        $channel = $connection->channel();
+        $channel->queue_declare('notify_queue', false, true, false, false);
 
-// Keep the consumer running
-while ($channel->is_consuming()) {
-    $channel->wait();
+        $msg = new AMQPMessage(json_encode($notificationData), ['delivery_mode' => 2]);
+        $channel->basic_publish($msg, '', 'notify_queue');
+
+        $channel->close();
+        $connection->close();
+
+        error_log("Notification sent to '{$notificationData['email']}' with subject '{$notificationData['subject']}'");
+    } catch (Exception $e) {
+        error_log("Failed to send notification: " . $e->getMessage());
+    }
 }
 
-// Close the channel and connection when done (this part is typically not reached unless the loop is broken)
-$channel->close();
-$connection->close();
-log_message("Combined Consumer: Closed RabbitMQ connection");
+try {
+    // Establish RabbitMQ connection
+    $connection = new AMQPStreamConnection(
+        $RABBITMQ_HOST,
+        $RABBITMQ_PORT,
+        $RABBITMQ_USER,
+        $RABBITMQ_PASS
+    );
+
+    $channel = $connection->channel();
+
+    // Declare the queues
+    $channel->queue_declare('signup_queue', false, true, false, false);
+    $channel->queue_declare('login_queue', false, true, false, false);
+    $channel->queue_declare('profile_queue', false, true, false, false);
+
+    // Register consumers for each queue with their respective callbacks
+    $channel->basic_consume('signup_queue', '', false, false, false, false, $signup_callback);
+    $channel->basic_consume('login_queue', '', false, false, false, false, $login_callback);
+    $channel->basic_consume('profile_queue', '', false, false, false, false, $profile_callback);
+
+    error_log("auth_consumer.php is now waiting for messages...");
+
+    // Keep the consumer running
+    while ($channel->is_consuming()) {
+        $channel->wait();
+    }
+
+    // Close the channel and connection when done
+    $channel->close();
+    $connection->close();
+
+} catch (Exception $e) {
+    error_log("Exception in auth_consumer.php: " . $e->getMessage());
+}
+?>
