@@ -1,0 +1,15 @@
+[Unit]
+Description=Alisa Notify Consumer Service
+After=network.target
+
+[Service]
+Type=simple
+User=alisa-maloku
+Group=alisa-maloku
+WorkingDirectory=/home/alisa-maloku/Documents/GitHub/IT-490/dmz
+ExecStart=/usr/bin/php notify_consumer.php
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
