@@ -53,7 +53,7 @@ Personal deliverables:
 ##Extra Credit:
 
       
-- [ ] 2fa with no third party app
+- [x] 2fa with no third party app
       
 - [ ] Nagios (monitoring tool)
       
@@ -61,8 +61,8 @@ Personal deliverables:
 
 Final personal deliverables:
 
-- [ ] Friend's Page
-- [ ] Push Notifications
+- [x] Friend's Page
+- [x] Push Notifications
 - [x] Movie Tickets
 
 
