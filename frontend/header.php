@@ -244,6 +244,7 @@ if (isset($_SESSION['last_activity'])) {
                 <li><a href="trivia.php">Trivia</a></li>
                 <li><a href="social_media.php">Social Media</a></li>
                 <li><a href="where_to_watch.php">Where to Watch</a></li>
+                <li><a href="buy_tickets.php">Where to Watch</a></li>
                 <li><a href="recommendation.php">Recommendations</a></li> <!-- Added Recommendations Tab -->
                 <li><a href="profile.php">Profile</a></li>
                 <?php if ($username_display !== 'Guest'): ?>
