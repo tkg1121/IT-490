@@ -5,50 +5,12 @@
 # ===========================
 
 # Description:
-# This script configures UFW firewall rules based on the machine's role and environment.
-# It detects the IP address from the eth1 interface and applies the rules accordingly.
-# Environments:
-#   - PRODUCTION
-#   - QA
-#   - STANDBY
-# Roles:
-#   - DATABASE
-#   - FRONTEND
-#   - DMZ
+# This script configures UFW firewall rules automatically based on the machine's IP address.
+# It detects the IP address from the eth1 interface, determines the environment and role,
+# and applies the appropriate firewall rules.
 
 # Exit immediately if a command exits with a non-zero status
 set -e
-
-# ===========================
-# Usage Information
-# ===========================
-
-usage() {
-    echo "Usage: sudo ./firewall_setup.sh [ENVIRONMENT]"
-    echo "Environments:"
-    echo "  PRODUCTION"
-    echo "  QA"
-    echo "  STANDBY"
-    exit 1
-}
-
-# ===========================
-# Check for Environment Argument
-# ===========================
-
-if [ "$#" -ne 1 ]; then
-    echo "Error: Missing environment argument."
-    usage
-fi
-
-ENVIRONMENT_INPUT=$(echo "$1" | tr '[:lower:]' '[:upper:]')
-
-if [[ "$ENVIRONMENT_INPUT" != "PRODUCTION" && "$ENVIRONMENT_INPUT" != "QA" && "$ENVIRONMENT_INPUT" != "STANDBY" ]]; then
-    echo "Error: Invalid environment specified."
-    usage
-fi
-
-ENVIRONMENT="$ENVIRONMENT_INPUT"
 
 # ===========================
 # Get IP Address of eth1
@@ -64,43 +26,51 @@ fi
 echo "Detected IP address: $IP_ADDRESS"
 
 # ===========================
-# Determine Role Based on IP Address and Environment
+# Determine Environment and Role Based on IP Address
 # ===========================
 
 # Define IP mappings for each environment
-declare -A PRODUCTION_IPS=(
-    ["10.116.0.2"]="DATABASE"
-    ["10.116.0.3"]="DMZ"
-    ["10.116.0.4"]="FRONTEND"
+declare -A IP_ENV_ROLE_MAP=(
+    ["10.116.0.2"]="PRODUCTION:DATABASE"
+    ["10.116.0.3"]="PRODUCTION:DMZ"
+    ["10.116.0.4"]="PRODUCTION:FRONTEND"
+    ["10.108.0.2"]="QA:FRONTEND"
+    ["10.108.0.3"]="QA:DMZ"
+    ["10.108.0.4"]="QA:DATABASE"
+    ["10.116.0.2"]="STANDBY:DMZ"
+    ["10.116.0.3"]="STANDBY:DATABASE"
+    ["10.116.0.4"]="STANDBY:FRONTEND"
 )
 
-declare -A QA_IPS=(
-    ["10.108.0.2"]="FRONTEND"
-    ["10.108.0.3"]="DMZ"
-    ["10.108.0.4"]="DATABASE"
-)
+ENV_ROLE="${IP_ENV_ROLE_MAP[$IP_ADDRESS]}"
 
-declare -A STANDBY_IPS=(
-    ["10.116.0.2"]="DMZ"
-    ["10.116.0.3"]="DATABASE"
-    ["10.116.0.4"]="FRONTEND"
-)
+if [ -z "$ENV_ROLE" ]; then
+    echo "Error: IP address $IP_ADDRESS does not match any known environment and role."
+    exit 1
+fi
+
+ENVIRONMENT=$(echo "$ENV_ROLE" | cut -d: -f1)
+ROLE=$(echo "$ENV_ROLE" | cut -d: -f2)
+
+echo "Detected Environment: $ENVIRONMENT"
+echo "Detected Role: $ROLE"
+
+# ===========================
+# Set IP Addresses Based on Environment
+# ===========================
 
 case "$ENVIRONMENT" in
     "PRODUCTION")
-        ROLE="${PRODUCTION_IPS[$IP_ADDRESS]}"
         DATABASE_IP="10.116.0.2"
         FRONTEND_IP="10.116.0.4"
         DMZ_IP="10.116.0.3"
         ;;
     "QA")
-        ROLE="${QA_IPS[$IP_ADDRESS]}"
         DATABASE_IP="10.108.0.4"
         FRONTEND_IP="10.108.0.2"
         DMZ_IP="10.108.0.3"
         ;;
     "STANDBY")
-        ROLE="${STANDBY_IPS[$IP_ADDRESS]}"
         DATABASE_IP="10.116.0.3"
         FRONTEND_IP="10.116.0.4"
         DMZ_IP="10.116.0.2"
@@ -111,12 +81,10 @@ case "$ENVIRONMENT" in
         ;;
 esac
 
-if [ -z "$ROLE" ]; then
-    echo "Error: IP address $IP_ADDRESS does not match any known role in environment $ENVIRONMENT."
-    exit 1
-fi
-
-echo "Detected Role: $ROLE"
+echo "Configured IPs:"
+echo "  DATABASE_IP: $DATABASE_IP"
+echo "  FRONTEND_IP: $FRONTEND_IP"
+echo "  DMZ_IP: $DMZ_IP"
 
 echo "Configuring firewall for the $ROLE role in $ENVIRONMENT environment (IP: $IP_ADDRESS)."
 
@@ -155,7 +123,7 @@ case "$ROLE" in
         sudo ufw allow from 68.197.69.8 to any port 80,443 proto tcp
         sudo ufw allow from 24.185.203.96 to any port 80 proto tcp
 
-        # Allow connections to Database server on MySQL port from specific servers
+        # Allow connections to Database server on MySQL port
         sudo ufw allow out to $DATABASE_IP port 3306 proto tcp
         sudo ufw allow from $DATABASE_IP to any port 3306 proto tcp
 
