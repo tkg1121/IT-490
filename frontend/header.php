@@ -246,6 +246,7 @@ if (isset($_SESSION['last_activity'])) {
                 <li><a href="buy_tickets.php">Buy a Movie Ticket</a></li>
                 <li><a href="recommendation.php">Recommendations</a></li> <!-- Added Recommendations Tab -->
                 <li><a href="profile.php">Profile</a></li>
+                <li><a href="friends.php">Friends List</a></li>
                 <?php if ($username_display !== 'Guest'): ?>
                     <li><a href="logout.php">Logout</a></li>
                 <?php else: ?>
