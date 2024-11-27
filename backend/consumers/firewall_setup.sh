@@ -112,6 +112,29 @@ sudo ufw allow from 128.235.0.0/16 to any port 22 proto tcp
 sudo ufw allow from 128.235.0.0/16 to any port 80 proto tcp
 sudo ufw allow from 128.235.0.0/16 to any port 443 proto tcp
 
+#============================
+#Common internal Allows
+#============================
+#internal rules
+
+sudo ufw allow out to 10.116.0.2
+sudo ufw allow from 10.116.0.2
+sudo ufw allow from 10.116.0.3
+sudo ufw allow out to 10.116.0.3
+sudo ufw allow out to 10.116.0.4
+sudo ufw allow from 10.116.0.4
+
+#qa
+
+sudo ufw allow from 10.108.0.4
+sudo ufw allow out to 10.108.0.4
+
+sudo ufw allow from 10.108.0.2
+sudo ufw allow to 10.108.0.2
+
+sudo ufw allow from 10.108.0.3
+sudo ufw allow to 10.108.0.3
+
 # ===========================
 # Role-Specific Allow Rules
 # ===========================
