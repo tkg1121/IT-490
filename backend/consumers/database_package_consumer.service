@@ -1,0 +1,13 @@
+[Unit]
+Description=Database Package Consumer Service
+After=network.target
+
+[Service]
+User=stanley
+Group=stanley
+WorkingDirectory=/home/stanley/consumer
+ExecStart=/usr/bin/php /home/stanley/consumer/database_package_consumer.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

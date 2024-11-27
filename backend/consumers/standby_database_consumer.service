@@ -1,0 +1,13 @@
+[Unit]
+Description=Standby Database Consumer Service
+After=network.target
+
+[Service]
+User=stanley
+Group=stanley
+WorkingDirectory=/home/stanley/consumer
+ExecStart=/usr/bin/php /home/stanley/consumer/standby_database_consumer.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

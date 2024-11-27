@@ -7,9 +7,9 @@
 # Description:
 # This script configures UFW firewall rules based on the machine's role.
 # Roles:
-#   - DATABASE: For Database and RabbitMQ server (IP: 10.108.0.4)
-#   - FRONTEND: For Frontend/Webserver (IP: 10.108.0.2)
-#   - DMZ:      For DMZ server (IP: 10.108.0.3)
+#   - DATABASE: For Database and RabbitMQ server (IP: 10.116.0.4)
+#   - FRONTEND: For Frontend/Webserver (IP: 10.116.0.2)
+#   - DMZ:      For DMZ server (IP: 10.116.0.3)
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -21,9 +21,9 @@ set -e
 usage() {
     echo "Usage: sudo ./firewall_setup.sh [ROLE]"
     echo "Roles:"
-    echo "  DATABASE - for Database and RabbitMQ server (IP: 10.108.0.4)"
-    echo "  FRONTEND - for Frontend/Webserver (IP: 10.108.0.2)"
-    echo "  DMZ      - for DMZ server (IP: 10.108.0.3)"
+    echo "  DATABASE - for Database and RabbitMQ server (IP: 10.116.0.4)"
+    echo "  FRONTEND - for Frontend/Webserver (IP: 10.116.0.2)"
+    echo "  DMZ      - for DMZ server (IP: 10.116.0.3)"
     exit 1
 }
 
@@ -49,10 +49,14 @@ ROLE="$ROLE_INPUT"
 # Variables
 # ===========================
 
-# Define the roles and their corresponding IP addresses in 10.108.0.0/20
-DATABASE_IP="10.108.0.4"
-FRONTEND_IP="10.108.0.2"
-DMZ_IP="10.108.0.3"
+# Define the roles and their corresponding IP addresses
+DATABASE_IP="10.116.0.4"
+FRONTEND_IP="10.116.0.2"
+DMZ_IP="10.116.0.3"
+
+# Define additional IP addresses
+REMOTE_SERVER1_IP="159.223.115.151"
+REMOTE_SERVER2_IP="206.189.198.22"
 
 # Assign Internal IP based on Role
 case "$ROLE" in
@@ -91,6 +95,11 @@ sudo ufw default allow outgoing
 # Allow SSH from specific IPs
 sudo ufw allow from 68.197.69.8 to any port 22 proto tcp
 sudo ufw allow from 128.235.13.72 to any port 22 proto tcp
+sudo ufw allow from 128.235.0.0/16 to any port 22 proto tcp
+
+# Allow HTTP (80/tcp) and HTTPS (443/tcp) from specific network
+sudo ufw allow from 128.235.0.0/16 to any port 80 proto tcp
+sudo ufw allow from 128.235.0.0/16 to any port 443 proto tcp
 
 # ===========================
 # Role-Specific Allow Rules
@@ -102,8 +111,15 @@ case "$ROLE" in
         sudo ufw allow from 209.120.218.21 to any port 80,443 proto tcp
         sudo ufw allow from 68.197.69.8 to any port 80,443 proto tcp
         sudo ufw allow from 24.185.203.96 to any port 80 proto tcp
-        ;;
 
+        # Allow connections to Database server on MySQL port from specific servers
+        sudo ufw allow out to $DATABASE_IP port 3306 proto tcp
+        sudo ufw allow from $DATABASE_IP to any port 3306 proto tcp
+
+        # Allow RabbitMQ connections to DATABASE server
+        sudo ufw allow out to $DATABASE_IP port 5672 proto tcp
+        sudo ufw allow out to $DATABASE_IP port 15672 proto tcp
+        ;;
     "DATABASE")
         # Allow RabbitMQ ports from Frontend and DMZ
         sudo ufw allow from $FRONTEND_IP to any port 5672 proto tcp
@@ -111,8 +127,10 @@ case "$ROLE" in
         sudo ufw allow from $DMZ_IP to any port 5672 proto tcp
         sudo ufw allow from $DMZ_IP to any port 15672 proto tcp
 
-        # Allow MySQL from localhost
+        # Allow MySQL from localhost and specific remote servers
         sudo ufw allow from 127.0.0.1 to any port 3306 proto tcp
+        sudo ufw allow from $REMOTE_SERVER1_IP to any port 3306 proto tcp
+        sudo ufw allow from $REMOTE_SERVER2_IP to any port 3306 proto tcp
 
         # Allow outgoing connections to Frontend and DMZ on RabbitMQ ports
         sudo ufw allow out to $FRONTEND_IP port 5672 proto tcp
@@ -120,14 +138,23 @@ case "$ROLE" in
         sudo ufw allow out to $DMZ_IP port 5672 proto tcp
         sudo ufw allow out to $DMZ_IP port 15672 proto tcp
 
-        # Allow outgoing MySQL connections to localhost
+        # Allow outgoing MySQL connections to localhost and remote servers
         sudo ufw allow out to 127.0.0.1 port 3306 proto tcp
-        ;;
+        sudo ufw allow out to $REMOTE_SERVER1_IP port 3306 proto tcp
+        sudo ufw allow out to $REMOTE_SERVER2_IP port 3306 proto tcp
 
+        # Allow RabbitMQ ports from localhost
+        sudo ufw allow from 127.0.0.1 to any port 5672 proto tcp
+        sudo ufw allow from 127.0.0.1 to any port 15672 proto tcp
+
+        # Allow outgoing RabbitMQ connections to localhost
+        sudo ufw allow out to 127.0.0.1 port 5672 proto tcp
+        sudo ufw allow out to 127.0.0.1 port 15672 proto tcp
+        ;;
     "DMZ")
-        # Allow connections to Database on RabbitMQ ports from specific network
-        sudo ufw allow from 192.168.2.0/24 to $DATABASE_IP port 5672 proto tcp
-        sudo ufw allow from 192.168.2.0/24 to $DATABASE_IP port 15672 proto tcp
+        # Allow connections to Database on RabbitMQ ports
+        sudo ufw allow out to $DATABASE_IP port 5672 proto tcp
+        sudo ufw allow out to $DATABASE_IP port 15672 proto tcp
 
         # Allow outgoing HTTP and HTTPS to anywhere
         sudo ufw allow out 80/tcp
@@ -148,15 +175,21 @@ if [[ "$ROLE" == "DATABASE" ]]; then
     sudo ufw allow from $FRONTEND_IP to any port 15672 proto tcp
     sudo ufw allow from $DMZ_IP to any port 5672 proto tcp
     sudo ufw allow from $DMZ_IP to any port 15672 proto tcp
+
+    # Allow MySQL from remote servers
+    sudo ufw allow from $REMOTE_SERVER1_IP to any port 3306 proto tcp
+    sudo ufw allow from $REMOTE_SERVER2_IP to any port 3306 proto tcp
+
+    # Allow RabbitMQ from localhost
+    sudo ufw allow from 127.0.0.1 to any port 5672 proto tcp
+    sudo ufw allow from 127.0.0.1 to any port 15672 proto tcp
 fi
 
-
-#============================
+# ===========================
 # General Allow Rules
-#============================
+# ===========================
 
-sudo ufw allow from 128.235.0.0/16 to any port 443
-sudo ufw allow from 128.235.0.0/16 to any port 80
+sudo ufw insert 1 allow from 68.197.69.8 to any port 22
 
 # ===========================
 # Deny Rules (After Allow Rules)
@@ -169,8 +202,6 @@ sudo ufw deny in 443/tcp
 # Deny incoming HTTP and HTTPS for IPv6
 sudo ufw deny in 80/tcp comment 'IPv6 HTTP deny'
 sudo ufw deny in 443/tcp comment 'IPv6 HTTPS deny'
-sudo ufw insert 1 allow from 128.235.0.0/16 to any port 22
-
 
 # ===========================
 # Enable UFW and Display Status

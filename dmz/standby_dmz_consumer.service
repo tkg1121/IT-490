@@ -1,0 +1,13 @@
+[Unit]
+Description=Standby DMZ Consumer Service
+After=network.target
+
+[Service]
+User=alisa-maloku
+Group=alisa-maloku
+WorkingDirectory=/home/alisa-maloku/consumer
+ExecStart=/usr/bin/php /home/alisa-maloku/consumer/standby_dmz_consumer.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

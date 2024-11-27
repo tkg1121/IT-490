@@ -1,0 +1,13 @@
+[Unit]
+Description=Production Frontend Consumer Service
+After=network.target
+
+[Service]
+User=ashley
+Group=ashley
+WorkingDirectory=/home/ashleys/consumer
+ExecStart=/usr/bin/php /home/ashleys/consumer/production_frontend_consumer.php
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
