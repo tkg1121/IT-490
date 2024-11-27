@@ -1,7 +1,7 @@
 -- Drop existing databases if they exist
+DROP DATABASE IF EXISTS social_media;
 DROP DATABASE IF EXISTS user_auth;
 DROP DATABASE IF EXISTS movie_reviews_db;
-DROP DATABASE IF EXISTS social_media;
 
 -- Create the user_auth database
 CREATE DATABASE IF NOT EXISTS user_auth;
