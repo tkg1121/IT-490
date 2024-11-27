@@ -33,8 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message = "Error decoding JSON response.";
     } elseif (isset($response_data['status'])) {
         if ($response_data['status'] === 'success') {
-            // Should not reach here as 2FA is required
-            header('Location: profile.php');
+            // Set the session token cookie in the browser
+            setcookie('session_token', $response_data['session_token'], time() + (60 * 10), "/");  // 10-minute expiry
+
+            // Redirect to the profile page after successful login
+            header("Location: profile.php");
             exit();
         } elseif ($response_data['status'] === '2fa_required') {
             // Redirect to the 2FA page with username as a GET parameter
@@ -139,3 +142,4 @@ include 'header.php';
     </form>
 </body>
 </html>
+

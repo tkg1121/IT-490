@@ -19,7 +19,7 @@ if (!$username) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $two_factor_code = trim($_POST['two_factor_code'] ?? '');
+    $two_factor_code = $_POST['two_factor_code'] ?? '';
 
     // Prepare the data to be sent to RabbitMQ
     $data = [
@@ -125,3 +125,4 @@ include 'header.php';
     </form>
 </body>
 </html>
+
