@@ -120,4 +120,3 @@ while ($channel->is_consuming()) {
 // Close the channel and connection when done
 $channel->close();
 $connection->close();
-?>
