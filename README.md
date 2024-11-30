@@ -48,7 +48,7 @@ Personal deliverables:
                   
 - [x] SSL
             
-- [x] Database Replication
+- [ ] Database Replication
 
 ##Extra Credit:
 
