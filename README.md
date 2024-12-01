@@ -32,7 +32,7 @@ Personal deliverables:
 
 ##Final deliverables:
 
-- [ ] Responsive website
+- [x] Responsive website
 
 - [x] Clusters
 
@@ -42,13 +42,13 @@ Personal deliverables:
 
 - [x] Distributed Logging
 
-- [x] Hot stand-by
+- [ ] Hot stand-by
   
 - [x] hashing password
                   
 - [x] SSL
             
-- [ ] Database Replication
+- [x] Database Replication
 
 ##Extra Credit:
 
@@ -61,7 +61,7 @@ Personal deliverables:
 
 Final personal deliverables:
 
-- [x] Friend's Page
+- [ ] Friend's Page
 - [x] Push Notifications
 - [x] Movie Tickets
 
