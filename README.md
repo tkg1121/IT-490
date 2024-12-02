@@ -61,7 +61,7 @@ Personal deliverables:
 
 Final personal deliverables:
 
-- [ ] Friend's Page
+- [x] Friend's Page
 - [x] Push Notifications
 - [x] Movie Tickets
 
