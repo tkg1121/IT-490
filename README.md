@@ -55,9 +55,9 @@ Personal deliverables:
       
 - [x] 2fa with no third party app
       
-- [ ] Nagios (monitoring tool)
+- [x] Nagios (monitoring tool)
       
-- [ ] OSSIM (show a before and after reports)
+- [x] OSSIM (show a before and after reports)
 
 Final personal deliverables:
 
