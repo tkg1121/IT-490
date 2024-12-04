@@ -1,0 +1,57 @@
+1- install all dependencies before in order to run Nagios on your machine (including gcc, make, apache2, and php)
+
+2- create a user and add the created user to the group
+
+3- download Nagios core and extract and compile all the files
+
+4- similar to ossim, we also configure the web interface for Nagios (create an admin user)
+
+5- make sure there are no flaws in the configuration or any errors 
+
+6- start Nagios
+
+7- go to the web and access it there by logging in to the admin credentials that you created
+
+8- last but not least, we added monitoring configurations for the hosts and services we needed to monitor. 
+
+9- I had to troubleshoot Apache's configurations since it cause a delay and i figured that i needed to increase the TimeoutStartSec value to be 5 minutes in the systemd service file
+
+10- Now we have our Nagios implementation where we can monitor our system.
+
+
+Make sure to install and configure the NRPE agent for nagios monitoring
+
+
+#!/bin/bash
+
+# Update package list
+sudo apt update
+
+# Install NRPE and Nagios plugins
+sudo apt install -y nagios-nrpe-server nagios-plugins
+
+# Define NRPE configuration file
+NRPE_CONF="/etc/nagios/nrpe.cfg"
+
+# Backup the original NRPE configuration
+if [ ! -f "${NRPE_CONF}.bak" ]; then
+    sudo cp "$NRPE_CONF" "${NRPE_CONF}.bak"
+fi
+
+# Allow connections from the Nagios server
+sudo sed -i "s/^allowed_hosts=.*/allowed_hosts=127.0.0.1,192.81.215.245/" "$NRPE_CONF"
+
+# Restart the NRPE service to apply changes
+sudo systemctl restart nagios-nrpe-server
+
+# Enable NRPE service to start on boot
+sudo systemctl enable nagios-nrpe-server
+
+# Check if UFW (firewall) is active
+if sudo ufw status | grep -qw "active"; then
+    # Allow NRPE port from the Nagios server
+    sudo ufw allow from 192.81.215.245 to any port 5666 proto tcp
+    echo "UFW rule added to allow connections from 192.81.215.245 to port 5666"
+fi
+
+echo "NRPE installation and configuration complete."

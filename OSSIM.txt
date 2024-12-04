@@ -1,0 +1,19 @@
+1- download OSSIM.iso and install on the VM
+
+2- then create a new machine on your virtual box
+
+3- you need to configure your new VM 
+
+4- after configuring the ip address of the OSSIM agent, we add a plugin and then click on "Jailbreak this appliance" in order to access the terminal of this vm. 
+
+5- we can also ssh into it from our windows terminal 
+
+6- then we will connect to the web interface and log in with our credentials
+
+7- then we added our zerotier network for it to scan the vulnerabilities
+
+8- Since we only needed to do this for our production environment, I went on and added each of machine on our production environment to the zerotier network and then authorized it from the OSSIM web interface we had on.
+
+(one problem that was encountered was making ossim scan the zerotier network, it was rather scanning the home network)
+
+9- then we ran a vulnerability scan on our network
