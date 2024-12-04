@@ -1,0 +1,74 @@
+RabbitMQ zerotier cluster
+
+1- created a new zerotier network 
+
+2- added all backend/database machines to the network including:
+
+QA DB machine
+PROD DB machine
+my vm
+DEPLOYMENT 
+DEV machine
+Hotstandby
+
+- created this script in order to automate my process of doing this 
+
+#!/bin/bash
+
+# Check if running as root
+if [ "$EUID" -ne 0 ]; then 
+  echo "Please run as root or use sudo."
+  exit
+fi
+
+# Update the package list
+echo "Updating package list..."
+apt-get update -y
+
+# Install curl if not already installed
+if ! command -v curl &> /dev/null; then
+  echo "curl is not installed. Installing curl..."
+  apt-get install curl -y
+else
+  echo "curl is already installed."
+fi
+
+# Download and install ZeroTier
+echo "Downloading and installing ZeroTier..."
+curl -s https://install.zerotier.com | bash
+
+# Enable and start the ZeroTier service
+echo "Enabling and starting ZeroTier service..."
+systemctl enable zerotier-one
+systemctl start zerotier-one
+
+# Prompt the user to enter the ZeroTier network ID
+read -p "Please enter the ZeroTier Network ID: " NETWORK_ID
+
+# Join the ZeroTier network
+echo "Joining ZeroTier network with ID: $NETWORK_ID..."
+zerotier-cli join $NETWORK_ID
+
+# Check if the service and network join were successful
+echo "Checking ZeroTier service status..."
+systemctl status zerotier-one | grep "Active: active (running)"
+if [ $? -ne 0 ]; then
+    echo "Error: ZeroTier service is not running."
+    exit 1
+fi
+
+echo "Verifying network join..."
+zerotier-cli listnetworks | grep $NETWORK_ID
+if [ $? -eq 0 ]; then
+    echo "Successfully joined ZeroTier network: $NETWORK_ID"
+else
+    echo "Error: Failed to join the ZeroTier network."
+    exit 1
+fi
+
+echo "ZeroTier installation and configuration completed."
+
+after adding this script in a file, we execute it and then add in our network ID and using this, we are able to add all the machines on our network. Then, on the zerotier web interface, we authorize each device so it is officially in the network.
+
+
+3- this way, we can group all the DB machines in one network so we can view the RabbitMQ queues on my virtual machine when I open it 
