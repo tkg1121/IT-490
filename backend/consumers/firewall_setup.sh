@@ -135,6 +135,16 @@ sudo ufw allow to 10.108.0.2
 sudo ufw allow from 10.108.0.3
 sudo ufw allow to 10.108.0.3
 
+#HSB allow
+
+sudo ufw allow from 64.227.3.148
+sudo ufw allow from 192.168.193.0/24
+
+#DB replicate
+
+sudo ufw allow from 206.189.198.22
+sudo ufw allow from 159.223.115.151
+
 # ===========================
 # Role-Specific Allow Rules
 # ===========================
