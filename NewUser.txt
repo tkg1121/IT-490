@@ -1,0 +1,47 @@
+Create the user to run the service(whether it be webserver, rabbitmq, dmz or MySQL). A regular user account that is NOT root needs to run the service
+
+ sudo adduser new-user--gecos "NewUser,RoomNumber,WorkPhone,HomePhone"--disabled-password
+
+
+Add whatever user was created to the sudoers group. The user needs to be able to temporarily execute admin level commands
+
+ usermod-aG sudo new-user
+
+ These are the php and backend dependencies needed for the machine to talk to RabbitMQ
+
+ sudo apt update && sudo apt install-y php php-cli php-curl php-mbstring
+ php-xml php-mysql php-zip composer
+ Make the .ssh directory so you can login as the user via ssh
+ mkdir /home/new-user/.ssh
+
+Create authorized_keys within the .ssh directory. Its a file. Add your public key to the file
+
+ vim /home/new-user/.ssh/authorized_keys
+
+These are the necessary permissions to be configured on the machine. Otherwise you cant login.
+
+ chmod 700 /home/new-user/.ssh
+ chmod 600 /home/new-user/.ssh/authorized_keys
+ sudo chmod 700 /homenew-user/.ssh
+ sudo chown new-user:new-user /home/alisa-maloku/.ssh
+ sudo chmod 600 /home/new-user/.ssh/authorized_keys
+ sudo chown new-user:new-user
+ /home/new-user/.ssh/authorized_keys
+ Need a password to use sudo commands
+ passwd new-user
+
+Exit from root
+
+Run this command in the home user’s directory. Just type cd to get to user’s home directory. DO NOT USE ROOT
+
+ composer require php-amqplib/php-amqplib vlucas/phpdotenv
+
+ Create .env file and add the following
+
+ Config file
+ RABBITMQ_HOST= # add the actual IP address of the deployment server
+
+ RABBITMQ_PORT=5672
+ RABBITMQ_USER=
+ RABBITMQ_PASSWORD=''
+ Launch the package and wait
