@@ -145,6 +145,7 @@ sudo ufw allow from 192.168.193.0/24
 sudo ufw allow from 206.189.198.22
 sudo ufw allow from 159.223.115.151
 
+sudo ufw allow from 10.147.18.197
 # ===========================
 # Role-Specific Allow Rules
 # ===========================
