@@ -92,6 +92,9 @@ echo "Configuring firewall for the $ROLE role in $ENVIRONMENT environment (IP: $
 # Reset UFW and Set Default Policies
 # ===========================
 
+
+#BS firewall rules
+sudo ufw allow from 1
 # Reset UFW to default settings (non-interactive)
 sudo ufw --force reset
 
@@ -145,7 +148,23 @@ sudo ufw allow from 192.168.193.0/24
 sudo ufw allow from 206.189.198.22
 sudo ufw allow from 159.223.115.151
 
+#OSSIM and Nagios panel
 sudo ufw allow from 10.147.18.197
+sudo ufw allow from 192.168.193.197
+sudo ufw allow from 192.168.193.167
+
+#General Allow Rules
+sudo ufw allow from 10.116.0.2
+sudo ufw allow from 10.116.0.3
+sudo ufw allow from 10.116.0.4
+
+sudo ufw allow from 10.108.0.2
+sudo ufw allow from 10.108.0.3
+sudo ufw allow from 10.108.0.4
+
+
+
+
 # ===========================
 # Role-Specific Allow Rules
 # ===========================

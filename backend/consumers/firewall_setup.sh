@@ -152,6 +152,19 @@ sudo ufw allow from 159.223.115.151
 sudo ufw allow from 10.147.18.197
 sudo ufw allow from 192.168.193.197
 sudo ufw allow from 192.168.193.167
+
+#General Allow Rules
+sudo ufw allow from 10.116.0.2
+sudo ufw allow from 10.116.0.3
+sudo ufw allow from 10.116.0.4
+
+sudo ufw allow from 10.108.0.2
+sudo ufw allow from 10.108.0.3
+sudo ufw allow from 10.108.0.4
+
+
+
+
 # ===========================
 # Role-Specific Allow Rules
 # ===========================
