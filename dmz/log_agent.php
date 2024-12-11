@@ -23,21 +23,57 @@ $logStorageDir = rtrim($_ENV['LOG_STORAGE_DIR'] ?? '~/received_logs', '/');
 // Machine tag
 $machineTag = $_ENV['MACHINE_TAG'] ?? 'unknown';
 
-// Log files to collect
-$logs = [
-    'apache_error'   => '/var/log/apache2/error.log',
-    'apache_access'  => '/var/log/apache2/access.log',
-    'mysql_error'    => '/var/log/mysql/error.log',
-    'rabbitmq_log'   => '/var/log/rabbitmq/rabbitmq.log',
-    'php_error'      => '/var/log/php_errors.log', // Adjust path as needed
+// Services to collect logs from
+$services = [
+    'auth_consumer.service',
+    'database_package_consumer.service',
+    'friends_consumer.service',
+    'movies_consumer.service',
+    'production_database_consumer.service',
+    'social_media_consumer.service',
+    'standby_database_consumer.service',
+    'twofa_consumer.service',
+    'frontend_package_consumer.service',
+    'log_agent.service',
+    'standby_frontend_consumer.service',
+    'production_frontend_consumer.service',
+    'dmz_consumer.service',
+    'dmz_consumer_package.service',
+    'favorites_consumer.service',
+    'notify_consumer.service',
+    'production_dmz_consumer.service',
+    'standby_dmz_consumer.service',
+    'tickets_consumer.service',
+    'where_to_watch_consumer.service',
 ];
 
-// Function to read log files
-function readLogFile($filePath) {
-    if (!file_exists($filePath) || !is_readable($filePath)) {
-        return null;
+// Use epoch timestamps for since time to avoid parsing issues
+$serviceLastTimestamp = [];
+foreach ($services as $service) {
+    $serviceLastTimestamp[$service] = '@0';
+}
+
+// Function to read logs from systemd journal for a given service since a given timestamp
+function readServiceLogsSince($serviceName, $sinceTimestamp) {
+    // Do not add extra quotes around %s, escapeshellarg will handle it
+    $command = sprintf(
+        '/usr/bin/journalctl -u %s --no-pager --since=%s 2>&1',
+        escapeshellarg($serviceName),
+        escapeshellarg($sinceTimestamp)
+    );
+
+    echo "[DEBUG] Running command: $command\n";
+
+    $output = shell_exec($command);
+
+    echo "[DEBUG] Output for $serviceName since $sinceTimestamp:\n";
+    if (empty($output)) {
+        echo "[DEBUG] No output from journalctl\n";
+    } else {
+        echo $output . "\n";
     }
-    return file_get_contents($filePath);
+
+    return empty($output) ? null : $output;
 }
 
 // Ensure log storage directory exists
@@ -46,6 +82,13 @@ if (!is_dir($logStorageDir)) {
 }
 
 try {
+    echo "[DEBUG] Running as user: " . get_current_user() . "\n";
+    echo "[DEBUG] Environment:\n";
+    echo "MACHINE_TAG: $machineTag\n";
+    echo "RABBITMQ_HOST: $rabbitmqHost\n";
+    echo "RABBITMQ_QUEUE: $rabbitmqQueue\n";
+    echo "LOG_STORAGE_DIR: $logStorageDir\n";
+
     // Establish connections to RabbitMQ
     $connectionSend = new AMQPStreamConnection(
         $rabbitmqHost,
@@ -92,7 +135,6 @@ try {
         $timestamp = date('Y-m-d H:i:s');
         $formattedContent = "[$timestamp] $logContent\n";
 
-        // Write to log file
         file_put_contents($logFilePath, $formattedContent, FILE_APPEND);
     }
 
@@ -130,18 +172,21 @@ try {
     while (count($channelReceive->callbacks)) {
         // Check if it's time to send logs
         if (time() - $lastSentTime >= $sendInterval) {
-            // Iterate through logs and send them
-            foreach ($logs as $logName => $logPath) {
-                $logContent = readLogFile($logPath);
+            // Iterate through services and send their logs only if there are new ones
+            foreach ($services as $serviceName) {
+                $since = $serviceLastTimestamp[$serviceName];
+                echo "[DEBUG] Checking new logs for $serviceName since $since\n";
+                $logContent = readServiceLogsSince($serviceName, $since);
+
                 if ($logContent === null) {
-                    echo "Skipping inaccessible log: $logPath\n";
+                    echo "No new logs for service: $serviceName since $since\n";
                     continue;
                 }
 
-                // Prepare the message
+                // There are new logs, send them
                 $data = [
                     'machine_tag' => $machineTag,
-                    'log_name'    => $logName,
+                    'log_name'    => $serviceName,
                     'log_content' => $logContent,
                     'timestamp'   => date('Y-m-d H:i:s'),
                 ];
@@ -153,14 +198,18 @@ try {
                 // Publish the message to the queue
                 $channelSend->basic_publish($message, '', $rabbitmqQueue);
 
-                echo "Sent log: $logName from $machineTag\n";
+                echo "Sent logs for service: $serviceName from $machineTag\n";
+
+                // Update the last timestamp to current epoch time
+                $serviceLastTimestamp[$serviceName] = '@' . time();
             }
+
             $lastSentTime = time();
         }
 
         // Wait for incoming messages
         try {
-            $channelReceive->wait(null, false, 1); // Wait with a timeout of 1 second
+            $channelReceive->wait(null, false, 1);
         } catch (\PhpAmqpLib\Exception\AMQPTimeoutException $e) {
             // Timeout occurred, continue the loop
         } catch (Exception $e) {
@@ -175,7 +224,6 @@ try {
     // Close the channels and connections when done
     $channelSend->close();
     $connectionSend->close();
-
     $channelReceive->close();
     $connectionReceive->close();
 
